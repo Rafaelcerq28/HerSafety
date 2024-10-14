@@ -34,9 +34,9 @@ public class PlacesService {
     public Place getPlace(String name){
 
         //name = "the+bernard+shaw";//delete after
-        name = name.replace("+", " ");
+        String nameToSearch = name.replace("+", " ");
         //search for the place in the database
-        Optional<Place> findPlace = placeRepository.findByName(name); 
+        Optional<Place> findPlace = placeRepository.findByName(nameToSearch); 
 
         //if the place was found return the place
         if(findPlace.isPresent()){

@@ -13,11 +13,12 @@ import com.hersafety.hersafety.service.PlacesService;
 @RestController
 public class PlacesController {
 
-    PlacesService placesService;
+    private PlacesService placesService;
     public PlacesController(PlacesService placesService){
         this.placesService = placesService;
     }
 
+    //Method to get a place (this method can create a place by getting from the google maps API)
     @GetMapping("/place/{name}")
     @ResponseStatus(HttpStatus.OK)
     public Place place(@PathVariable(value = "name")String name){
