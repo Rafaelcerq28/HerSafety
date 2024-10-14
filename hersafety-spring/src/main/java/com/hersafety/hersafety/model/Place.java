@@ -1,10 +1,26 @@
 package com.hersafety.hersafety.model;
 
+import java.time.Instant;
 import java.util.List;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import com.hersafety.hersafety.model.mapsResponse.PlaceResponse;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="place")
 public class Place {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
     private String address;
     private String name;
     private String placeId;
@@ -12,6 +28,15 @@ public class Place {
     private double lat;
     private double lng;
 
+    @CreationTimestamp
+    private Instant createdAt;
+    
+    public Instant getCreatedAt() {
+        return createdAt;
+    }
+    public void setCreatedAt(Instant createdAt) {
+        this.createdAt = createdAt;
+    }
     public String getAddress() {
         return address;
     }
