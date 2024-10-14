@@ -1,11 +1,13 @@
 package com.hersafety.hersafety.model.mapsResponse;
 
+import java.util.List;
+
 public class Candidate {
     private String formatted_address;
     private Geometry geometry;
     private String name;
     private String place_id;
-
+    private List<String> types;
     // Getters and setters
 
     public String getFormatted_address() {
@@ -39,4 +41,14 @@ public class Candidate {
     public void setPlace_id(String place_id) {
         this.place_id = place_id;
     }
+
+    public List<String> getTypes() {
+        return types;
+    }
+
+    public void setTypes(List<String> types) {
+        this.types = types;
+    }
+
+
 }
