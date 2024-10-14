@@ -23,7 +23,7 @@ public class PlacesService {
             //Getting location from maps 
             String url = "https://maps.googleapis.com/maps/api/place/findplacefromtext/"+
                         "json?input=the+bernard+shaw&inputtype=textquery&fields=formatted_address"+
-                        "%2Cname%2Cgeometry%2Cplace_id%2Ctype&key=AIzaSyCCoF7TuazSQC7PlFsjwAxPE7wdAhrrVFU";
+                        "%2Cname%2Cgeometry%2Cplace_id%2Ctype&key=key";
             URI address = URI.create(url);
             HttpClient client = HttpClient.newHttpClient();
             HttpRequest request = HttpRequest.newBuilder(address).GET().build();     
@@ -36,9 +36,8 @@ public class PlacesService {
             ObjectMapper mapper = new ObjectMapper();
             PlaceResponse places = mapper.readValue(jsonString, PlaceResponse.class);
             //
-
+            //create a place and call the method to fill the fields in the place object
             Place place = new Place();
-            //call the method to fill the fields in the place object
             place.fillFields(places);
 
             return place;
