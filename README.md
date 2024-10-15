@@ -2,29 +2,31 @@
 
 Final Project for Higher Diploma
 
-### Endpoint to get/create place
+### Endpoint to get/create/edit/delete a place
 
-- (get)
-http://localhost:8080/place/{name}
+##### - Get
 
-http://localhost:8080/place/the+bernard+shaw
+`http://localhost:8080/place/{name}`
+
+`http://localhost:8080/place/the+bernard+shaw`
 
 
-http://localhost:8080/place
+`http://localhost:8080/place`
 
-http://localhost:8080/place?name=the+bernard+shaw
+`http://localhost:8080/place?name=the+bernard+shaw`
 
-- (put)
+##### - Put
 
-- (delete)
+##### - Delete
 
 ----
 
 ### Endpoint to create/delete/get/update user
 
-- (post requestBody)
-  http://localhost:8080/users
+##### - Post (requestBody)
+  `http://localhost:8080/users`
 
+```
   {
   "username": "maria123",
   "password": "password1234",
@@ -33,27 +35,33 @@ http://localhost:8080/place?name=the+bernard+shaw
   "email": "maria@example.com",
   "notifications": true
   } 
+```
 
-- (get all)
-  http://localhost:8080/users
+##### - Get all
 
-- (get id)
-  http://localhost:8080/users/{id}
+  `http://localhost:8080/users`
 
-- (put id)
-  http://localhost:8080/users/{id}
+##### - Get id)
 
-- (delete id)
-  http://localhost:8080/users/{id}
+  `http://localhost:8080/users/{id}`
+
+##### - Put
+
+  `http://localhost:8080/users/{id}`
+
+##### - Delete
+
+  `http://localhost:8080/users/{id}`
 
 ----
 
-  ### Endpoint to add a report
+  ### Endpoint to create/delete/get/update a report
 
-- (post)
-http://localhost:8080/report
+##### - Post
 
+`http://localhost:8080/report`
 
+```
     {
         "userId": 2,
         "placeId":1,
@@ -67,15 +75,18 @@ http://localhost:8080/report
         "safetyInfo": 5,
         "comment": "O lugar é seguro, mas poderia melhorar na oferta de produtos femininos."
       }
+```
 
-- (get all by user)
-http://localhost:8080/report/user/2
+##### - Get all by user
 
-- (get all by place)
-http://localhost:8080/report/place/1
+`http://localhost:8080/report/user/2`
 
-- (get by id)
+##### - Get all by place
 
-- (put)
+`http://localhost:8080/report/place/1`
 
-- (delete)
+##### - Get by id
+
+##### - Put
+
+##### - Delete
