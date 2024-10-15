@@ -1,11 +1,14 @@
 package com.hersafety.hersafety.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.hersafety.hersafety.DTO.ReportRequest;
+import com.hersafety.hersafety.controller.ReportController;
 import com.hersafety.hersafety.model.Place;
 import com.hersafety.hersafety.model.Report;
 import com.hersafety.hersafety.model.User;
@@ -51,6 +54,29 @@ public class ReportService {
         reportRepository.save(reportToAdd);
 
         return null;
+    }
+
+    public List<ReportRequest> getAllReportsByPlace(long id) {
+        List<Report> reports = reportRepository.findByPlaceId(id);
+        List<ReportRequest> reportResponse = new ArrayList();
+
+        for (Report report : reports) {
+            reportResponse.add(new ReportRequest().convertToDTO(report));
+        }
+        
+        return reportResponse;
+    }
+
+    public List<ReportRequest> getAllReportsByUser(long id) {
+        List<Report> reports = reportRepository.findByUserId(id);
+        System.out.println(reports.isEmpty());
+        List<ReportRequest> reportResponse = new ArrayList();
+
+        for (Report report : reports) {
+            reportResponse.add(new ReportRequest().convertToDTO(report));
+        }
+        
+        return reportResponse;
     }
 
 }

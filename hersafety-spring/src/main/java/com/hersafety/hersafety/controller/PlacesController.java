@@ -27,7 +27,7 @@ public class PlacesController {
         return placesService.getPlace(name);
     }
 
-    @GetMapping("/place")
+    @GetMapping("/place")//?name=temple+bar
     @ResponseStatus(HttpStatus.OK)
     public Place placeByParam (@RequestParam(value = "name")String name){
         System.out.println("chamado");

@@ -14,6 +14,10 @@ http://localhost:8080/place
 
 http://localhost:8080/place?name=the+bernard+shaw
 
+- (put)
+
+- (delete)
+
 ----
 
 ### Endpoint to create/delete/get/update user
@@ -63,3 +67,15 @@ http://localhost:8080/report
         "safetyInfo": 5,
         "comment": "O lugar é seguro, mas poderia melhorar na oferta de produtos femininos."
       }
+
+- (get all by user)
+http://localhost:8080/report/user/2
+
+- (get all by place)
+http://localhost:8080/report/place/1
+
+- (get by id)
+
+- (put)
+
+- (delete)

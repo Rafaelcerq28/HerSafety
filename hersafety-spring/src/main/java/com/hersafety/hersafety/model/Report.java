@@ -142,6 +142,14 @@ public class Report {
         this.createdAt = createdAt;
     }
 
+    @Override
+    public String toString() {
+        return "Report [id=" + id + ", safety=" + safety + ", welcoming=" + welcoming + ", toilets=" + toilets
+                + ", feminineProducts=" + feminineProducts + ", illumination=" + illumination + ", crowdQuality="
+                + crowdQuality + ", privacy=" + privacy + ", safetyInfo=" + safetyInfo + ", comment=" + comment
+                + ", user=" + user + ", place=" + place + ", createdAt=" + createdAt + "]";
+    }
+
     
 
 }

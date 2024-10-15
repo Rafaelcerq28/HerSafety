@@ -1,5 +1,6 @@
 package com.hersafety.hersafety.DTO;
 
+import com.hersafety.hersafety.model.Report;
 
 public class ReportRequest {
 /* 
@@ -97,5 +98,21 @@ public class ReportRequest {
         this.placeId = placeId;
     }
 
-    
+    public ReportRequest convertToDTO(Report report){
+        ReportRequest dto = new ReportRequest();
+
+        dto.setUserId(report.getUser().getId());
+        dto.setPlaceId(report.getPlace().getId());
+        dto.setSafety(report.getSafety());
+        dto.setWelcoming(report.getWelcoming());
+        dto.setToilets(report.getToilets());
+        dto.setFeminineProducts(report.getFeminineProducts());
+        dto.setIllumination(report.getIllumination());
+        dto.setCrowdQuality(report.getCrowdQuality());
+        dto.setPrivacy(report.getPrivacy());
+        dto.setSafetyInfo(report.getSafetyInfo());
+        dto.setComment(report.getComment());
+
+        return dto;
+    }
 }
