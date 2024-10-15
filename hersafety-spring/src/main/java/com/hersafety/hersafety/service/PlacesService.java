@@ -44,7 +44,7 @@ public class PlacesService {
             return p;
         //if the place was'nt found search for it in the maps
         }else{
-            try {       
+            try {      
                 //Get location from maps passing the place's name
                 String url = "https://maps.googleapis.com/maps/api/place/findplacefromtext/"+
                             "json?input="+name+"&inputtype=textquery&fields=formatted_address"+

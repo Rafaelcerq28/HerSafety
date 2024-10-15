@@ -15,6 +15,17 @@ import jakarta.persistence.Table;
 @Table(name="user")
 public class User {
 
+/*
+{
+  "username": "maria123",
+  "password": "password1234",
+  "name": "Maria Silva",
+  "dateOfBirth": "1990-05-15",
+  "email": "maria@example.com",
+  "notifications": true
+} 
+  */
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

@@ -34,14 +34,16 @@ public class UserService {
         return ResponseEntity.created(location).body(savedUser);
     }
 
+    //List all user
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
+    //Get one user
     public EntityModel<User> getUser(Long id) {
         Optional<User> user = userRepository.findById(id);
         if(user.isPresent() == false){
-
+            return null;
         }
 
         EntityModel<User> entityModel = EntityModel.of(user.get());
@@ -49,6 +51,7 @@ public class UserService {
         return entityModel;
     }
 
+    //Delete User
     public ResponseEntity<Object> deleteUser(Long id) {
         Optional<User> user = userRepository.findById(id);
         
@@ -62,6 +65,7 @@ public class UserService {
         return ResponseEntity.noContent().build();
     }
 
+    //Update user
     public ResponseEntity<User> updateUser(Long id, User user) {
         Optional<User> userToUpdate = userRepository.findById(id);
         if(userToUpdate.isPresent() == false){

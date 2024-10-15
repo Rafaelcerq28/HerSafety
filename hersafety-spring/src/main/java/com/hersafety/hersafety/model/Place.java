@@ -74,6 +74,12 @@ public class Place {
     public void setTypes(List<String> types) {
         this.types = types;
     }
+    public long getId() {
+        return id;
+    }
+    public void setId(long id) {
+        this.id = id;
+    }
 
     //Method to fill the place using the fields from maps response
     public void fillFields(PlaceResponse placeResponse){
