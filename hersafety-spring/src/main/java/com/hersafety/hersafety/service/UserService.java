@@ -2,7 +2,11 @@ package com.hersafety.hersafety.service;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
+import javax.management.RuntimeErrorException;
+
+import org.springframework.hateoas.EntityModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -32,6 +36,47 @@ public class UserService {
 
     public List<User> getAllUsers() {
         return userRepository.findAll();
+    }
+
+    public EntityModel<User> getUser(Long id) {
+        Optional<User> user = userRepository.findById(id);
+        if(user.isPresent() == false){
+
+        }
+
+        EntityModel<User> entityModel = EntityModel.of(user.get());
+
+        return entityModel;
+    }
+
+    public ResponseEntity<Object> deleteUser(Long id) {
+        Optional<User> user = userRepository.findById(id);
+        
+        //insert an exception here
+        if(user.isPresent() == false){
+            return ResponseEntity.badRequest().build();
+        }
+
+        userRepository.deleteById(id);
+
+        return ResponseEntity.noContent().build();
+    }
+
+    public ResponseEntity<User> updateUser(Long id, User user) {
+        Optional<User> userToUpdate = userRepository.findById(id);
+        if(userToUpdate.isPresent() == false){
+            return ResponseEntity.badRequest().build();
+        }
+
+        userToUpdate.get().setName(user.getName());
+        userToUpdate.get().setEmail(user.getEmail());
+        userToUpdate.get().setDateOfBirth(user.getDateOfBirth());
+        userToUpdate.get().setNotifications(user.getNotifications());
+        userToUpdate.get().setPassword(user.getPassword());
+
+        User updatedUser = userRepository.save(userToUpdate.get());
+        
+        return ResponseEntity.ok().body(updatedUser);
     }
 
 }

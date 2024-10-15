@@ -59,7 +59,7 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
-    public boolean isNotifications() {
+    public boolean getNotifications() {
         return notifications;
     }
     public void setNotifications(boolean notifications) {
