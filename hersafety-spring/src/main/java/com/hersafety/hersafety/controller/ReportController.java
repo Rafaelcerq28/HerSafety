@@ -28,18 +28,35 @@ public class ReportController {
     //Post Report
     @PostMapping("/report")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Report> addReport(@RequestBody ReportRequest report){
+    public ResponseEntity<ReportRequest> addReport(@RequestBody ReportRequest report){
         return reportService.addReport(report);
     }
 
-    @GetMapping("/report/place/{placeId}")//?place=2
+    //GET a List os reports by placeId
+    @GetMapping("/report/place/{placeId}")
+    @ResponseStatus(HttpStatus.OK)
     public List<ReportRequest> getAllReportsByPlace(@PathVariable (value = "placeId")long placeId){
         return reportService.getAllReportsByPlace(placeId);
     }
 
-    @GetMapping("/report/user/{userId}")//?place=2
+    //GET a List os reports by userId
+    @GetMapping("/report/user/{userId}")
+    @ResponseStatus(HttpStatus.OK)
     public List<ReportRequest> getAllReportsByUser(@PathVariable (value = "userId")long userId){
         return reportService.getAllReportsByUser(userId);
     }
 
+    //GET All reports
+    @GetMapping("/report")
+    @ResponseStatus(HttpStatus.OK)
+    public List<ReportRequest> getAllReports(){
+        return reportService.getAllReports();
+    }
+
+    //Get Report by Id
+    @GetMapping("/report/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public ReportRequest getReportById(@PathVariable (value = "id") long id){
+        return reportService.getReportById(id);
+    }
 }

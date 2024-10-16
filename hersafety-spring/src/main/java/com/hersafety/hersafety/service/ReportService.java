@@ -1,11 +1,13 @@
 package com.hersafety.hersafety.service;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.hersafety.hersafety.DTO.ReportRequest;
 import com.hersafety.hersafety.controller.ReportController;
@@ -29,7 +31,8 @@ public class ReportService {
         this.reportRepository = reportRepository;
     }
 
-    public ResponseEntity<Report> addReport(ReportRequest report) {
+    //Create report
+    public ResponseEntity<ReportRequest> addReport(ReportRequest report) {
         Optional<User> user = userRepository.findById(report.getUserId());
         Optional<Place> place = placeRepository.findById(report.getPlaceId());
 
@@ -51,11 +54,15 @@ public class ReportService {
         reportToAdd.setSafetyInfo(report.getSafetyInfo());
         reportToAdd.setComment(report.getComment());
 
-        reportRepository.save(reportToAdd);
+        reportToAdd = reportRepository.save(reportToAdd);
+        report.setId(reportToAdd.getId());
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().
+                        path("/{id}").buildAndExpand(report.getId()).toUri();
 
-        return null;
+        return ResponseEntity.created(location).body(report);
     }
 
+    //GET a List os reports by placeId
     public List<ReportRequest> getAllReportsByPlace(long id) {
         List<Report> reports = reportRepository.findByPlaceId(id);
         List<ReportRequest> reportResponse = new ArrayList();
@@ -67,9 +74,9 @@ public class ReportService {
         return reportResponse;
     }
 
+    //GET a List os reports by userId
     public List<ReportRequest> getAllReportsByUser(long id) {
         List<Report> reports = reportRepository.findByUserId(id);
-        System.out.println(reports.isEmpty());
         List<ReportRequest> reportResponse = new ArrayList();
 
         for (Report report : reports) {
@@ -78,5 +85,29 @@ public class ReportService {
         
         return reportResponse;
     }
+
+    //GET All reports
+    public List<ReportRequest> getAllReports() {
+        List<Report> reports = reportRepository.findAll();
+        List<ReportRequest> reportResponse = new ArrayList();
+
+        for (Report report : reports) {
+            reportResponse.add(new ReportRequest().convertToDTO(report));
+        }
+        
+        return reportResponse;
+    }
+
+    //Get Report by Id
+    public ReportRequest getReportById(long id) {
+        Optional<Report> report = reportRepository.findById(id);
+        if(report.isPresent() == false){
+            return null;
+        }
+
+        return new ReportRequest().convertToDTO(report.get());
+    }
+
+
 
 }

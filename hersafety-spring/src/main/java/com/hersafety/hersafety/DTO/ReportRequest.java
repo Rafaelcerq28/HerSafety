@@ -18,6 +18,7 @@ public class ReportRequest {
         "comment": "O lugar é seguro, mas poderia melhorar na oferta de produtos femininos."
       }
   */     
+    
     private int safety;
     private int welcoming;
     private int toilets;
@@ -27,9 +28,10 @@ public class ReportRequest {
     private int privacy;
     private int safetyInfo;
     private String comment;
-
+    private long id;
     private long userId;
     private long placeId;
+    
     
     public int getSafety() {
         return safety;
@@ -98,9 +100,17 @@ public class ReportRequest {
         this.placeId = placeId;
     }
 
+    public long getId() {
+        return id;
+    }
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public ReportRequest convertToDTO(Report report){
         ReportRequest dto = new ReportRequest();
 
+        dto.setId(report.getId());
         dto.setUserId(report.getUser().getId());
         dto.setPlaceId(report.getPlace().getId());
         dto.setSafety(report.getSafety());
@@ -115,4 +125,30 @@ public class ReportRequest {
 
         return dto;
     }
+
+    public void convertToDTOSelf(Report report){
+
+        this.setId(report.getId());
+        this.setUserId(report.getUser().getId());
+        this.setPlaceId(report.getPlace().getId());
+        this.setSafety(report.getSafety());
+        this.setWelcoming(report.getWelcoming());
+        this.setToilets(report.getToilets());
+        this.setFeminineProducts(report.getFeminineProducts());
+        this.setIllumination(report.getIllumination());
+        this.setCrowdQuality(report.getCrowdQuality());
+        this.setPrivacy(report.getPrivacy());
+        this.setSafetyInfo(report.getSafetyInfo());
+        this.setComment(report.getComment());
+
+    }
+    @Override
+    public String toString() {
+        return "ReportRequest [safety=" + safety + ", welcoming=" + welcoming + ", toilets=" + toilets
+                + ", feminineProducts=" + feminineProducts + ", illumination=" + illumination + ", crowdQuality="
+                + crowdQuality + ", privacy=" + privacy + ", safetyInfo=" + safetyInfo + ", comment=" + comment
+                + ", id=" + id + ", userId=" + userId + ", placeId=" + placeId + "]";
+    }
+
+    
 }
