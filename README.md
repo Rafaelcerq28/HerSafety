@@ -86,6 +86,10 @@ Final Project for Higher Diploma
 `http://localhost:8080/report/place/1`
 
 ##### - Get by id
+`http://localhost:8080/report/1`
+
+##### - Get All
+`http://localhost:8080/report`
 
 ##### - Put
 
