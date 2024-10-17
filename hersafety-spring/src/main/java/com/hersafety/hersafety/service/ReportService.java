@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.hersafety.hersafety.DTO.ReportRequest;
@@ -31,6 +32,8 @@ public class ReportService {
         this.reportRepository = reportRepository;
     }
 
+
+    //validate the inputs
     //Create report
     public ResponseEntity<ReportRequest> addReport(ReportRequest report) {
         Optional<User> user = userRepository.findById(report.getUserId());
@@ -120,6 +123,36 @@ public class ReportService {
 
         return ResponseEntity.noContent().build();
     }
+
+
+    //validate the inputs
+    //upsate report
+    public ResponseEntity<ReportRequest> updateReport(long id, ReportRequest report) {
+            Optional<Report> reportToUpdate = reportRepository.findById(id);
+            
+            if(reportToUpdate.isPresent() == false){
+                return null;
+            }
+
+            reportToUpdate.get().setSafety(report.getSafety());
+            reportToUpdate.get().setWelcoming(report.getWelcoming());
+            reportToUpdate.get().setToilets(report.getToilets());
+            reportToUpdate.get().setFeminineProducts(report.getFeminineProducts());
+            reportToUpdate.get().setIllumination(report.getIllumination());
+            reportToUpdate.get().setCrowdQuality(report.getCrowdQuality());
+            reportToUpdate.get().setPrivacy(report.getPrivacy());
+            reportToUpdate.get().setComment(report.getComment());
+            reportToUpdate.get().setSafetyInfo(report.getSafetyInfo());
+
+            reportRepository.save(reportToUpdate.get());
+
+            ReportRequest reportRequest = new ReportRequest();
+
+            reportRequest.convertToDTOSelf(reportToUpdate.get());
+
+            return ResponseEntity.ok().body(reportRequest);
+    }
+
 
 
 

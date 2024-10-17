@@ -55,7 +55,7 @@ Final Project for Higher Diploma
 
 ----
 
-  ### Endpoint to create/delete/get/update a report
+### Endpoint to create/delete/get/update a report
 
 ##### - Post
 
@@ -79,23 +79,42 @@ Final Project for Higher Diploma
 
 ##### - Get all by user
 
-`http://localhost:8080/report/user/2`
+`http://localhost:8080/report/user/{userId}`
 
 ##### - Get all by place
 
-`http://localhost:8080/report/place/1`
+`http://localhost:8080/report/place/{placeId}`
 
 ##### - Get by id
-`http://localhost:8080/report/1`
+`http://localhost:8080/report/{Id}`
 
 ##### - Get All
 `http://localhost:8080/report`
 
 ##### - Put
+`http://localhost:8080/report/{id}`
+
+```
+{
+  "id":4,
+  "safety": 2,
+  "welcoming": 3,
+  "toilets": 5,
+  "feminineProducts": 1,
+  "illumination": 5,
+  "crowdQuality": 3,
+  "privacy": 4,
+  "safetyInfo": 4,
+  "comment": "new comment!"
+}
+
+```
 
 ##### - Delete
+`http://localhost:8080/report/{Id}`
 
 ----
+
 # To Do:
 
 - Create exception class to handle the errors
