@@ -94,3 +94,11 @@ Final Project for Higher Diploma
 ##### - Put
 
 ##### - Delete
+
+----
+# To Do:
+
+- Create exception class to handle the errors
+- finish the endpoints
+- Implement Swagger 
+- Check HATEOAS to turn the project in a Restful API

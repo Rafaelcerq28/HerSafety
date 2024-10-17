@@ -108,6 +108,19 @@ public class ReportService {
         return new ReportRequest().convertToDTO(report.get());
     }
 
+    //Delete by id
+    public ResponseEntity<Object> deleteReport(long id) {
+        Optional<Report> reportToDelete = reportRepository.findById(id);
+    
+        if(reportToDelete.isPresent() == false){
+            return null;
+        }
+
+        reportRepository.deleteById(id);
+
+        return ResponseEntity.noContent().build();
+    }
+
 
 
 }

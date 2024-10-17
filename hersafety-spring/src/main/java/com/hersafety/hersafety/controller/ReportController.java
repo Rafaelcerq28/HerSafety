@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hersafety.hersafety.DTO.ReportRequest;
-import com.hersafety.hersafety.model.Report;
+
 import com.hersafety.hersafety.service.ReportService;
 
 @RestController
@@ -58,5 +59,12 @@ public class ReportController {
     @ResponseStatus(HttpStatus.OK)
     public ReportRequest getReportById(@PathVariable (value = "id") long id){
         return reportService.getReportById(id);
+    }
+
+    //Delete
+    @DeleteMapping("/report/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public ResponseEntity<Object> deleteReport(@PathVariable (value = "id")long id){
+        return reportService.deleteReport(id);
     }
 }
