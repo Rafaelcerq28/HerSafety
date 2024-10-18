@@ -5,19 +5,23 @@ Final Project for Higher Diploma
 ### Endpoint to get/create/edit/delete a place
 
 ##### - Get
-
 `http://localhost:8080/place/{name}`
 
-`http://localhost:8080/place/the+bernard+shaw`
+`http://localhost:8080/place/id/{id}`
 
+`http://localhost:8080/place/the+bernard+shaw`
 
 `http://localhost:8080/place`
 
 `http://localhost:8080/place?name=the+bernard+shaw`
 
-##### - Put
+##### - Get All
+`http://localhost:8080/places`
 
+##### - Put
+`http://localhost:8080/place/{id}?name=Place+name`
 ##### - Delete
+`http://localhost:8080/place/{id}`
 
 ----
 
@@ -38,27 +42,22 @@ Final Project for Higher Diploma
 ```
 
 ##### - Get all
-
   `http://localhost:8080/users`
 
 ##### - Get id)
-
   `http://localhost:8080/users/{id}`
 
 ##### - Put
-
   `http://localhost:8080/users/{id}`
 
 ##### - Delete
-
   `http://localhost:8080/users/{id}`
 
 ----
 
-### Endpoint to create/delete/get/update a report
+  ### Endpoint to create/delete/get/update a report
 
 ##### - Post
-
 `http://localhost:8080/report`
 
 ```
@@ -118,6 +117,6 @@ Final Project for Higher Diploma
 # To Do:
 
 - Create exception class to handle the errors
-- finish the endpoints
 - Implement Swagger 
 - Check HATEOAS to turn the project in a Restful API
+- Create DTO for user and place

@@ -69,7 +69,7 @@ public class ReportController {
         return reportService.deleteReport(id);
     }
 
-    
+    //update
     @PutMapping("/report/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<ReportRequest> updateReport(@PathVariable (value = "id") long id, @RequestBody ReportRequest report){

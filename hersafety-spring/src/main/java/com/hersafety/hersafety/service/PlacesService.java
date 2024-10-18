@@ -7,8 +7,11 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
+import java.util.List;
 import java.util.Optional;
 
+import org.springframework.hateoas.EntityModel;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.JacksonException;
@@ -41,14 +44,13 @@ public class PlacesService {
         //if the place was found return the place
         if(findPlace.isPresent()){
             Place p = findPlace.get();
-            return p;
-        //if the place was'nt found search for it in the maps
-        }else{
+            return p;        
+        }else{//if the place was'nt found search for it in the maps
             try {      
                 //Get location from maps passing the place's name
                 String url = "https://maps.googleapis.com/maps/api/place/findplacefromtext/"+
                             "json?input="+name+"&inputtype=textquery&fields=formatted_address"+
-                            "%2Cname%2Cgeometry%2Cplace_id%2Ctype&key=key";
+                            "%2Cname%2Cgeometry%2Cplace_id%2Ctype&key=AIzaSyCCoF7TuazSQC7PlFsjwAxPE7wdAhrrVFU";
                 URI address = URI.create(url);
                 HttpClient client = HttpClient.newHttpClient();
                 HttpRequest request = HttpRequest.newBuilder(address).GET().build();     
@@ -60,7 +62,6 @@ public class PlacesService {
                 String jsonString = body;
                 ObjectMapper mapper = new ObjectMapper();
                 PlaceResponse places = mapper.readValue(jsonString, PlaceResponse.class);
-                System.out.println(places.getStatus());
                 
                 //create a place and call the method to fill the fields in the place object
                 Place place = new Place();
@@ -71,25 +72,65 @@ public class PlacesService {
                 return place;
 
             } catch (JacksonException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             } catch(IOException ex){
-
+                ex.printStackTrace();
             }
         }
         return null;
     }
 
-    //just test, delete
-    public String testUser(){
-        
-        User u = new User();
-        u.setName("fulaninho");
-        userRepository.save(u);
-        return "";
+    //Get place by ID
+    public EntityModel<Place> getPlaceById(Long id) {
+        Optional<Place> place = placeRepository.findById(id);
+
+        if(place.isPresent() == false){
+            return null;
+        }
+
+        EntityModel<Place> entityModel = EntityModel.of(place.get());
+
+        return entityModel;
+
     }
+
+    //Get All places
+    public List<Place> getAllPlaces() {
+        return placeRepository.findAll();
+    }
+
+    //Delete Places
+    public ResponseEntity<Object> deletePlace(Long id) {
+        Optional<Place> place = placeRepository.findById(id);
+
+        if(place.isPresent() == false){
+            return ResponseEntity.badRequest().build();
+        }
+
+        placeRepository.deleteById(id);
+
+        return ResponseEntity.noContent().build();
+    }
+
+    //Update Place
+    public ResponseEntity<Place> updatePlace(Long id, String name) {
+        Optional<Place> place = placeRepository.findById(id);
+
+        if(place.isPresent() == false){
+            return ResponseEntity.badRequest().build();
+        }
+
+        place.get().setName(name);
+
+        placeRepository.save(place.get());
+
+        return ResponseEntity.ok().body(place.get());
+    }
+
+
+
+
 
 }
