@@ -120,3 +120,6 @@ Final Project for Higher Diploma
 - Implement Swagger 
 - Check HATEOAS to turn the project in a Restful API
 - Create DTO for user and place
+
+
+#E6E6FA
