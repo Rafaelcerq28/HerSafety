@@ -123,3 +123,9 @@ Final Project for Higher Diploma
 
 
 #E6E6FA
+
+https://bootstrapmade.com/demo/Impact/
+
+https://bootstrapmade.com/demo/Tempo/
+
+https://bootstrapmade.com/demo/Regna/
