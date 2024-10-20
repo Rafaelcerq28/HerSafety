@@ -113,11 +113,14 @@ Final Project for Higher Diploma
 `http://localhost:8080/report/{Id}`
 
 ----
+Link for swagger:
 
+http://localhost:8080/swagger-ui/index.html
+
+----
 # To Do:
 
-- Create exception class to handle the errors
-- Implement Swagger 
+- Create exception class to handle the errors 
 - Check HATEOAS to turn the project in a Restful API
 - Create DTO for user and place
 
