@@ -1,0 +1,50 @@
+<main class="main">
+    <!-- Page Title -->
+    <!-- <div class="page-title dark-background" style="background-image: url(assets/img/page-title-bg.webp);"> -->
+        <div class="page-title dark-background" style="background-image: url(assets/img/page-title-bg.jpg);">
+      
+            <div class="container position-relative">
+              <h1>Place</h1>
+              <p>Esse dolorum voluptatum ullam est sint nemo et est ipsa porro placeat quibusdam quia assumenda numquam molestias.</p>
+              <nav class="breadcrumbs">
+                <ol>
+                  <li><a routerLink="/" routerLinkActive="active" class="active">Home</a></li>
+                  <li class="current">Place</li>
+                </ol>
+              </nav>
+            </div>
+          </div><!-- End Page Title -->
+      
+          <!-- Starter Section Section -->
+          <section id="starter-section" class="starter-section section">
+      
+            <!-- Section Title -->
+            <div class="container section-title" >
+              <!-- <h2>Starter Section</h2> -->
+              <p><span>Welcome to </span> <span class="description-title">Use angular to get the name<br></span></p>
+            </div><!-- End Section Title -->
+      
+            <div class="container">
+                <form action="">
+                    <label for="Latitude">latitude: </label>
+                    <input type="number" [(ngModel)]="lat" name="latitude" id="" placeholder="Digite a latitude">
+                    
+                    <label for="longitude">longitude: </label>
+                    <input type="number" [(ngModel)]="lng" name="latitude" id="" placeholder="Digite a longitude">
+                </form>
+                <button (click)="initMap()">Update map</button>
+            
+                <p>  
+                    lat:number = 53.3489292;
+                    lng:number = -6.2429928;
+                </p>
+                <br>
+            
+                <google-map [center]="center" [zoom]="zoom" height="400px" width="100%">
+                    <map-marker [position]="markerPosition"></map-marker>
+                </google-map>
+            </div>
+      
+          </section><!-- /Starter Section Section -->
+</main>
+
