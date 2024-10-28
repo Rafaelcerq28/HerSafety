@@ -120,9 +120,20 @@ http://localhost:8080/swagger-ui/index.html
 ----
 # To Do:
 
+### Spring
 - Create exception class to handle the errors 
 - Check HATEOAS to turn the project in a Restful API
 - Create DTO for user and place
+- Implement JWT
+
+### Angular
+
+- login page
+- register page (form)
+- user page
+- place report form
+- Service to get data from my api
+
 
 
 #E6E6FA
