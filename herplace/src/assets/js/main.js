@@ -8,7 +8,7 @@
 
 (function() {
   "use strict";
-console.log("pass");
+
   /**
    * Apply .scrolled class to the body as the page is scrolled down
    */
@@ -26,7 +26,7 @@ console.log("pass");
    * Mobile nav toggle
    */
   const mobileNavToggleBtn = document.querySelector('.mobile-nav-toggle');
-
+  console.log(mobileNavToggleBtn);
   function mobileNavToogle() {
     document.querySelector('body').classList.toggle('mobile-nav-active');
     mobileNavToggleBtn.classList.toggle('bi-list');
