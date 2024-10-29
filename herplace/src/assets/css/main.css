@@ -2539,8 +2539,15 @@ google-map {
 
 /* login */
 
-  .left-image {
+  .left-image-login {
     background-image: url('/assets/img/login-bg.jpg'); /* Substitua pelo caminho da sua imagem */
+    background-size: cover;
+    background-position: center;
+    height: 100vh; /* Define a altura completa da viewport */
+  }
+
+  .left-image-register {
+    background-image: url('/assets/img/register-bg.jpg'); /* Substitua pelo caminho da sua imagem */
     background-size: cover;
     background-position: center;
     height: 100vh; /* Define a altura completa da viewport */
