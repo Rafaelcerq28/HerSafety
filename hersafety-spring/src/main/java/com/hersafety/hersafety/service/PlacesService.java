@@ -40,7 +40,7 @@ public class PlacesService {
         String nameToSearch = name.replace("+", " ");
         //search for the place in the database
         Optional<Place> findPlace = placeRepository.findByName(nameToSearch); 
-
+        
         //if the place was found return the place
         if(findPlace.isPresent()){
             Place p = findPlace.get();
@@ -48,9 +48,10 @@ public class PlacesService {
         }else{//if the place was'nt found search for it in the maps
             try {      
                 //Get location from maps passing the place's name
+                name = name.replace(" ", "+");
                 String url = "https://maps.googleapis.com/maps/api/place/findplacefromtext/"+
                             "json?input="+name+"&inputtype=textquery&fields=formatted_address"+
-                            "%2Cname%2Cgeometry%2Cplace_id%2Ctype&key=AIzaSyCCoF7TuazSQC7PlFsjwAxPE7wdAhrrVFU";
+                            "%2Cname%2Cgeometry%2Cplace_id%2Ctype&key=mykey";
                 URI address = URI.create(url);
                 HttpClient client = HttpClient.newHttpClient();
                 HttpRequest request = HttpRequest.newBuilder(address).GET().build();     
@@ -65,7 +66,12 @@ public class PlacesService {
                 
                 //create a place and call the method to fill the fields in the place object
                 Place place = new Place();
-                place.fillFields(places);
+                try{
+                    place.fillFields(places);   
+                }catch(IndexOutOfBoundsException ex){
+                    return null;
+                }
+                
                 //store the place in the database
                 placeRepository.save(place);
 

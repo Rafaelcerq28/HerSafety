@@ -583,7 +583,7 @@ h6 {
   position: fixed;
   top: calc(50% - 30px);
   left: calc(50% - 30px);
-  border: 6px solid var(--accent-color);
+  border: 6px solid #6a4d7c;
   border-top-color: color-mix(in srgb, var(--accent-color), transparent 90%);
   border-radius: 50%;
   width: 60px;

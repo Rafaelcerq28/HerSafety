@@ -4,6 +4,11 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
+import { PlaceService } from '../../service/place.service';
+import { Place } from '../../Place';
+
+
+
 CommonModule
 @Component({
   selector: 'app-place',
@@ -14,12 +19,18 @@ CommonModule
 })
 export class PlaceComponent {
 
-  constructor(private route: ActivatedRoute) {
-    this.initMap();
+  constructor(private route: ActivatedRoute,private placeService: PlaceService) {
+    this.initMap(); 
+    
+    //metodo para pegar a localização  
+    this.getPlace();
+
+
   }
 //http param
   name:string = '';
 
+  //lat / long inicial e para update
   latitude = "";
   longitude ="";
 
@@ -31,10 +42,32 @@ export class PlaceComponent {
   zoom: number = 20;
   markerPosition: google.maps.LatLngLiteral = { lat: this.lat, lng: this.lng };
 
+// TESTING API GET
+  place?: Place;
+  getPlace(){
+
+    let nome:string = '';
+
+    //pega o nome
+    this.route.queryParams.subscribe(params => {
+      nome = params['name']});   
+
+    const name = String(this.route.snapshot.paramMap.get("name"));
+    console.log("nome no get: " + nome);
+    
+    if(nome != "null"){
+      this.placeService.getPlace(nome).subscribe((place) => (this.place = place));
+      console.log(this.place);
+    }
+
+    this.initMap();
+    
+  }
+// TESTING API GET
   initMap():void{
     console.log("vrum");
-    this.center = { lat: this.lat, lng: this.lng };
-    this.markerPosition = { lat: this.lat, lng: this.lng };
+    this.center = { lat: Number(this.place?.lat), lng: Number(this.place?.lng) };
+    this.markerPosition = { lat: Number(this.place?.lat), lng: Number(this.place?.lng) };
     this.zoom = 20;
   }
 
@@ -43,7 +76,6 @@ export class PlaceComponent {
       this.name = params['name'];
       // Aqui você pode fazer a lógica de pesquisa com base no 'query'
       console.log('Termo de busca:', this.name);
-      //CRIAR O OBJETO PLACE E A SERVICE
     });
   }
 }
