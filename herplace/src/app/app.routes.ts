@@ -9,6 +9,7 @@ import { UserpageComponent } from './components/userpage/userpage.component';
 export const routes: Routes = [
     {path: '',component: HomeComponent},
     {path: 'place', component: PlaceComponent},
+    {path: 'place/:name', component: PlaceComponent},
     {path: 'search', component: SearchComponent},
     {path: 'login', component: LoginComponent},
     {path: 'register', component: RegisterComponent},

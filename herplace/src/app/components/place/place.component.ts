@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { FormsModule } from '@angular/forms';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 CommonModule
 @Component({
@@ -13,9 +13,12 @@ CommonModule
   styleUrl: './place.component.css'
 })
 export class PlaceComponent {
-  constructor() {
+
+  constructor(private route: ActivatedRoute) {
     this.initMap();
   }
+//http param
+  name:string = '';
 
   latitude = "";
   longitude ="";
@@ -33,5 +36,14 @@ export class PlaceComponent {
     this.center = { lat: this.lat, lng: this.lng };
     this.markerPosition = { lat: this.lat, lng: this.lng };
     this.zoom = 20;
+  }
+
+  ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      this.name = params['name'];
+      // Aqui você pode fazer a lógica de pesquisa com base no 'query'
+      console.log('Termo de busca:', this.name);
+      //CRIAR O OBJETO PLACE E A SERVICE
+    });
   }
 }

@@ -27,12 +27,12 @@
             <div class="container col-md-5">
                 <div class="container mt-4">
                     <div class="input-group">
-                      <input type="text" class="form-control" placeholder="Search..." aria-label="Campo de busca">
-                      <button class="btn btn-secondary" type="button">
+                      <input type="text" class="form-control" [(ngModel)]="searchPlace" placeholder="Search..." aria-label="Campo de busca">
+                      <button class="btn btn-secondary" type="button" (click)="search()">
                         <!-- <a routerLink="/place" routerLinkActive="active" class="active"> -->
-                        <a href="/place">                           
+                        <!-- <a href="/place">                            -->
                         <i class="bi bi-search"></i> <!-- Ícone de lupa -->
-                        </a>
+                        <!-- </a> -->
                       </button>
                     </div>
                   </div>
