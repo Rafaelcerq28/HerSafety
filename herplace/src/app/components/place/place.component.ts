@@ -3,29 +3,32 @@ import { Component } from '@angular/core';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 import { PlaceService } from '../../service/place.service';
+import { Report } from '../../Report';
 import { Place } from '../../Place';
-
+import { ReportService } from '../../service/report.service';
+import { ThisReceiver } from '@angular/compiler';
 
 
 CommonModule
 @Component({
   selector: 'app-place',
   standalone: true,
-  imports: [CommonModule,GoogleMapsModule,FormsModule,RouterOutlet,RouterLink,RouterLinkActive],
+  imports: [CommonModule,GoogleMapsModule,FormsModule,RouterOutlet,RouterLink,RouterLinkActive,DatePipe],
   templateUrl: './place.component.html',
   styleUrl: './place.component.css'
 })
 export class PlaceComponent {
 
-  constructor(private route: ActivatedRoute,private placeService: PlaceService) {
+  constructor(private route: ActivatedRoute,private placeService: PlaceService,private reportService: ReportService) {
     this.initMap(); 
     
     //metodo para pegar a localização  
     this.getPlace();
 
-
+    
   }
 //http param
   name:string = '';
@@ -44,26 +47,41 @@ export class PlaceComponent {
 
 // TESTING API GET
   place?: Place;
+  reports: Report[] = [];
+
   getPlace(){
 
-    let nome:string = '';
+    //Variable to Store the name from the search component
+    let name:string = '';
 
-    //pega o nome
+    //Get name from the search
     this.route.queryParams.subscribe(params => {
-      nome = params['name']});   
-
-    const name = String(this.route.snapshot.paramMap.get("name"));
-    console.log("nome no get: " + nome);
+      name = params['name']});   
+    // Store the name in a variable (maybe delete the line below later)
+    // const name = String(this.route.snapshot.paramMap.get("name"));
+    console.log("nome no get: " + name);
     
-    if(nome != "null"){
-      this.placeService.getPlace(nome).subscribe((place) => (this.place = place));
-      console.log(this.place);
+    if(name != "null"){
+      this.placeService.getPlace(name).subscribe((place) => {
+        this.place = place
+        this.getReport(this.place.id);
+        this.initMap();
+      });
     }
-
-    this.initMap();
+    
+    
     
   }
-// TESTING API GET
+
+  getReport(id:number){
+    this.reportService.getReport(id).subscribe((reports) => {
+      this.reports = reports
+      console.log(this.reports);
+    });
+  }
+// END TESTING API GET
+
+//initialize the google map
   initMap():void{
     console.log("vrum");
     this.center = { lat: Number(this.place?.lat), lng: Number(this.place?.lng) };
@@ -75,7 +93,6 @@ export class PlaceComponent {
     this.route.queryParams.subscribe(params => {
       this.name = params['name'];
       // Aqui você pode fazer a lógica de pesquisa com base no 'query'
-      console.log('Termo de busca:', this.name);
     });
   }
 }

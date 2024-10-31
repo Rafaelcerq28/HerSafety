@@ -1,5 +1,7 @@
 package com.hersafety.hersafety.DTO;
 
+import java.time.Instant;
+
 import com.hersafety.hersafety.model.Report;
 
 public class ReportRequest {
@@ -31,6 +33,7 @@ public class ReportRequest {
     private long id;
     private long userId;
     private long placeId;
+    private Instant createdAt;
     
     
     public int getSafety() {
@@ -107,6 +110,13 @@ public class ReportRequest {
         this.id = id;
     }
 
+    public Instant getCreatedAt() {
+        return createdAt;
+    }
+    public void setCreatedAt(Instant createdAt) {
+        this.createdAt = createdAt;
+    }
+
     public ReportRequest convertToDTO(Report report){
         ReportRequest dto = new ReportRequest();
 
@@ -121,6 +131,7 @@ public class ReportRequest {
         dto.setCrowdQuality(report.getCrowdQuality());
         dto.setPrivacy(report.getPrivacy());
         dto.setSafetyInfo(report.getSafetyInfo());
+        dto.setCreatedAt(report.getCreatedAt());
         dto.setComment(report.getComment());
 
         return dto;
@@ -139,6 +150,7 @@ public class ReportRequest {
         this.setCrowdQuality(report.getCrowdQuality());
         this.setPrivacy(report.getPrivacy());
         this.setSafetyInfo(report.getSafetyInfo());
+        this.setCreatedAt(report.getCreatedAt());
         this.setComment(report.getComment());
 
     }
