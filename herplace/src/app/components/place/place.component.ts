@@ -48,6 +48,7 @@ export class PlaceComponent {
 // TESTING API GET
   place?: Place;
   reports: Report[] = [];
+  reportMetric?: any;
 
   getPlace(){
 
@@ -65,6 +66,8 @@ export class PlaceComponent {
       this.placeService.getPlace(name).subscribe((place) => {
         this.place = place
         this.getReport(this.place.id);
+        this.getReportMetrics(this.place.id);
+        console.log(this.reportMetric);
         this.initMap();
       });
     }
@@ -76,7 +79,13 @@ export class PlaceComponent {
   getReport(id:number){
     this.reportService.getReport(id).subscribe((reports) => {
       this.reports = reports
-      console.log(this.reports);
+      // console.log(this.reports);
+    });
+  }
+
+  getReportMetrics(id:number){
+    this.reportService.getReportMetrics(id).subscribe((data:any) => {
+      this.reportMetric = data;
     });
   }
 // END TESTING API GET

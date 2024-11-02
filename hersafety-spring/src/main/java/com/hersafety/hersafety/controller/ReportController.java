@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hersafety.hersafety.DTO.ReportMetrics;
 import com.hersafety.hersafety.DTO.ReportRequest;
 
 import com.hersafety.hersafety.service.ReportService;
@@ -41,6 +42,12 @@ public class ReportController {
     @ResponseStatus(HttpStatus.OK)
     public List<ReportRequest> getAllReportsByPlace(@PathVariable (value = "placeId")long placeId){
         return reportService.getAllReportsByPlace(placeId);
+    }
+
+    @GetMapping("/report/place/metrics/{placeId}")
+    @ResponseStatus(HttpStatus.OK)
+    public ReportMetrics getAllReportMetrics(@PathVariable (value = "placeId") long placeId){
+        return reportService.getAllReportMetrics(placeId);
     }
 
     //GET a List os reports by userId

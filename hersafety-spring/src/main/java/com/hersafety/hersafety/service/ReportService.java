@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.hersafety.hersafety.DTO.ReportMetrics;
 import com.hersafety.hersafety.DTO.ReportRequest;
 import com.hersafety.hersafety.controller.ReportController;
 import com.hersafety.hersafety.model.Place;
@@ -151,6 +152,68 @@ public class ReportService {
             reportRequest.convertToDTOSelf(reportToUpdate.get());
 
             return ResponseEntity.ok().body(reportRequest);
+    }
+
+
+    public ReportMetrics getAllReportMetrics(long placeId) {
+        //Get the reports in the database
+        List<Report> reports = reportRepository.findByPlaceId(placeId);
+
+        //create an object to store the metrics
+        ReportMetrics reportMetrics = new ReportMetrics();
+       
+        //check if exist some reports
+        if(reports.isEmpty() == true){
+            return null;
+        }
+        //Variables to store the sum of the reports
+        double safetyAvg = 0;
+        double welcomingAvg = 0;
+        double toiletsAvg = 0;
+        double feminineProductsAvg = 0;
+        double illuminationAvg = 0;
+        double crowdQualityAvg = 0;
+        double privacyAvg = 0;
+        double safetyInfoAvg = 0;
+        double totalReports = 0;
+
+        //iterates the report summing up the values
+        for (Report report : reports) {
+
+            safetyAvg += report.getSafety();
+            welcomingAvg += report.getWelcoming();
+            toiletsAvg += report.getToilets();
+            feminineProductsAvg += report.getFeminineProducts();
+            illuminationAvg +=  report.getIllumination();
+            crowdQualityAvg +=  report.getCrowdQuality();
+            privacyAvg +=  report.getPrivacy();
+            safetyInfoAvg +=  report.getSafetyInfo();
+        }
+
+        //get the average
+        totalReports = reports.size();
+        safetyAvg = safetyAvg / totalReports;
+        welcomingAvg = welcomingAvg / totalReports;
+        toiletsAvg = toiletsAvg / totalReports;
+        feminineProductsAvg = feminineProductsAvg / totalReports;
+        illuminationAvg = illuminationAvg / totalReports;
+        crowdQualityAvg = crowdQualityAvg / totalReports;
+        privacyAvg = privacyAvg / totalReports;
+        safetyInfoAvg = safetyInfoAvg / totalReports;
+
+        //store the average in the object
+        reportMetrics.setId(placeId);
+        reportMetrics.setSafetyAvg((int)safetyAvg);
+        reportMetrics.setWelcomingAvg((int)welcomingAvg);
+        reportMetrics.setToiletsAvg((int)toiletsAvg);
+        reportMetrics.setFeminineProductsAvg((int)feminineProductsAvg);
+        reportMetrics.setIlluminationAvg((int)illuminationAvg);
+        reportMetrics.setCrowdQualityAvg((int)crowdQualityAvg);
+        reportMetrics.setPrivacyAvg((int)privacyAvg);
+        reportMetrics.setSafetyInfoAvg((int)safetyInfoAvg);
+        reportMetrics.setTotalReports((int)totalReports);
+
+        return reportMetrics;
     }
 
 

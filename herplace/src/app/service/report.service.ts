@@ -16,4 +16,8 @@ export class ReportService {
     return this.httpClient.get<Report[]>(`${this.apiUrl}/${id}`);  
     // return this.httpClient.get<Report>;
   }
+
+  getReportMetrics(id:number): Observable<any>{
+    return this.httpClient.get(`${this.apiUrl}/metrics/${id}`); 
+  }
 }
