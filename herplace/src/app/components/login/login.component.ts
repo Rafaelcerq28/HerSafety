@@ -20,7 +20,7 @@ export class LoginComponent {
 
   username: string = '';
   password: string = '';
-  alerMsg: string = '';
+  alerMsg: boolean = false;
 
   test() {
     console.log(this.user)
@@ -45,6 +45,9 @@ export class LoginComponent {
   // }
 
   login() {
+    //initialize the msg to false before the search for the user begin
+    this.alerMsg = false;
+
     this.authenticationService.login(this.username, this.password).subscribe({
       next: () => {
         // Agora que o login foi concluído, você pode buscar o usuário do Local Storage
@@ -53,17 +56,17 @@ export class LoginComponent {
   
         // Verifica se o usuário foi encontrado e navega ou exibe uma mensagem de erro
         if (!this.user) {
-          this.alerMsg = "User not found";
+          this.alerMsg = true;
         } else {
-          this.alerMsg = "Success";
+          this.alerMsg = false;
           console.log(this.user)
           console.log(this.username);
-          this.router.navigate(['user/'], { queryParams: { username: this.username } });
+          this.router.navigate(['/user/'], { queryParams: { username: this.username } });
         }
       },
       error: err => {
         console.error("Erro ao fazer login:", err);
-        this.alerMsg = "Erro ao fazer login";
+        this.alerMsg = true;
       }
     });
   }
