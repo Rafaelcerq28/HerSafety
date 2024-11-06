@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.hersafety.hersafety.DTO.UserResponse;
+import com.hersafety.hersafety.exception.UserNotFoundException;
 import com.hersafety.hersafety.model.User;
 import com.hersafety.hersafety.security.UserAuthentication;
 
@@ -23,9 +24,9 @@ public class AuthenticationService {
         Optional<User> userToLogin = userRepository.findByUsername(user.getUsername());
 
         if(userToLogin.isPresent() == false){
-            return null;
+            throw new UserNotFoundException("User: " + user.getUsername());
         }else if((userToLogin.get().getUsername().equals(user.getUsername()) == false) || (userToLogin.get().getPassword().equals(user.getPassword()) == false)){
-            return null;
+            throw new UserNotFoundException("User: " + user.getUsername());
         }
 
         UserResponse userResponse = new UserResponse();
