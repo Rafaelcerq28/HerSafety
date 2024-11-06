@@ -23,6 +23,7 @@ import com.hersafety.hersafety.service.PlacesService;
 public class PlacesController {
 
     private PlacesService placesService;
+    
     public PlacesController(PlacesService placesService){
         this.placesService = placesService;
     }

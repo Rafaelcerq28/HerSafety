@@ -33,7 +33,7 @@ public class PlacesService {
         this.placeRepository = placeRepository;
     }
 
-    //GET PLACE
+    //GET PLACE (Check this method later, implement filters to thre region)
     public Place getPlace(String name){
 
         //name = "the+bernard+shaw";//delete after
@@ -51,7 +51,7 @@ public class PlacesService {
                 name = name.replace(" ", "+");
                 String url = "https://maps.googleapis.com/maps/api/place/findplacefromtext/"+
                             "json?input="+name+"&inputtype=textquery&fields=formatted_address"+
-                            "%2Cname%2Cgeometry%2Cplace_id%2Ctype&key=mykey";
+                            "%2Cname%2Cgeometry%2Cplace_id%2Ctype&locationbias=country:IE&key=mykey";
                 URI address = URI.create(url);
                 HttpClient client = HttpClient.newHttpClient();
                 HttpRequest request = HttpRequest.newBuilder(address).GET().build();     

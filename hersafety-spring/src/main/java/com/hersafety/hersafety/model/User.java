@@ -5,7 +5,10 @@ import java.time.LocalDate;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -30,16 +33,26 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Column(unique=true,nullable = false)
     private String username;
+    @Column(nullable = false)
     private String password;
+    @Column(nullable = false)
     private String name;
     private LocalDate dateOfBirth;
+    
+    @Column(unique=true,nullable = false)
     private String email;
     private boolean notifications;
 
+    @Enumerated(EnumType.STRING)
+    private Role role;
+    
     @CreationTimestamp
     private Instant createdAt;
 
+
+    
     public String getUsername() {
         return username;
     }
@@ -87,6 +100,12 @@ public class User {
     }
     public void setId(long id) {
         this.id = id;
+    }
+    public Role getRole() {
+        return role;
+    }
+    public void setRole(Role role) {
+        this.role = role;
     }
 
 

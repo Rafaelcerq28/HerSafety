@@ -66,8 +66,8 @@
                             <!-- <h2>Starter Section</h2> -->
                             <p>
                                 <span>Reviews  
-                                    <span class="badge rounded-pill bg-secondary" style="background-color: #6a4d7c !important">{{reportMetric.totalReports}}
-                                        <span class="visually-hidden">unread messages</span>
+                                    <span class="badge rounded-pill bg-secondary" style="background-color: #6a4d7c !important">
+                                        {{reportMetric?.totalReports}}
                                     </span>
                                 </span>
                             </p>
@@ -79,59 +79,59 @@
                                 <div class="d-flex align-items-center gap-2">
                                   <div class="progress-bar-label">Safety</div>
                                   <div class="progress" style="width: 20em">
-                                    <div class="progress-bar progress-bar-style" role="progressbar" [ngStyle]="{width: reportMetric.safetyAvg + '0%'}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar progress-bar-style" role="progressbar" [ngStyle]="{width: reportMetric?.safetyAvg + '0%'}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                   </div>
-                                  <div class="ms-2">{{reportMetric.safetyAvg}}</div>
+                                  <div class="ms-2">{{reportMetric?.safetyAvg}}</div>
                                 </div>
 
                                 <div class="d-flex align-items-center gap-2 mt-2">
                                     <div class="progress-bar-label">Welcoming</div>
                                     <div class="progress" style="width: 20em">
-                                        <div class="progress-bar progress-bar-style" role="progressbar" [ngStyle]="{width: reportMetric.welcomingAvg + '0%'}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar progress-bar-style" role="progressbar" [ngStyle]="{width: reportMetric?.welcomingAvg + '0%'}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <div class="ms-2">{{reportMetric.welcomingAvg}}</div>
+                                    <div class="ms-2">{{reportMetric?.welcomingAvg}}</div>
                                 </div>
                                 <div class="d-flex align-items-center gap-2 mt-2">
                                     <div class="progress-bar-label">Toilets</div>
                                     <div class="progress" style="width: 20em">
-                                        <div class="progress-bar progress-bar-style" role="progressbar" [ngStyle]="{width: reportMetric.toiletsAvg + '0%'}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar progress-bar-style" role="progressbar" [ngStyle]="{width: reportMetric?.toiletsAvg + '0%'}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <div class="ms-2">{{reportMetric.toiletsAvg}}</div>
+                                    <div class="ms-2">{{reportMetric?.toiletsAvg}}</div>
                                 </div>
                                 <div class="d-flex align-items-center gap-2 mt-2">
                                     <div class="progress-bar-label">Feminine Products</div>
                                     <div class="progress" style="width: 20em">
-                                        <div class="progress-bar progress-bar-style" role="progressbar" [ngStyle]="{width: reportMetric.feminineProductsAvg + '0%'}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar progress-bar-style" role="progressbar" [ngStyle]="{width: reportMetric?.feminineProductsAvg + '0%'}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <div class="ms-2">{{reportMetric.feminineProductsAvg}}</div>
+                                    <div class="ms-2">{{reportMetric?.feminineProductsAvg}}</div>
                                 </div>
                                 <div class="d-flex align-items-center gap-2 mt-2">
                                     <div class="progress-bar-label">Illumination</div>
                                     <div class="progress" style="width: 20em">
-                                        <div class="progress-bar progress-bar-style" role="progressbar" [ngStyle]="{width: reportMetric.illuminationAvg + '0%'}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar progress-bar-style" role="progressbar" [ngStyle]="{width: reportMetric?.illuminationAvg + '0%'}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <div class="ms-2">{{reportMetric.illuminationAvg}}</div>
+                                    <div class="ms-2">{{reportMetric?.illuminationAvg}}</div>
                                 </div>
                                 <div class="d-flex align-items-center gap-2 mt-2">
                                     <div class="progress-bar-label">Crowd Quality</div>
                                     <div class="progress" style="width: 20em">
-                                        <div class="progress-bar progress-bar-style" role="progressbar" [ngStyle]="{width: reportMetric.crowdQualityAvg + '0%'}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar progress-bar-style" role="progressbar" [ngStyle]="{width: reportMetric?.crowdQualityAvg + '0%'}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <div class="ms-2">{{reportMetric.crowdQualityAvg}}</div>
+                                    <div class="ms-2">{{reportMetric?.crowdQualityAvg}}</div>
                                 </div>
                                 <div class="d-flex align-items-center gap-2 mt-2">
                                     <div class="progress-bar-label">Privacy</div>
                                     <div class="progress" style="width: 20em">
-                                        <div class="progress-bar progress-bar-style" role="progressbar" [ngStyle]="{width: reportMetric.privacyAvg + '0%'}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar progress-bar-style" role="progressbar" [ngStyle]="{width: reportMetric?.privacyAvg + '0%'}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <div class="ms-2">{{reportMetric.privacyAvg}}</div>
+                                    <div class="ms-2">{{reportMetric?.privacyAvg}}</div>
                                 </div>
                                 <div class="d-flex align-items-center gap-2 mt-2">
                                     <div class="progress-bar-label">Safety Info</div>
                                     <div class="progress" style="width: 20em">
-                                        <div class="progress-bar progress-bar-style" role="progressbar" [ngStyle]="{width: reportMetric.safetyInfoAvg + '0%'}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar progress-bar-style" role="progressbar" [ngStyle]="{width: reportMetric?.safetyInfoAvg + '0%'}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <div class="ms-2">{{reportMetric.safetyInfoAvg}}</div>
+                                    <div class="ms-2">{{reportMetric?.safetyInfoAvg}}</div>
                                 </div>
 
                             </div>

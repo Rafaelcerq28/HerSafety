@@ -1,6 +1,7 @@
 package com.hersafety.hersafety.service;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,14 +9,18 @@ import javax.management.RuntimeErrorException;
 
 import org.springframework.hateoas.EntityModel;
 import org.springframework.http.ResponseEntity;
+// import org.springframework.security.core.userdetails.UserDetails;
+// import org.springframework.security.core.userdetails.UserDetailsService;
+// import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.hersafety.hersafety.model.Role;
 import com.hersafety.hersafety.model.User;
 import com.hersafety.hersafety.repository.UserRepository;
 
-@Service
-public class UserService {
+@Service                //Implemented to make JWT works
+public class UserService{// implements UserDetailsService {
 
     private UserRepository userRepository;
 
@@ -25,6 +30,7 @@ public class UserService {
 
     //method to create User
     public ResponseEntity<User> createUser(User user){
+        user.setRole(Role.USER);
         //search user in the database
         User savedUser = userRepository.save(user);
         //generating user uri
@@ -82,5 +88,17 @@ public class UserService {
         
         return ResponseEntity.ok().body(updatedUser);
     }
+
+    // //Override from UserDetailsService
+    // @Override
+    // public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    //     Optional<User> user = userRepository.findByUsername(username);
+    //             // .orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + username));
+    //     if(user.isPresent() == false){
+    //         return null;
+    //     }
+
+    //     return new org.springframework.security.core.userdetails.User(user.get().getUsername(), user.get().getPassword(), new ArrayList<>());
+    // }
 
 }
