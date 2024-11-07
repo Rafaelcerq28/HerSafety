@@ -59,8 +59,6 @@ export class LoginComponent {
           this.alerMsg = true;
         } else {
           this.alerMsg = false;
-          console.log(this.user)
-          console.log(this.username);
           this.router.navigate(['/user/'], { queryParams: { username: this.username } });
         }
       },

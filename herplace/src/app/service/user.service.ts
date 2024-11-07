@@ -10,12 +10,21 @@ export class UserService {
   private userKey = 'user';
 
   setUser(user: any): void {
-    localStorage.setItem(this.userKey, JSON.stringify(user));
+    try{
+      localStorage.setItem(this.userKey, JSON.stringify(user));
+    }catch (error){
+      console.log("error when acessing the local storage",error);
+    }
   }
 
   getUser(): any {
-    const user = localStorage.getItem(this.userKey);
-    return user ? JSON.parse(user) : null;
+    try{
+      const user = localStorage.getItem(this.userKey);
+      return user ? JSON.parse(user) : null;
+    }catch (error){
+      console.log("error when acessing the local storage",error);
+      return null;
+    }
   }
 
   clearUser(): void {

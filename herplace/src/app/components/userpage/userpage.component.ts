@@ -12,11 +12,25 @@ import { UserService } from '../../service/user.service';
   styleUrl: './userpage.component.css'
 })
 export class UserpageComponent {
-
+  
   user?:any = null;
 
   constructor(private userService: UserService){
-    this.user = this.userService.getUser();
-    console.log(this.user)  
+    // Verifica se a página já foi recarregada nesta sessão
+    const hasReloaded = sessionStorage.getItem('hasReloaded');
+
+    if (!hasReloaded) {
+      // Armazena o estado de recarregamento no sessionStorage para evitar loops
+      sessionStorage.setItem('hasReloaded', 'true');
+      
+      // Recarrega a página apenas uma vez
+      this.reload();
+    } else {
+      this.user = this.userService.getUser();
+    }
+  }
+
+  reload():void{
+    location.reload();
   }
 }
