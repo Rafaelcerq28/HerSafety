@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
+import { User } from '../User';
 
 @Injectable({
   providedIn: 'root'
@@ -30,4 +31,9 @@ export class AuthenticationService {
     );
   }
   
+  //finish this
+  register(user:User): Observable<any>{
+    return new Observable<any>;
+  }
+
 }

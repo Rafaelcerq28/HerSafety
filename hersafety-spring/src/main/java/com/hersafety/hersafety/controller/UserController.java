@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hersafety.hersafety.DTO.UserResponse;
 import com.hersafety.hersafety.model.User;
 import com.hersafety.hersafety.service.UserService;
 
@@ -35,7 +36,7 @@ PUT /users/{id}: Atualiza um usuário existente.
     //Create user
     @PostMapping("/users")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<User> createUser(@RequestBody User user){
+    public ResponseEntity<UserResponse> createUser(@RequestBody User user){
         return userService.createUser(user);
     }
     //List all users

@@ -10,13 +10,14 @@ import { Report } from '../../Report';
 import { Place } from '../../Place';
 import { ReportService } from '../../service/report.service';
 import { ThisReceiver } from '@angular/compiler';
+import { SearchonplaceComponent } from "../searchonplace/searchonplace.component";
 
 
 CommonModule
 @Component({
   selector: 'app-place',
   standalone: true,
-  imports: [CommonModule,GoogleMapsModule,FormsModule,RouterOutlet,RouterLink,RouterLinkActive,DatePipe],
+  imports: [CommonModule, GoogleMapsModule, FormsModule, RouterOutlet, RouterLink, RouterLinkActive, DatePipe, SearchonplaceComponent],
   templateUrl: './place.component.html',
   styleUrl: './place.component.css'
 })
@@ -51,7 +52,6 @@ export class PlaceComponent {
   reportMetric?: any;
 
   getPlace(){
-
     //Variable to Store the name from the search component
     let name:string = '';
 
@@ -71,9 +71,6 @@ export class PlaceComponent {
         this.initMap();
       });
     }
-    
-    
-    
   }
 
   getReport(id:number){

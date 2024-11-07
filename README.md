@@ -113,6 +113,27 @@ Final Project for Higher Diploma
 `http://localhost:8080/report/{Id}`
 
 ----
+
+### Endpoint to Login / Logout
+
+#### - Post - Login
+`http://localhost:8080/login`
+
+```
+ {
+  "username": "maria123",
+  "password": "password123"
+  } 
+```
+
+#### - Post - Logout
+`http://localhost:8080/logout`
+
+```
+ {} 
+```
+
+----
 Link for swagger:
 
 http://localhost:8080/swagger-ui/index.html

@@ -12,19 +12,19 @@
               <h2 class="mb-4 text-center">register</h2>
               <div class="mb-3">
                 <label for="username" class="form-label">Name</label>
-                <input type="text" class="form-control" id="name" placeholder="Digite seu usuário">
+                <input type="text" class="form-control" id="name" [(ngModel)]="name" [ngModelOptions]="{standalone: true}" placeholder="Digite seu usuário">
               </div>
               <div class="mb-3">
                 <label for="username" class="form-label">Email</label>
-                <input type="text" class="form-control" id="email" placeholder="Digite seu usuário">
+                <input type="text" class="form-control" id="email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}"placeholder="Digite seu usuário">
               </div>              
               <div class="mb-3">
                 <label for="username" class="form-label">Username</label>
-                <input type="text" class="form-control" id="username" placeholder="Digite seu usuário">
+                <input type="text" class="form-control" id="username" [(ngModel)]="username" [ngModelOptions]="{standalone: true}" placeholder="Digite seu usuário">
               </div>
               <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Digite sua senha">
+                <input type="password" class="form-control" id="password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" placeholder="Digite sua senha">
               </div>
               <button type="submit" class="btn form-login-btn w-100 mt-5">Entrar</button>
             </form>

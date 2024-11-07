@@ -18,6 +18,19 @@ public class UserResponse {
     private Role role;
     
     
+    public UserResponse(String username, String name, LocalDate dateOfBirth, String email, boolean notifications,
+            Instant createdAt, Role role) {
+        this.username = username;
+        this.name = name;
+        this.dateOfBirth = dateOfBirth;
+        this.email = email;
+        this.notifications = notifications;
+        this.createdAt = createdAt;
+        this.role = role;
+    }
+    
+    public UserResponse() {
+    }
     public String getUsername() {
         return username;
     }

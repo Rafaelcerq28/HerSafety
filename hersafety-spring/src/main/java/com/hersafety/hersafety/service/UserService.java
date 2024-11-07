@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.hersafety.hersafety.DTO.UserResponse;
 import com.hersafety.hersafety.model.Role;
 import com.hersafety.hersafety.model.User;
 import com.hersafety.hersafety.repository.UserRepository;
@@ -29,15 +30,24 @@ public class UserService{// implements UserDetailsService {
     }
 
     //method to create User
-    public ResponseEntity<User> createUser(User user){
+    public ResponseEntity<UserResponse> createUser(User user){
         user.setRole(Role.USER);
         //search user in the database
         User savedUser = userRepository.save(user);
+
+        UserResponse userResponse = new UserResponse(
+            savedUser.getUsername(), 
+            savedUser.getName(), 
+            savedUser.getDateOfBirth(), 
+            savedUser.getEmail(), savedUser.getNotifications(), 
+            savedUser.getCreatedAt(), 
+            savedUser.getRole());
+
         //generating user uri
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().
                         path("/{id}").buildAndExpand(savedUser.getId()).toUri();
 
-        return ResponseEntity.created(location).body(savedUser);
+        return ResponseEntity.created(location).body(userResponse);
     }
 
     //List all user
