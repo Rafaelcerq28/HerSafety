@@ -35,14 +35,18 @@ public class User {
 
     @Column(unique=true,nullable = false)
     private String username;
+
     @Column(nullable = false)
     private String password;
+
     @Column(nullable = false)
     private String name;
+
     private LocalDate dateOfBirth;
     
     @Column(unique=true,nullable = false)
     private String email;
+
     private boolean notifications;
 
     @Enumerated(EnumType.STRING)
@@ -107,6 +111,13 @@ public class User {
     public void setRole(Role role) {
         this.role = role;
     }
+    @Override
+    public String toString() {
+        return "User [id=" + id + ", username=" + username + ", password=" + password + ", name=" + name
+                + ", dateOfBirth=" + dateOfBirth + ", email=" + email + ", notifications=" + notifications + ", role="
+                + role + ", createdAt=" + createdAt + "]";
+    }
 
+    
 
 }

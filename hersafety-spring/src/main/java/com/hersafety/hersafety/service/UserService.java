@@ -32,6 +32,9 @@ public class UserService{// implements UserDetailsService {
     //method to create User
     public ResponseEntity<UserResponse> createUser(User user){
         user.setRole(Role.USER);
+
+        System.out.println(user.toString());
+
         //search user in the database
         User savedUser = userRepository.save(user);
 

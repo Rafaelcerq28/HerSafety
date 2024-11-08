@@ -12,7 +12,7 @@ import { UserService } from '../../service/user.service';
   styleUrl: './userpage.component.css'
 })
 export class UserpageComponent {
-  
+  selected = '';
   user?:any = null;
 
   constructor(private userService: UserService){
@@ -28,6 +28,10 @@ export class UserpageComponent {
     } else {
       this.user = this.userService.getUser();
     }
+  }
+
+  thechosen(){
+    console.log("selected " + this.selected)
   }
 
   reload():void{

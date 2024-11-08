@@ -29,7 +29,15 @@
                     <div class="col-md-5">
                         <p class="fs-5 mb-3"><strong>Security preferences</strong></p>
                         <ul>
-                            <li>Sec preference 1</li>
+                            <li>Sec preference 1
+                                <select class="form-select" aria-label="Default select example">
+                                    <option selected [(ngModel)]="selected">Open this select menu</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                  </select>
+                                  <button (click)="thechosen()">click</button>
+                            </li>
                             <li>Sec preference 2</li>
                             <li>Sec preference 3</li>
                             <li>Sec preference 4</li>
