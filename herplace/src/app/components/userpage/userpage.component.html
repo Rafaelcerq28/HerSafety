@@ -39,7 +39,7 @@
                                   </select>
                             </li>
                             <li class="list-group-item">What type of place do you usually visit?
-                                <select class="form-select" aria-label="Default select example" [(ngModel)]="question1" (change)="$event">
+                                <select class="form-select" aria-label="Default select example" [(ngModel)]="question2" (change)="$event">
                                     <option vaçie="Quiet bars">Quiet bars</option>
                                     <option value="Nightclubs">Nightclubs</option>
                                     <option value="Restaurants">Restaurants</option>
@@ -47,14 +47,14 @@
                                   </select>
                             </li>
                             <li class="list-group-item">Do you usually go out alone or with company?
-                                <select class="form-select" aria-label="Default select example" [(ngModel)]="question1" (change)="$event">
+                                <select class="form-select" aria-label="Default select example" [(ngModel)]="question3" (change)="$event">
                                     <option vaçie="Always alone">Always alone</option>
                                     <option value="In a group">In a group</option>
                                     <option value="Both">Both</option>
                                   </select>
                             </li>
                             <li class="list-group-item">How do you usually get home after going out?
-                                <select class="form-select" aria-label="Default select example" [(ngModel)]="question1" (change)="$event">
+                                <select class="form-select" aria-label="Default select example" [(ngModel)]="question4" (change)="$event">
                                     <option vaçie="Ride-sharing apps">Ride-sharing apps</option>
                                     <option value="Public transportation">Public transportation</option>
                                     <option value="Own car">Own car</option>
@@ -62,14 +62,20 @@
                                   </select>
                             </li>
                             <li class="list-group-item">"Have you ever experienced a risky situation in bars or clubs?
-                                <select class="form-select" aria-label="Default select example" [(ngModel)]="question1" (change)="$event">
+                                <select class="form-select" aria-label="Default select example" [(ngModel)]="question5" (change)="$event">
                                     <option vaçie="Yes">Yes</option>
                                     <option value="No">Public transportation</option>
                                     <option value="Prefer not to answer">Prefer not to answer</option>
                                   </select>
                             </li>
                         </ul>
-                        
+                        <ul>
+                            <li>{{question1}}</li>
+                            <li>{{question2}}</li>
+                            <li>{{question3}}</li>
+                            <li>{{question4}}</li>
+                            <li>{{question5}}</li>
+                        </ul>
                         <button type="button" class="btn btn-primary btn-lg mt-3">Save</button>
                     </div>
                 </div>
