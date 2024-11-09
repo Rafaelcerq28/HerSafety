@@ -12,7 +12,11 @@ import { UserService } from '../../service/user.service';
   styleUrl: './userpage.component.css'
 })
 export class UserpageComponent {
-  selected = '';
+  question1 = '';
+  question2 = '';
+  question3 = '';
+  question4 = '';
+  question5 = '';
   user?:any = null;
 
   constructor(private userService: UserService){
@@ -30,8 +34,28 @@ export class UserpageComponent {
     }
   }
 
-  thechosen(){
-    console.log("selected " + this.selected)
+
+  onSelectChange1(event:Event){
+    const target = event.target as HTMLSelectElement;
+    this.question1  = target.value;
+  }
+
+  onSelectChange2(event:Event){
+    const target = event.target as HTMLSelectElement;
+    this.question2  = target.value;
+  }
+  onSelectChange3(event:Event){
+    const target = event.target as HTMLSelectElement;
+    this.question3  = target.value;
+  }
+  onSelectChange4(event:Event){
+    const target = event.target as HTMLSelectElement;
+    this.question4  = target.value;
+  }
+  onSelectChange5(event:Event){
+    const target = event.target as HTMLSelectElement;
+    this.question5  = target.value;
+    console.log(this.user);
   }
 
   reload():void{

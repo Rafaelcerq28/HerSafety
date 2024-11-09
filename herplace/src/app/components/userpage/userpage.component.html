@@ -24,25 +24,53 @@
                         <p><strong>Name: </strong><span>{{user.name}}</span></p>
                         <p><strong>Email: </strong><span>{{user.email}}</span></p>
                         <p><strong>Date of Birth: </strong>{{user.dateOfBirth}}</p>
+                        <p><strong>notifications: </strong>{{user.notifications}}</p>
                         <button (click)="reload()">Refresh</button>
                     </div>
                     <div class="col-md-5">
-                        <p class="fs-5 mb-3"><strong>Security preferences</strong></p>
-                        <ul>
-                            <li>Sec preference 1
-                                <select class="form-select" aria-label="Default select example">
-                                    <option selected [(ngModel)]="selected">Open this select menu</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                        <p class="fs-5 mb-3"><strong>User information</strong></p>
+                        <ul class="list-group list-group-numbered">
+                            <li class="list-group-item">How often do you go to bars or clubs?
+                                <select class="form-select" aria-label="Default select example" [(ngModel)]="question1" (change)="$event">
+                                    <option selected >Select and option</option>
+                                    <option value="Regularly">Regularly</option>
+                                    <option value="Occasionally">Occasionally</option>
+                                    <option value="Rarely">Rarely</option>
                                   </select>
-                                  <button (click)="thechosen()">click</button>
                             </li>
-                            <li>Sec preference 2</li>
-                            <li>Sec preference 3</li>
-                            <li>Sec preference 4</li>
-                            <li>Sec preference 5</li>
+                            <li class="list-group-item">What type of place do you usually visit?
+                                <select class="form-select" aria-label="Default select example" [(ngModel)]="question1" (change)="$event">
+                                    <option vaçie="Quiet bars">Quiet bars</option>
+                                    <option value="Nightclubs">Nightclubs</option>
+                                    <option value="Restaurants">Restaurants</option>
+                                    <option value="Pubs">Pubs</option>
+                                  </select>
+                            </li>
+                            <li class="list-group-item">Do you usually go out alone or with company?
+                                <select class="form-select" aria-label="Default select example" [(ngModel)]="question1" (change)="$event">
+                                    <option vaçie="Always alone">Always alone</option>
+                                    <option value="In a group">In a group</option>
+                                    <option value="Both">Both</option>
+                                  </select>
+                            </li>
+                            <li class="list-group-item">How do you usually get home after going out?
+                                <select class="form-select" aria-label="Default select example" [(ngModel)]="question1" (change)="$event">
+                                    <option vaçie="Ride-sharing apps">Ride-sharing apps</option>
+                                    <option value="Public transportation">Public transportation</option>
+                                    <option value="Own car">Own car</option>
+                                    <option value="On foot">On foot</option>
+                                  </select>
+                            </li>
+                            <li class="list-group-item">"Have you ever experienced a risky situation in bars or clubs?
+                                <select class="form-select" aria-label="Default select example" [(ngModel)]="question1" (change)="$event">
+                                    <option vaçie="Yes">Yes</option>
+                                    <option value="No">Public transportation</option>
+                                    <option value="Prefer not to answer">Prefer not to answer</option>
+                                  </select>
+                            </li>
                         </ul>
+                        
+                        <button type="button" class="btn btn-primary btn-lg mt-3">Save</button>
                     </div>
                 </div>
                 <!-- Place comments -->
