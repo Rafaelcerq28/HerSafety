@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hersafety.hersafety.DTO.UserResponse;
+import com.hersafety.hersafety.model.SecurityInfo;
 import com.hersafety.hersafety.model.User;
 import com.hersafety.hersafety.service.UserService;
 
@@ -67,5 +68,17 @@ PUT /users/{id}: Atualiza um usuário existente.
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<User> updateUser(@PathVariable(value = "id")Long id, @RequestBody User user){
         return userService.updateUser(id,user);
+    }
+
+    @PutMapping("/users/securityinfo/{username}")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<SecurityInfo> updateSecurityInfo(@PathVariable(value = "username") String username, @RequestBody SecurityInfo securityInfo) {  
+        return userService.updateSecurityInfo(username,securityInfo);
+    }
+
+    @GetMapping("/users/securityinfo/{username}")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<SecurityInfo> getSecurityInfo(@PathVariable(value = "username") String username) {  
+        return userService.getSecurityInfo(username);
     }
 }

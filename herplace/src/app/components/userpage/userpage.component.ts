@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { UserService } from '../../service/user.service';
+import { userInfo } from 'os';
 
 @Component({
   selector: 'app-userpage',
@@ -17,7 +18,11 @@ export class UserpageComponent {
   question3 = '';
   question4 = '';
   question5 = '';
+  edit:boolean = false;
+
+
   user?:any = null;
+  securityInfo?:any;
 
   constructor(private userService: UserService){
     // Verifica se a página já foi recarregada nesta sessão
@@ -31,10 +36,34 @@ export class UserpageComponent {
       this.reload();
     } else {
       this.user = this.userService.getUser();
+      this.getSecurityInfo();
     }
+
+    console.log("iniciado " + this.question1)
   }
 
+  //Edit security info
+  editSecurityInfo(){
+    this.userService.editSecurityInfo(this.user.username,this.question1,this.question2,this.question3,this.question4,this.question5).subscribe((securityInfo) => {
+      this.securityInfo = securityInfo;
+    })
+  }
 
+  //Get securityInfo
+  getSecurityInfo(){
+    this.userService.getSecurityInfo(this.user.username).subscribe((securityInfo) => {
+      this.securityInfo = securityInfo;
+      
+      if(securityInfo != null){
+        this.question1 = securityInfo.question1;
+      }else{
+        this.edit = true
+      }
+      console.log(this.securityInfo)
+    })
+  }
+
+//Event to get the selected item 
   onSelectChange1(event:Event){
     const target = event.target as HTMLSelectElement;
     this.question1  = target.value;
@@ -60,5 +89,9 @@ export class UserpageComponent {
 
   reload():void{
     location.reload();
+  }
+
+  showSelection(){
+    this.edit = !this.edit;
   }
 }

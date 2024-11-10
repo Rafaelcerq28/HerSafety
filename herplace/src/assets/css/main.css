@@ -2562,11 +2562,13 @@ google-map {
 }
 
 .form-login-btn {
+  border-color: #6a4d7c;
   background-color: #6a4d7c;
   color: white;
 }
 
 .form-login-btn:hover {
+  border-color: #6a4d7c;
   background-color: #6a4d7c;
   color: white;
 }

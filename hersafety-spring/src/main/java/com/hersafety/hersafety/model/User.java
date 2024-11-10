@@ -5,6 +5,11 @@ import java.time.LocalDate;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -12,10 +17,13 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name="user")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class User {
 
 /*
@@ -49,13 +57,15 @@ public class User {
 
     private boolean notifications;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "security_info_id", referencedColumnName = "id")
+    private SecurityInfo securityInfo;
+
     @Enumerated(EnumType.STRING)
     private Role role;
     
     @CreationTimestamp
     private Instant createdAt;
-
-
     
     public String getUsername() {
         return username;
@@ -111,11 +121,18 @@ public class User {
     public void setRole(Role role) {
         this.role = role;
     }
+
+    public SecurityInfo getSecurityInfo() {
+        return securityInfo;
+    }
+    public void setSecurityInfo(SecurityInfo securityInfo) {
+        this.securityInfo = securityInfo;
+    }
     @Override
     public String toString() {
         return "User [id=" + id + ", username=" + username + ", password=" + password + ", name=" + name
-                + ", dateOfBirth=" + dateOfBirth + ", email=" + email + ", notifications=" + notifications + ", role="
-                + role + ", createdAt=" + createdAt + "]";
+                + ", dateOfBirth=" + dateOfBirth + ", email=" + email + ", notifications=" + notifications
+                + ", securityInfo=" + securityInfo + ", role=" + role + ", createdAt=" + createdAt + "]";
     }
 
     

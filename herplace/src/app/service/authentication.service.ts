@@ -31,7 +31,6 @@ export class AuthenticationService {
     );
   }
   
-  //finish this
   register(user:User): Observable<any>{
     return this.httpClient.post<any>(`${this.apiUrl}/users`, user).pipe(
       tap(response => {

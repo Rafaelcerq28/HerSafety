@@ -28,55 +28,52 @@
                         <button (click)="reload()">Refresh</button>
                     </div>
                     <div class="col-md-5">
-                        <p class="fs-5 mb-3"><strong>User information</strong></p>
+                        <p class="fs-5 mb-3"><strong>User information</strong><button class="form-login-btn ms-2 btn btn-primary btn-sm" (click)="showSelection()"> Edit<i class="ms-1 bi-pencil"></i></button></p> 
                         <ul class="list-group list-group-numbered">
-                            <li class="list-group-item">How often do you go to bars or clubs?
-                                <select class="form-select" aria-label="Default select example" [(ngModel)]="question1" (change)="$event">
-                                    <option selected >Select and option</option>
+                            <li class="list-group-item">How often do you go to bars or clubs?<br>
+                                <p class="mt-1 mb-1">Option: {{securityInfo?.question1}}</p>
+                                <select *ngIf="edit == true" class="form-select" aria-label="Default select example" [(ngModel)]="question1" (change)="$event">
                                     <option value="Regularly">Regularly</option>
                                     <option value="Occasionally">Occasionally</option>
                                     <option value="Rarely">Rarely</option>
                                   </select>
                             </li>
-                            <li class="list-group-item">What type of place do you usually visit?
-                                <select class="form-select" aria-label="Default select example" [(ngModel)]="question2" (change)="$event">
-                                    <option vaçie="Quiet bars">Quiet bars</option>
+                            <li class="list-group-item">What type of place do you usually visit?<br>
+                                <p class="mt-1 mb-1">Option: {{securityInfo?.question2}}</p>
+                                <select *ngIf="edit == true" class="form-select" aria-label="Default select example" [(ngModel)]="question2" (change)="$event">
+                                    <option value="Quiet bars">Quiet bars</option>
                                     <option value="Nightclubs">Nightclubs</option>
                                     <option value="Restaurants">Restaurants</option>
                                     <option value="Pubs">Pubs</option>
                                   </select>
                             </li>
-                            <li class="list-group-item">Do you usually go out alone or with company?
-                                <select class="form-select" aria-label="Default select example" [(ngModel)]="question3" (change)="$event">
-                                    <option vaçie="Always alone">Always alone</option>
+                            <li class="list-group-item">Do you usually go out alone or with company?<br>
+                                <p class="mt-1 mb-1">Option: {{securityInfo?.question3}}</p>
+                                <select *ngIf="edit == true" class="form-select" aria-label="Default select example" [(ngModel)]="question3" (change)="$event">
+                                    <option value="Always alone">Always alone</option>
                                     <option value="In a group">In a group</option>
                                     <option value="Both">Both</option>
                                   </select>
                             </li>
-                            <li class="list-group-item">How do you usually get home after going out?
-                                <select class="form-select" aria-label="Default select example" [(ngModel)]="question4" (change)="$event">
-                                    <option vaçie="Ride-sharing apps">Ride-sharing apps</option>
+                            <li class="list-group-item">How do you usually get home after going out?<br>
+                                <p class="mt-1 mb-1">Option: {{securityInfo?.question4}}</p>
+                                <select *ngIf="edit == true" class="form-select" aria-label="Default select example" [(ngModel)]="question4" (change)="$event">
+                                    <option value="Ride-sharing apps">Ride-sharing apps</option>
                                     <option value="Public transportation">Public transportation</option>
                                     <option value="Own car">Own car</option>
                                     <option value="On foot">On foot</option>
                                   </select>
                             </li>
-                            <li class="list-group-item">"Have you ever experienced a risky situation in bars or clubs?
-                                <select class="form-select" aria-label="Default select example" [(ngModel)]="question5" (change)="$event">
-                                    <option vaçie="Yes">Yes</option>
-                                    <option value="No">Public transportation</option>
+                            <li class="list-group-item">"Have you ever experienced a risky situation in bars or clubs?<br>
+                                <p class="mt-1 mb-1">Option: {{securityInfo?.question5}}</p>
+                                <select *ngIf="edit == true" class="form-select" aria-label="Default select example" [(ngModel)]="question5" (change)="$event">
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
                                     <option value="Prefer not to answer">Prefer not to answer</option>
                                   </select>
                             </li>
                         </ul>
-                        <ul>
-                            <li>{{question1}}</li>
-                            <li>{{question2}}</li>
-                            <li>{{question3}}</li>
-                            <li>{{question4}}</li>
-                            <li>{{question5}}</li>
-                        </ul>
-                        <button type="button" class="btn btn-primary btn-lg mt-3">Save</button>
+                        <button *ngIf="edit == true" type="button" class=" form-login-btn btn btn-primary btn-lg mt-3">Save</button>
                     </div>
                 </div>
                 <!-- Place comments -->
