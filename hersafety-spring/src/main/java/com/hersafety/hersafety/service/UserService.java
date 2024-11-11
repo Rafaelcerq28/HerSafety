@@ -37,11 +37,11 @@ public class UserService{// implements UserDetailsService {
     public ResponseEntity<UserResponse> createUser(User user){
         user.setRole(Role.USER);
 
-        SecurityInfo secInfo = new SecurityInfo();
-        secInfo.newSecInfo();
-        user.setSecurityInfo(secInfo);
+        // SecurityInfo secInfo = new SecurityInfo();
+        // secInfo.newSecInfo();
+        // user.setSecurityInfo(secInfo);
 
-        System.out.println(user.toString());
+        // System.out.println(user.toString());
 
         //search user in the database
         User savedUser = userRepository.save(user);
@@ -118,7 +118,7 @@ public class UserService{// implements UserDetailsService {
         if(userToUpdate.isPresent() == false){
             throw new UserNotFoundException("User: " + username);
         }
-        
+
         if(userToUpdate.get().getSecurityInfo() == null){
 
             userToUpdate.get().setSecurityInfo(securityInfo);
@@ -126,7 +126,7 @@ public class UserService{// implements UserDetailsService {
             userRepository.save(userToUpdate.get());
             
             return ResponseEntity.ok().body(userToUpdate.get().getSecurityInfo());
-            
+
         }else{
 
             securityInfoToUpdate = userToUpdate.get().getSecurityInfo();

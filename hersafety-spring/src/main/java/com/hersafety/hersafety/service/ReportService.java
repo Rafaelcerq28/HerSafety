@@ -13,6 +13,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.hersafety.hersafety.DTO.ReportMetrics;
 import com.hersafety.hersafety.DTO.ReportRequest;
 import com.hersafety.hersafety.controller.ReportController;
+import com.hersafety.hersafety.exception.UserNotFoundException;
 import com.hersafety.hersafety.model.Place;
 import com.hersafety.hersafety.model.Report;
 import com.hersafety.hersafety.model.User;
@@ -79,8 +80,14 @@ public class ReportService {
     }
 
     //GET a List os reports by userId
-    public List<ReportRequest> getAllReportsByUser(long id) {
-        List<Report> reports = reportRepository.findByUserId(id);
+    public List<ReportRequest> getAllReportsByUser(String username) {
+        Optional<User> user = userRepository.findByUsername(username);
+
+        if(user.isPresent() == false){
+            throw new UserNotFoundException("User: " + username);
+        }
+
+        List<Report> reports = reportRepository.findByUserId(user.get().getId());
         List<ReportRequest> reportResponse = new ArrayList();
 
         for (Report report : reports) {

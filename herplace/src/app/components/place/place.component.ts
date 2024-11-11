@@ -28,9 +28,8 @@ export class PlaceComponent {
     
     //metodo para pegar a localização  
     this.getPlace();
-
-    
   }
+  
 //http param
   name:string = '';
 
@@ -60,6 +59,13 @@ export class PlaceComponent {
       name = params['name']});   
     // Store the name in a variable (maybe delete the line below later)
     // const name = String(this.route.snapshot.paramMap.get("name"));
+
+    if(name == undefined){
+      name = String(this.route.snapshot.paramMap.get("name"));
+      console.log("passou aq " + name);
+    }
+
+
     console.log("nome no get: " + name);
     
     if(name != "null"){

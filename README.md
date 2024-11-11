@@ -141,20 +141,22 @@ http://localhost:8080/swagger-ui/index.html
 ----
 # To Do:
 
+### General
+- Arrumar esse readme
+
 ### Spring
-- Create exception class to handle the errors 
 - Check HATEOAS to turn the project in a Restful API
-- Create DTO for user and place
-- Implement JWT
+- Generate recomendation using chat gpt
+- filtrar a localização dos lugares
+- checar/refatorar o metodo para pegar o place no google
 
 ### Angular
 
-- login page
-- register page (form)
-- user page
 - place report form
-- Service to get data from my api
-
+- linkar o report da pagina de usuario com o place 
+- criar botão de reportar lugar
+- corrigir o botão search na pagina do place
+- implementar o autocomplete do maps
 
 
 #E6E6FA

@@ -38,7 +38,15 @@ export class UserService {
   private apiUrl : string = "http://localhost:8080/users/securityinfo"
 
   editSecurityInfo(username:string, q1:string, q2:string, q3:string, q4:string, q5:string):Observable<any>{
-    return this.httpClient.put<any>(`${this.apiUrl}/${username}`,{q1,q2,q3,q4,q5});
+    console.log("q1 " + q1);
+    return this.httpClient.put<any>(`${this.apiUrl}/${username}`,
+      {
+        question1:q1,
+        question2:q2,
+        question3:q3,
+        question4:q4,
+        question5:q5
+      });
   }
 
   getSecurityInfo(username:string):Observable<any>{

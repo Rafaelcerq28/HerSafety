@@ -44,6 +44,7 @@ public class ReportController {
         return reportService.getAllReportsByPlace(placeId);
     }
 
+    //Report metrics
     @GetMapping("/report/place/metrics/{placeId}")
     @ResponseStatus(HttpStatus.OK)
     public ReportMetrics getAllReportMetrics(@PathVariable (value = "placeId") long placeId){
@@ -51,10 +52,10 @@ public class ReportController {
     }
 
     //GET a List os reports by userId
-    @GetMapping("/report/user/{userId}")
+    @GetMapping("/report/user/{username}")
     @ResponseStatus(HttpStatus.OK)
-    public List<ReportRequest> getAllReportsByUser(@PathVariable (value = "userId")long userId){
-        return reportService.getAllReportsByUser(userId);
+    public List<ReportRequest> getAllReportsByUser(@PathVariable (value = "username")String username){
+        return reportService.getAllReportsByUser(username);
     }
 
     //GET All reports

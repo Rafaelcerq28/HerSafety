@@ -26,21 +26,22 @@
                         <p><strong>Date of Birth: </strong>{{user.dateOfBirth}}</p>
                         <p><strong>notifications: </strong>{{user.notifications}}</p>
                         <button (click)="reload()">Refresh</button>
+                        <button (click)="saveSecurityOption()">test</button>
                     </div>
                     <div class="col-md-5">
-                        <p class="fs-5 mb-3"><strong>User information</strong><button class="form-login-btn ms-2 btn btn-primary btn-sm" (click)="showSelection()"> Edit<i class="ms-1 bi-pencil"></i></button></p> 
+                        <p class="fs-5 mb-3"><strong>User information</strong></p> 
                         <ul class="list-group list-group-numbered">
                             <li class="list-group-item">How often do you go to bars or clubs?<br>
-                                <p class="mt-1 mb-1">Option: {{securityInfo?.question1}}</p>
-                                <select *ngIf="edit == true" class="form-select" aria-label="Default select example" [(ngModel)]="question1" (change)="$event">
+                                <!-- <p class="mt-1 mb-1">Option: {{securityInfo?.question1}}</p> -->
+                                <select class="form-select" aria-label="Default select example" [(ngModel)]="question1" (change)="$event">
                                     <option value="Regularly">Regularly</option>
                                     <option value="Occasionally">Occasionally</option>
                                     <option value="Rarely">Rarely</option>
                                   </select>
                             </li>
                             <li class="list-group-item">What type of place do you usually visit?<br>
-                                <p class="mt-1 mb-1">Option: {{securityInfo?.question2}}</p>
-                                <select *ngIf="edit == true" class="form-select" aria-label="Default select example" [(ngModel)]="question2" (change)="$event">
+                                <!-- <p class="mt-1 mb-1">Option: {{securityInfo?.question2}}</p> -->
+                                <select class="form-select" aria-label="Default select example" [(ngModel)]="question2" (change)="$event">
                                     <option value="Quiet bars">Quiet bars</option>
                                     <option value="Nightclubs">Nightclubs</option>
                                     <option value="Restaurants">Restaurants</option>
@@ -48,16 +49,16 @@
                                   </select>
                             </li>
                             <li class="list-group-item">Do you usually go out alone or with company?<br>
-                                <p class="mt-1 mb-1">Option: {{securityInfo?.question3}}</p>
-                                <select *ngIf="edit == true" class="form-select" aria-label="Default select example" [(ngModel)]="question3" (change)="$event">
+                                <!-- <p class="mt-1 mb-1">Option: {{securityInfo?.question3}}</p> -->
+                                <select class="form-select" aria-label="Default select example" [(ngModel)]="question3" (change)="$event">
                                     <option value="Always alone">Always alone</option>
                                     <option value="In a group">In a group</option>
                                     <option value="Both">Both</option>
                                   </select>
                             </li>
                             <li class="list-group-item">How do you usually get home after going out?<br>
-                                <p class="mt-1 mb-1">Option: {{securityInfo?.question4}}</p>
-                                <select *ngIf="edit == true" class="form-select" aria-label="Default select example" [(ngModel)]="question4" (change)="$event">
+                                <!-- <p class="mt-1 mb-1">Option: {{securityInfo?.question4}}</p> -->
+                                <select class="form-select" aria-label="Default select example" [(ngModel)]="question4" (change)="$event">
                                     <option value="Ride-sharing apps">Ride-sharing apps</option>
                                     <option value="Public transportation">Public transportation</option>
                                     <option value="Own car">Own car</option>
@@ -65,38 +66,28 @@
                                   </select>
                             </li>
                             <li class="list-group-item">"Have you ever experienced a risky situation in bars or clubs?<br>
-                                <p class="mt-1 mb-1">Option: {{securityInfo?.question5}}</p>
-                                <select *ngIf="edit == true" class="form-select" aria-label="Default select example" [(ngModel)]="question5" (change)="$event">
+                                <!-- <p class="mt-1 mb-1">Option: {{securityInfo?.question5}}</p> -->
+                                <select class="form-select" aria-label="Default select example" [(ngModel)]="question5" (change)="$event">
                                     <option value="Yes">Yes</option>
                                     <option value="No">No</option>
                                     <option value="Prefer not to answer">Prefer not to answer</option>
                                   </select>
                             </li>
                         </ul>
-                        <button *ngIf="edit == true" type="button" class=" form-login-btn btn btn-primary btn-lg mt-3">Save</button>
+                        <button type="button" class=" form-login-btn btn btn-primary btn-sm btn-lg mt-3" (click)="saveSecurityOption()">Save</button>
                     </div>
                 </div>
                 <!-- Place comments -->
                 <div class="row col-md-12 mt-5">
-                    <h3 class="text-left">Commented places</h3>
+                    <h3 class="text-left">Places you have commented</h3>
                     <hr>
-                    <div class="scrollable-text">
-                        <p class="fs-6"><strong>Annonymous</strong></p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, quo maiores? Nobis ex soluta, rem doloribus officia nostrum tempora at cum fugiat consequuntur, dolores quisquam commodi nulla, accusantium reprehenderit amet.</p>    
-                        <p>date: 28/10/2021</p>
-                        <hr>
-                        <p class="fs-6"><strong>Annonymous</strong></p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, quo maiores? Nobis ex soluta, rem doloribus officia nostrum tempora at cum fugiat consequuntur, dolores quisquam commodi nulla, accusantium reprehenderit amet.</p>    
-                        <p>date: 28/10/2021</p>
-                        <hr>
-                        <p class="fs-6"><strong>Annonymous</strong></p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, quo maiores? Nobis ex soluta, rem doloribus officia nostrum tempora at cum fugiat consequuntur, dolores quisquam commodi nulla, accusantium reprehenderit amet.</p>    
-                        <p>date: 28/10/2021</p>
-                        <hr>
-                        <p class="fs-6"><strong>Annonymous</strong></p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, quo maiores? Nobis ex soluta, rem doloribus officia nostrum tempora at cum fugiat consequuntur, dolores quisquam commodi nulla, accusantium reprehenderit amet.</p>    
-                        <p>date: 28/10/2021</p>
-                        <hr>                            
+                    <div class="scrollable-text" >
+                        <div *ngFor="let report of reports">
+                            <p class="fs-6"><strong>{{user.username}}</strong></p>
+                            <p>{{report.comment}}</p>    
+                            <p>Date: {{ report.createdAt | date:'dd/MM/yyyy' }}</p>
+                            <hr>
+                        </div>
                     </div>
 
                 </div>

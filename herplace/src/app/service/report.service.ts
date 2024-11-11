@@ -20,4 +20,9 @@ export class ReportService {
   getReportMetrics(id:number): Observable<any>{
     return this.httpClient.get(`${this.apiUrl}/metrics/${id}`); 
   }
+
+  getReportByUser(username:string): Observable<Report[]>{
+    return this.httpClient.get<Report[]>(`http://localhost:8080/report/user/${username}`);  
+    // return this.httpClient.get<Report>;
+  }
 }
