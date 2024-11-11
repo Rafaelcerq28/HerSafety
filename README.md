@@ -149,6 +149,7 @@ http://localhost:8080/swagger-ui/index.html
 - Generate recomendation using chat gpt
 - filtrar a localização dos lugares
 - checar/refatorar o metodo para pegar o place no google
+- comentar o codigo propriamente
 
 ### Angular
 
@@ -157,7 +158,7 @@ http://localhost:8080/swagger-ui/index.html
 - criar botão de reportar lugar
 - corrigir o botão search na pagina do place
 - implementar o autocomplete do maps
-
+- comentar o codigo propriamente
 
 #E6E6FA
 
