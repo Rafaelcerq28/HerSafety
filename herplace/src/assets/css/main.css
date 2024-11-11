@@ -2572,3 +2572,19 @@ google-map {
   background-color: #6a4d7c;
   color: white;
 }
+
+.form-login-btn:checked {
+  border-color: #6a4d7c;
+  background-color: #6a4d7c;
+  color: white;
+}
+
+.form-login-btn:show {
+  border-color: #6a4d7c;
+  background-color: #6a4d7c;
+  color: white;
+}
+/*remove the arrow in the dropdown*/
+#dropdownMenuButton1::after {
+  display: none;
+}

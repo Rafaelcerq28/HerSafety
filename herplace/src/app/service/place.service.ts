@@ -16,4 +16,7 @@ export class PlaceService {
     return this.httpClient.get<Place>(`${this.apiUrl}?name=${name}`);
   }
 
+  getPlaceById(id:string):Observable<Place>{
+    return this.httpClient.get<Place>(`${this.apiUrl}/id/${id}`);
+  }
 }

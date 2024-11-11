@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.JacksonException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hersafety.hersafety.exception.UserNotFoundException;
 import com.hersafety.hersafety.model.Place;
 import com.hersafety.hersafety.model.User;
 import com.hersafety.hersafety.model.mapsResponse.PlaceResponse;
@@ -93,11 +94,10 @@ public class PlacesService {
         Optional<Place> place = placeRepository.findById(id);
 
         if(place.isPresent() == false){
-            return null;
+            throw new UserNotFoundException("" + id);
         }
 
         EntityModel<Place> entityModel = EntityModel.of(place.get());
-
         return entityModel;
 
     }

@@ -153,9 +153,7 @@ http://localhost:8080/swagger-ui/index.html
 
 ### Angular
 
-- place report form
-- linkar o report da pagina de usuario com o place 
-- criar botão de reportar lugar
+- place report form 
 - corrigir o botão search na pagina do place
 - implementar o autocomplete do maps
 - comentar o codigo propriamente

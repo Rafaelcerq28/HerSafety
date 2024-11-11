@@ -25,4 +25,8 @@ export class ReportService {
     return this.httpClient.get<Report[]>(`http://localhost:8080/report/user/${username}`);  
     // return this.httpClient.get<Report>;
   }
+
+  reportReport(report:string,placeId:number,username:string): Observable<Report[]>{
+    return this.httpClient.post<Report[]>(`http://localhost:8080/report/denounce/${report}/${placeId}/${username}`,{});  
+  }
 }

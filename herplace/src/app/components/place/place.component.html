@@ -145,9 +145,22 @@
                             <br>
                             <div class="scrollable-text" >
                                 <div *ngFor="let report of reports">
-                                    <p class="fs-6"><strong>Annonymous</strong></p>
-                                    <p>{{report.comment}}</p>    
+                                    <div class="d-flex align-items-center">
+                                        <p class="fs-6"><strong>Annonymous</strong></p>
+                                        <div class="dropdown" *ngIf="user != null">
+                                            <button style="margin-left: 19em;" class="btn btn-secondary dropdown-toggle btn-sm form-login-btn" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="bi bi-three-dots"></i>
+                                            </button>
+                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                              <li><a class="dropdown-item" (click)="reportReport('ofensive',report.placeId)">Report as Ofensive </a></li>
+                                              <li><a class="dropdown-item" (click)="reportReport('Fake',report.placeId)">Report as Fake</a></li>
+                                              <li><a class="dropdown-item" (click)="reportReport('Difamation',report.placeId)">Report as Defamatory</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <p class="mt-2">{{report.comment}}</p>    
                                     <p>Date: {{ report.createdAt | date:'dd/MM/yyyy' }}</p>
+                                    
                                     <hr>
                                 </div>
                             </div>

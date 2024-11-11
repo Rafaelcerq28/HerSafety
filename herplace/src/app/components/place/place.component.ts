@@ -4,6 +4,8 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { DatePipe } from '@angular/common';
+import { catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 import { PlaceService } from '../../service/place.service';
 import { Report } from '../../Report';
@@ -11,6 +13,7 @@ import { Place } from '../../Place';
 import { ReportService } from '../../service/report.service';
 import { ThisReceiver } from '@angular/compiler';
 import { SearchonplaceComponent } from "../searchonplace/searchonplace.component";
+import { UserService } from '../../service/user.service';
 
 
 CommonModule
@@ -23,13 +26,13 @@ CommonModule
 })
 export class PlaceComponent {
 
-  constructor(private route: ActivatedRoute,private placeService: PlaceService,private reportService: ReportService) {
+  constructor(private route: ActivatedRoute,private placeService: PlaceService,private reportService: ReportService, private userService:UserService) {
     this.initMap(); 
-    
+    this.user = this.userService.getUser();
     //metodo para pegar a localização  
     this.getPlace();
   }
-  
+
 //http param
   name:string = '';
 
@@ -46,14 +49,16 @@ export class PlaceComponent {
   markerPosition: google.maps.LatLngLiteral = { lat: this.lat, lng: this.lng };
 
 // TESTING API GET
-  place?: Place;
+  place?: any;
   reports: Report[] = [];
   reportMetric?: any;
+  user?:any;
 
   getPlace(){
     //Variable to Store the name from the search component
     let name:string = '';
-
+    let id:number = -1;
+    
     //Get name from the search
     this.route.queryParams.subscribe(params => {
       name = params['name']});   
@@ -61,14 +66,15 @@ export class PlaceComponent {
     // const name = String(this.route.snapshot.paramMap.get("name"));
 
     if(name == undefined){
-      name = String(this.route.snapshot.paramMap.get("name"));
-      console.log("passou aq " + name);
-    }
+      console.log("name undefined")
+        id = Number(this.route.snapshot.paramMap.get("name"));
+        if(Number.isNaN(id)){
+          name = String(this.route.snapshot.paramMap.get("name"));
+        }
+    }    
 
-
-    console.log("nome no get: " + name);
-    
-    if(name != "null"){
+    if(name != "null" && name != undefined){
+      console.log("aqui")
       this.placeService.getPlace(name).subscribe((place) => {
         this.place = place
         this.getReport(this.place.id);
@@ -76,7 +82,53 @@ export class PlaceComponent {
         console.log(this.reportMetric);
         this.initMap();
       });
+    }else{
+      //find by id
+
+    // Call the getPlaceById method from placeService and pass the place ID as a string
+    this.placeService.getPlaceById(String(id)).pipe(
+      // Use catchError to handle any errors that may occur in the request
+      catchError((error) => {
+        // Check if the error status is 404 (not found)
+        if (error.status === 404) {
+          // Log an error message to the console indicating the place was not found
+          console.error("Place not found (404)");
+          // Set the place variable to null to indicate the place wasn't found
+          this.place = null;
+        }
+        // Return an observable that emits null to keep the stream alive
+        return of(null);
+      })
+    ).subscribe((place) => { // Subscribe to the observable to process the result or handle the error
+      // If the place is found and not null
+      if (place) {
+        // Assign the received place data to the component's place variable
+        this.place = place;
+        // Call getReport with the place ID to fetch associated reports
+        this.getReport(this.place.id);
+        // Call getReportMetrics with the place ID to fetch metric data
+        this.getReportMetrics(this.place.id);
+        // Log the report metrics to the console for debugging
+        console.log(this.reportMetric);
+        // Initialize the map with the place data
+        this.initMap();
+      } else {
+        // If the place is null, log a message indicating the place was not loaded
+        console.log("Place not loaded due to error.");
+        // Additional actions can go here, like showing an error message to the user
+      }
+    });
+
+        // this.placeService.getPlaceById(String(id)).subscribe((place) => {
+        //   this.place = place
+        //   this.getReport(this.place.id);
+        //   this.getReportMetrics(this.place.id);
+        //   console.log(this.reportMetric);
+        //   this.initMap();
+        // });        
     }
+
+    console.log("id: " + id);
   }
 
   getReport(id:number){
@@ -101,10 +153,18 @@ export class PlaceComponent {
     this.zoom = 20;
   }
 
-  ngOnInit() {
-    this.route.queryParams.subscribe(params => {
-      this.name = params['name'];
-      // Aqui você pode fazer a lógica de pesquisa com base no 'query'
+  //method to denounce a user report
+  reportReport(report:string,placeId:number){
+    const reportedReport:any = null;
+    this.reportService.reportReport(report,placeId,this.user.username).subscribe((reportedReport) => {
+      reportedReport = reportedReport;
     });
+  }
+
+  ngOnInit() {
+    // this.route.queryParams.subscribe(params => {
+    //   this.name = params['name'];
+    //   // Aqui você pode fazer a lógica de pesquisa com base no 'query'
+    // });
   }
 }
