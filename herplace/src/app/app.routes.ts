@@ -5,6 +5,7 @@ import { SearchComponent } from './components/search/search.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { UserpageComponent } from './components/userpage/userpage.component';
+import { MakereportComponent } from './components/makereport/makereport.component';
 
 export const routes: Routes = [
     {path: '',component: HomeComponent},
@@ -15,6 +16,7 @@ export const routes: Routes = [
     {path: 'login', component: LoginComponent},
     {path: 'register', component: RegisterComponent},
     {path: 'user', component: UserpageComponent},
-    {path: 'user/:username', component: UserpageComponent}
+    {path: 'user/:username', component: UserpageComponent},
+    {path: 'report', component: MakereportComponent}
     
 ];

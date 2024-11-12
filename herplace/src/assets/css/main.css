@@ -2588,3 +2588,8 @@ google-map {
 #dropdownMenuButton1::after {
   display: none;
 }
+
+.form-focus-colors{
+  border-color: #6a4d7c !important;
+  box-shadow: 0 0 0 .25rem rgba(13, 110, 253, .25) !important;
+}

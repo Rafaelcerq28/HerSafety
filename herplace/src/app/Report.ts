@@ -10,6 +10,7 @@ export interface Report{
     comment: string;
     id: number;
     userId: number;
+    username:string;
     placeId: number;
     createdAt: string;
 }

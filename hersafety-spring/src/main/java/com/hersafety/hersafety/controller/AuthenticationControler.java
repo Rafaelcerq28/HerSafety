@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hersafety.hersafety.DTO.UserResponse;
 import com.hersafety.hersafety.model.User;
-import com.hersafety.hersafety.repository.AuthenticationService;
 import com.hersafety.hersafety.security.UserAuthentication;
+import com.hersafety.hersafety.service.AuthenticationService;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController

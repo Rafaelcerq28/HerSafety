@@ -1,4 +1,4 @@
-package com.hersafety.hersafety.repository;
+package com.hersafety.hersafety.service;
 
 import java.util.Optional;
 
@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.hersafety.hersafety.DTO.UserResponse;
 import com.hersafety.hersafety.exception.UserNotFoundException;
 import com.hersafety.hersafety.model.User;
+import com.hersafety.hersafety.repository.UserRepository;
 import com.hersafety.hersafety.security.UserAuthentication;
 
 @Service

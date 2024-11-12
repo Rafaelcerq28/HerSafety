@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
@@ -26,7 +26,7 @@ CommonModule
 })
 export class PlaceComponent {
 
-  constructor(private route: ActivatedRoute,private placeService: PlaceService,private reportService: ReportService, private userService:UserService) {
+  constructor(private route: ActivatedRoute,private placeService: PlaceService,private reportService: ReportService, private userService:UserService,private router:Router) {
     this.initMap(); 
     this.user = this.userService.getUser();
     //metodo para pegar a localização  
@@ -159,6 +159,11 @@ export class PlaceComponent {
     this.reportService.reportReport(report,placeId,this.user.username).subscribe((reportedReport) => {
       reportedReport = reportedReport;
     });
+  }
+
+  makeReport(placeId:number){
+    this.router.navigate(['/report/'],{ queryParams: {placeId:placeId}})
+    // const id = Number(this.route.snapshot.paramMap.get("id"));
   }
 
   ngOnInit() {

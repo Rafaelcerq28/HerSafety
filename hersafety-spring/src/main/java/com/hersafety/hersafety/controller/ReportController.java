@@ -31,10 +31,10 @@ public class ReportController {
     }
 
     //Post Report
-    @PostMapping("/report")
+    @PostMapping("/report/{username}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<ReportRequest> addReport(@RequestBody ReportRequest report){
-        return reportService.addReport(report);
+    public ResponseEntity<ReportRequest> addReport(@PathVariable(value = "username") String username, @RequestBody ReportRequest report){
+        return reportService.addReport(username,report);
     }
 
     //GET a List os reports by placeId

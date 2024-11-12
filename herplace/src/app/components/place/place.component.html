@@ -73,6 +73,7 @@
                                     </span>
                                 </span>
                             </p>
+                            
                           </div><!-- End Section Title -->
 
                         <div class="container col-md-6 gap-5 ms-0 p-5">
@@ -160,11 +161,15 @@
                                     </div>
                                     <p class="mt-2">{{report.comment}}</p>    
                                     <p>Date: {{ report.createdAt | date:'dd/MM/yyyy' }}</p>
-                                    
                                     <hr>
                                 </div>
                             </div>
-
+                            <div class="d-flex flex-row-reverse bd-highlight mt-5">
+                                <button class="btn btn-secondary form-login-btn" (click)="makeReport(place.id)">
+                                    Click here to write a comment
+                                </button>
+                            </div>
+                            
                         </div>
                     </div>
                     <div class="row mt-5" *ngIf="reports.length === 0">

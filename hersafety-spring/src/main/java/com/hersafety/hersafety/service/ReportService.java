@@ -37,8 +37,9 @@ public class ReportService {
 
     //validate the inputs
     //Create report
-    public ResponseEntity<ReportRequest> addReport(ReportRequest report) {
-        Optional<User> user = userRepository.findById(report.getUserId());
+    public ResponseEntity<ReportRequest> addReport(String username, ReportRequest report) {
+        // Optional<User> user = userRepository.findById(report.getUserId());
+        Optional<User> user = userRepository.findByUsername(username);
         Optional<Place> place = placeRepository.findById(report.getPlaceId());
 
         if(user.isPresent() == false || place.isPresent() == false){
