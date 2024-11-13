@@ -62,6 +62,8 @@ public class ReportService {
 
         reportToAdd = reportRepository.save(reportToAdd);
         report.setId(reportToAdd.getId());
+
+        System.out.println(report.toString());
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().
                         path("/{id}").buildAndExpand(report.getId()).toUri();
 

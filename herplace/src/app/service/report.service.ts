@@ -17,6 +17,12 @@ export class ReportService {
     // return this.httpClient.get<Report>;
   }
 
+  makeReport(report:Report,username:string): Observable<any>{
+    console.log(username);
+    return this.httpClient.post(`http://localhost:8080/report/${username}`,report);  
+    // return this.httpClient.get<Report>;
+  }
+
   getReportMetrics(id:number): Observable<any>{
     return this.httpClient.get(`${this.apiUrl}/metrics/${id}`); 
   }

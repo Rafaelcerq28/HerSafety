@@ -22,101 +22,120 @@
                     <p class="fs-5 mb-3 text-center mb-5"><strong>Tell us about this place</strong></p> 
                     <div class="col-md-6">    
                         <ul class="list-group list-group">
-                            <li class="list-group-item p-3">In your opinion how do you evaluate the Safety os the place?<br>
-                                <select class="form-select mt-2" aria-label="Default select example" (change)="$event">
-                                    <option value="Regularly">1</option>
-                                    <option value="Regularly">2</option>
-                                    <option value="Regularly">3</option>
-                                    <option value="Regularly">4</option>
-                                    <option value="Regularly">5</option>
-                                    <option value="Regularly">6</option>
-                                    <option value="Regularly">7</option>
-                                    <option value="Regularly">8</option>
-                                    <option value="Regularly">9</option>
-                                    <option value="Regularly">10</option>
-                                </select>
+                            <li class="list-group-item p-3">
+                                <label for="safetyScore" class="question">
+                                    <strong>Safety</strong><br><br>
+                                    Were there visible security personnel, and did you feel protected by the venue's monitoring?<br><br>
+                                    <small><strong>(1 = Not safe at all, 10 = Extremely safe)</strong></small>
+                                </label>    
+                                <div class="question-container col-md-12" >
+                                    <input style="width: 90%;" type="range" id="safetyScore" name="safetyScore" min="1" max="10" value="5" oninput="this.nextElementSibling.value = this.value" class="me-2 slider" [(ngModel)]="safetyScore">
+                                    <span> {{ safetyScore }}</span><!--<output>5</output> -->
+                                </div>
                             </li>
                         <!-- </ul> -->
                         <!-- <ul class="list-group list-group-numbered"> -->
-                            <li class="list-group-item p-3">How often do you go to bars or clubs?<br>
-                                <select class="form-select mt-2" aria-label="Default select example" (change)="$event">
-                                    <option value="Regularly">Regularly</option>
-                                    <option value="Occasionally">Occasionally</option>
-                                    <option value="Rarely">Rarely</option>
-                                </select>
+                            <li class="list-group-item p-3">
+                                <label for="safetyScore" class="question">
+                                    <strong>Cozy / Inviting</strong><br><br>
+                                    Did the venue provide a comfortable and welcoming environment for women?<br><br>
+                                    <small><strong>(1 = Very uncomfortable, 10 = Extremely inviting)</strong></small>
+                                </label>    
+                                <div class="question-container col-md-12" >
+                                    <input style="width: 90%;" type="range" id="safetyScore" name="safetyScore" min="1" max="10" value="5" oninput="this.nextElementSibling.value = this.value" class="me-2 slider" [(ngModel)]="cozyScore">
+                                    <span> {{ cozyScore }}</span><!--<span> {{ safetyScore }}</span> -->
+                                </div>
                             </li>
                         <!-- </ul> -->
                         <!-- <ul class="list-group list-group-numbered"> -->
-                            <li class="list-group-item p-3">How often do you go to bars or clubs?<br>
-                                <select class="form-select mt-2" aria-label="Default select example" (change)="$event">
-                                    <option value="Regularly">Regularly</option>
-                                    <option value="Occasionally">Occasionally</option>
-                                    <option value="Rarely">Rarely</option>
-                                </select>
+                            <li class="list-group-item p-3">
+                                <label for="safetyScore" class="question">
+                                    <strong>Toilets</strong><br><br>
+                                    How would you rate the women’s restrooms in terms of cleanliness, privacy, and availability of products (e.g., sanitary pads)?<br><br>
+                                    <small><strong>(1 = Very poor, 10 = Excellent)</strong></small>
+                                </label>    
+                                <div class="question-container col-md-12" >
+                                    <input style="width: 90%;" type="range" id="safetyScore" name="safetyScore" min="1" max="10" value="5" oninput="this.nextElementSibling.value = this.value" class="me-2 slider" [(ngModel)]="toiletsScore">
+                                    <span> {{ toiletsScore }}</span><!--<span> {{ safetyScore }}</span> -->
+                                </div>
                             </li>
                         <!-- </ul> -->
                         <!-- <ul class="list-group list-group-numbered"> -->
-                            <li class="list-group-item p-3">How often do you go to bars or clubs?<br>
-                                <select class="form-select mt-2" aria-label="Default select example" (change)="$event">
-                                    <option value="Regularly">Regularly</option>
-                                    <option value="Occasionally">Occasionally</option>
-                                    <option value="Rarely">Rarely</option>
-                                </select>
+                            <li class="list-group-item p-3">
+                                <label for="safetyScore" class="question">
+                                    <strong>Availability of Feminine Products</strong><br><br>
+                                    Did the venue provide feminine products (sanitary pads, wet wipes, etc.) in an accessible way?<br><br>
+                                    <small><strong>(1 = Not available, 5 = Widely available)</strong></small>
+                                </label>    
+                                <div class="question-container col-md-12" >
+                                    <input style="width: 90%;" type="range" id="safetyScore" name="safetyScore" min="1" max="10" value="5" oninput="this.nextElementSibling.value = this.value" class="me-2 slider" [(ngModel)]="feminineProdScore">
+                                    <span> {{ feminineProdScore }}</span><!--<span> {{ safetyScore }}</span> -->
+                                </div>
                             </li>
                         </ul>
                     </div>
                     <div class="col-md-6">
                         <ul class="list-group list-group">
-                            <li class="list-group-item p-3">How often do you go to bars or clubs?<br>
-                                <select class="form-select mt-2" aria-label="Default select example" (change)="$event">
-                                    <option value="Regularly">1</option>
-                                    <option value="Regularly">2</option>
-                                    <option value="Regularly">3</option>
-                                    <option value="Regularly">4</option>
-                                    <option value="Regularly">5</option>
-                                    <option value="Regularly">6</option>
-                                    <option value="Regularly">7</option>
-                                    <option value="Regularly">8</option>
-                                    <option value="Regularly">9</option>
-                                    <option value="Regularly">10</option>
-                                </select>
+                            <li class="list-group-item p-3">
+                                <label for="safetyScore" class="question">
+                                    <strong>Place Illumination</strong><br><br>
+                                    Was the lighting (inside and outside) sufficient to provide a sense of security?<br><br>
+                                    <small><strong>(1 = Very dark, 5 = Very well-lit)</strong></small>
+                                </label>    
+                                <div class="question-container col-md-12" >
+                                    <input style="width: 90%;" type="range" id="safetyScore" name="safetyScore" min="1" max="10" value="5" oninput="this.nextElementSibling.value = this.value" class="me-2 slider" [(ngModel)]="illuminationScore">
+                                    <span> {{ illuminationScore }}</span><!--<span> {{ safetyScore }}</span> -->
+                                </div>
                             </li>
-                        </ul>
-                        <ul class="list-group list-group-numbered">
-                            <li class="list-group-item p-3">How often do you go to bars or clubs?<br>
-                                <select class="form-select mt-2" aria-label="Default select example" (change)="$event">
-                                    <option value="Regularly">Regularly</option>
-                                    <option value="Occasionally">Occasionally</option>
-                                    <option value="Rarely">Rarely</option>
-                                </select>
+                        <!-- </ul> -->
+                        <!-- <ul class="list-group list-group"> -->
+                            <li class="list-group-item p-3">
+                                <label for="safetyScore" class="question">
+                                    <strong>Crowd Quality</strong><br><br>
+                                    How would you rate the behavior of others at the venue in terms of respect and conduct?<br><br>
+                                    <small><strong>(1 = Disrespectful, 5 = Respectful and courteous)</strong></small>
+                                </label>    
+                                <div class="question-container col-md-12" >
+                                    <input style="width: 90%;" type="range" id="safetyScore" name="safetyScore" min="1" max="10" value="5" oninput="this.nextElementSibling.value = this.value" class="me-2 slider" [(ngModel)]="crowdQualityScore">
+                                    <span> {{ crowdQualityScore }}</span><!--<span> {{ safetyScore }}</span> -->
+                                </div>
                             </li>
-                        </ul>
-                        <ul class="list-group list-group-numbered">
-                            <li class="list-group-item p-3">How often do you go to bars or clubs?<br>
-                                <select class="form-select mt-2" aria-label="Default select example" (change)="$event">
-                                    <option value="Regularly">Regularly</option>
-                                    <option value="Occasionally">Occasionally</option>
-                                    <option value="Rarely">Rarely</option>
-                                </select>
+                        <!-- </ul> -->
+                        <!-- <ul class="list-group list-group"> -->
+                            <li class="list-group-item p-3">
+                                <label for="safetyScore" class="question">
+                                    <strong>Privacy (Sense of Privacy)</strong><br><br>
+                                    Did you feel comfortable and with a sense of privacy at the venue, especially in women-specific areas (restrooms, lounges)?<br><br>
+                                    <small><strong>(1 = No privacy, 5 = Very comfortable and private)
+                                    </strong></small>
+                                </label>    
+                                <div class="question-container col-md-12" >
+                                    <input style="width: 90%;" type="range" id="safetyScore" name="safetyScore" min="1" max="10" value="5" oninput="this.nextElementSibling.value = this.value" class="me-2 slider" [(ngModel)]="privacyScore">
+                                    <span> {{ privacyScore }}</span><!--<span> {{ safetyScore }}</span> -->
+                                </div>
                             </li>
-                        </ul>
-                        <ul class="list-group list-group-numbered">
-                            <li class="list-group-item p-3">How often do you go to bars or clubs?<br>
-                                <select class="form-select mt-2" aria-label="Default select example" (change)="$event">
-                                    <option value="Regularly">Regularly</option>
-                                    <option value="Occasionally">Occasionally</option>
-                                    <option value="Rarely">Rarely</option>
-                                </select>
+                        <!-- </ul> -->
+                        <!-- <ul class="list-group list-group"> -->
+                            <li class="list-group-item p-3">
+                                <label for="safetyScore" class="question">
+                                    <strong>Safety Information</strong><br><br>
+                                    Did the venue provide clear and visible information on safety (e.g., how to report harassment, where to seek help)?<br><br>
+                                    <small><strong>(1 = No information, 5 = Very clear and accessible information)</strong></small>
+                                </label>    
+                                <div class="question-container col-md-12" >
+                                    <input style="width: 90%;" type="range" id="safetyScore" name="safetyScore" min="1" max="10" value="5" oninput="this.nextElementSibling.value = this.value" class="me-2 slider" [(ngModel)]="safetyInfoScore">
+                                    <span> {{ safetyInfoScore }}</span><!--<span> {{ safetyScore }}</span> -->
+                                </div>
                             </li>
                         </ul>
                     </div>        
                 </div>
-                <div class="form-floating mt-5 col-md-6 row justify-content-center">
-                    <textarea style="height: 10em;" class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                <div class="form-floating mt-5 col-md-6 row justify-content-center ms-1">
+                    <textarea style="height: 10em;" class="form-control" placeholder="Leave a comment here" id="floatingTextarea" [(ngModel)]="textArea"></textarea>
                     <label for="floatingTextarea">Write a comment</label>
-                  </div>
-                  <div class="justify-content-center">
-                    <button>Save</button>
+                </div>
+                <div class="justify-content-center ms-0">
+                    <button class="btn btn-secondary mt-3 form-login-btn" (click)="makeReport()">Save</button>
                 </div>
             </div>
 

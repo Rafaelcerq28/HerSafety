@@ -34,6 +34,7 @@ public class ReportController {
     @PostMapping("/report/{username}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<ReportRequest> addReport(@PathVariable(value = "username") String username, @RequestBody ReportRequest report){
+        System.out.println("addReport acessado");
         return reportService.addReport(username,report);
     }
 
