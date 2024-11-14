@@ -145,7 +145,7 @@
                             
                             <br>
                             <div class="scrollable-text" >
-                                <div *ngFor="let report of reports">
+                                <div *ngFor="let report of reports.slice().reverse()">
                                     <div class="d-flex align-items-center">
                                         <p class="fs-6"><strong>Annonymous</strong></p>
                                         <div class="dropdown" *ngIf="user != null">

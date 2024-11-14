@@ -146,19 +146,14 @@ http://localhost:8080/swagger-ui/index.html
 
 ### Spring
 - Check HATEOAS to turn the project in a Restful API(se der tempo)
-- Generate recomendation using chat gpt(PRIORIDADE 2 )
-- filtrar a localização dos lugares(IMPORTANTE)
-- checar/refatorar o metodo para pegar o place no google(IMPORTANTE)
+- Generate recomendation using chat gpt(PRIORIDADE 1 )
+- filtrar a localização dos lugares(IMPORTANTE 4 )
+- checar/refatorar o metodo para pegar o place no google(IMPORTANTE 5 )
 - comentar o codigo propriamente(IMPORTANTE)
 
 ### Angular
-
-- place report form (colocar o username na interface report e fazer isso 
-                    para a classe report no spring, tambem editar o metodo 
-                    POST para /report/{username} para poder passar o username 
-                    e o report como body)(PRIORIDADE 1 )
-- corrigir o botão search na pagina do place(IMPORTANTE)
-- implementar o autocomplete do maps(IMPORTANTE)
+- corrigir o botão search na pagina do place(IMPORTANTE 2)
+- implementar o autocomplete do maps(IMPORTANTE 3)
 - comentar o codigo propriamente(IMPORTANTE)
 
 #E6E6FA
