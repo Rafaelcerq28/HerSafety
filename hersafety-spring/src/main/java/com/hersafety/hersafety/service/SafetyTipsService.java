@@ -59,7 +59,7 @@ public class SafetyTipsService {
       "- **Have you ever experienced a risky situation in bars or clubs?** Answer: "+user.getSecurityInfo().getQuestion4()+"\n\n"+
       "Using these answers, generate a safety advice for this user, addressing potential concerns about nightlife safety, transportation after a night out, and ways to stay safe while in a group.";
         // Substitua pela sua chave de API
-        String apiKey = "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";
+        String apiKey = "MYKEY";
         // String apiKey = "";
         // Configura o endpoint da API
         String apiEndpoint = "https://api.openai.com/v1/chat/completions";
