@@ -35,10 +35,9 @@ export class UserService {
   }
   
   //method to get security info
-  private apiUrl : string = "http://localhost:8080/users/securityinfo"
+  private apiUrl : string = "http://localhost:8080/users/securityinfo";
 
   editSecurityInfo(username:string, q1:string, q2:string, q3:string, q4:string, q5:string):Observable<any>{
-    console.log("q1 " + q1);
     return this.httpClient.put<any>(`${this.apiUrl}/${username}`,
       {
         question1:q1,
@@ -49,6 +48,11 @@ export class UserService {
       });
   }
 
+  getSafetyTips(username:string):Observable<any>{
+    console.log("o metodo foi acionado no service:)");
+    return this.httpClient.get(`http://localhost:8080/safety/${username}`, { responseType: 'text' });
+  }
+  
   getSecurityInfo(username:string):Observable<any>{
     return this.httpClient.get<any>(`${this.apiUrl}/${username}`);
   }

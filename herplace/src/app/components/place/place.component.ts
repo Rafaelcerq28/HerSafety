@@ -29,6 +29,11 @@ export class PlaceComponent {
   constructor(private route: ActivatedRoute,private placeService: PlaceService,private reportService: ReportService, private userService:UserService,private router:Router) {
     this.initMap(); 
     this.user = this.userService.getUser();
+
+    if(this.user != null){
+      this.safetyTips = this.getSafetyTips(); 
+    }
+      
     //metodo para pegar a localização  
     this.getPlace();
   }
@@ -53,6 +58,8 @@ export class PlaceComponent {
   reports: Report[] = [];
   reportMetric?: any;
   user?:any;
+  safetyTips?:any;
+  searchPlace:string = "";
 
   getPlace(){
     //Variable to Store the name from the search component
@@ -145,6 +152,13 @@ export class PlaceComponent {
   }
 // END TESTING API GET
 
+//Method to get safety tips from the user based on the users preference
+getSafetyTips(){
+  this.userService.getSafetyTips(this.user.username).subscribe((safetyTips) => {
+    this.safetyTips = safetyTips;
+  });
+}
+
 //initialize the google map
   initMap():void{
     console.log("vrum");
@@ -166,6 +180,13 @@ export class PlaceComponent {
     // const id = Number(this.route.snapshot.paramMap.get("id"));
   }
 
+  //SEARCH BAR METHOD
+  //This method redirects to the redirect compoment, and once in the redirect component 
+  //it is redirected to place component again 
+  search(search:string){
+    search = search.split(' ').join('+');
+    this.router.navigate([`/redirect/`],{ queryParams: {name: search}});
+  }
   ngOnInit() {
     // this.route.queryParams.subscribe(params => {
     //   this.name = params['name'];

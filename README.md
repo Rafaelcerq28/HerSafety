@@ -145,16 +145,14 @@ http://localhost:8080/swagger-ui/index.html
 - Arrumar esse readme
 
 ### Spring
-- Check HATEOAS to turn the project in a Restful API(se der tempo)
-- Generate recomendation using chat gpt(PRIORIDADE 1 )
-- filtrar a localização dos lugares(IMPORTANTE 4 )
-- checar/refatorar o metodo para pegar o place no google(IMPORTANTE 5 )
-- comentar o codigo propriamente(IMPORTANTE)
+- filtrar a localização dos lugares e deixar o metodo funcionando 100% testar muito mas muito mesmo (IMPORTANTE 1 )
+- checar/refatorar o metodo para pegar o place no google(IMPORTANTE 3 )
+- comentar o codigo propriamente(IMPORTANTE 4)
 
 ### Angular
-- corrigir o botão search na pagina do place(IMPORTANTE 2)
-- implementar o autocomplete do maps(IMPORTANTE 3)
-- comentar o codigo propriamente(IMPORTANTE)
+- fazer a pagina de admin (URGENTE)
+- implementar o autocomplete do maps(IMPORTANTE 2)
+- comentar o codigo propriamente(IMPORTANTE 4)
 
 #E6E6FA
 

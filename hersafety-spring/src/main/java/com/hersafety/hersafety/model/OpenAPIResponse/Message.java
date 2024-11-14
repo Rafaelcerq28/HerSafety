@@ -4,7 +4,8 @@ import java.util.List;
 
 public class Message {
     private String role;
-    private List<Content> content;
+    private String content;
+    private Object refusal;
     
     public String getRole() {
         return role;
@@ -12,11 +13,17 @@ public class Message {
     public void setRole(String role) {
         this.role = role;
     }
-    public List<Content> getContent() {
+    public String getContent() {
         return content;
     }
-    public void setContent(List<Content> content) {
+    public void setContent(String content) {
         this.content = content;
+    }
+    public Object getRefusal() {
+        return refusal;
+    }
+    public void setRefusal(Object refusal) {
+        this.refusal = refusal;
     }
 
     
