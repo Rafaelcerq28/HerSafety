@@ -52,7 +52,9 @@ public class PlacesService {
                 name = name.replace(" ", "+");
                 String url = "https://maps.googleapis.com/maps/api/place/findplacefromtext/"+
                             "json?input="+name+"&inputtype=textquery&fields=formatted_address"+
-                            "%2Cname%2Cgeometry%2Cplace_id%2Ctype&locationbias=country:IE&key=mykey";
+                            "%2Cname%2Cgeometry%2Cplace_id%2Ctype&locationbias=country:IE&key=MYKEY";
+
+                //Make request to the google API
                 URI address = URI.create(url);
                 HttpClient client = HttpClient.newHttpClient();
                 HttpRequest request = HttpRequest.newBuilder(address).GET().build();     
@@ -60,24 +62,57 @@ public class PlacesService {
                 response = client.send(request, BodyHandlers.ofString());
                 String body = response.body();
 
+                // System.out.println("maps return" + body);
                 //using jackson to convert Json in an Java object
                 String jsonString = body;
                 ObjectMapper mapper = new ObjectMapper();
                 PlaceResponse places = mapper.readValue(jsonString, PlaceResponse.class);
-                
-                //create a place and call the method to fill the fields in the place object
-                Place place = new Place();
-                try{
-                    place.fillFields(places);   
-                }catch(IndexOutOfBoundsException ex){
-                    return null;
+
+                //CHECK IF THE PLACE IS LOCATED IN IRELAND
+                String [] addressToValidate = places.getCandidates().get(0).getFormatted_address().split(",");
+
+                System.out.println(addressToValidate[4] );
+
+                //Remove the spaces and check if the name is equal Ireland
+                boolean countryFound = false;
+
+                //check through the addressToValidate array and compare the country name
+                for(int i =0;i<addressToValidate.length;i++){
+                    if(addressToValidate[i].replaceAll("\\s", "").equalsIgnoreCase("Ireland") == true){
+                        countryFound = true;
+                    }
                 }
+                //If the country wasn't found throw an exception
+                if(countryFound == false){
+                    System.out.println(addressToValidate[4].equalsIgnoreCase("Ireland"));
+                    throw new UserNotFoundException(nameToSearch);
+                }
+
+                //Filter for types
+                System.out.println(places.getCandidates().get(0).getTypes().toString());
                 
-                //store the place in the database
-                placeRepository.save(place);
+                //Check if the item returned exist in the database
+                System.out.println("Place ID gotten from API: " + places.getCandidates().get(0).getPlace_id());
+                findPlace = placeRepository.findByPlaceId(places.getCandidates().get(0).getPlace_id());
+                
+                if(findPlace.isPresent()){
+                    System.out.println("\n Existe um igual no banco \n");
+                    return findPlace.get();
+                }else{
+                //create a place and call the method to fill the fields in the place object
+                    Place place = new Place();
+                    try{
+                        place.fillFields(places);   
+                    }catch(IndexOutOfBoundsException ex){
+                        throw new UserNotFoundException(nameToSearch);
+                        // return null;
+                    }
+                
+                    //store the place in the database
+                    // placeRepository.save(place);
 
-                return place;
-
+                    return place;
+                }
             } catch (JacksonException e) {
                 e.printStackTrace();
             } catch (InterruptedException e) {

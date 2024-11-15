@@ -30,9 +30,10 @@ export class PlaceComponent {
     this.initMap(); 
     this.user = this.userService.getUser();
 
-    if(this.user != null){
-      this.safetyTips = this.getSafetyTips(); 
-    }
+    //GET SAFETY TIPS
+    // if(this.user != null){
+    //   this.safetyTips = this.getSafetyTips(); 
+    // }
       
     //metodo para pegar a localização  
     this.getPlace();
@@ -89,52 +90,62 @@ export class PlaceComponent {
         console.log(this.reportMetric);
         this.initMap();
       });
-    }else{
-      //find by id
-
-    // Call the getPlaceById method from placeService and pass the place ID as a string
-    this.placeService.getPlaceById(String(id)).pipe(
-      // Use catchError to handle any errors that may occur in the request
-      catchError((error) => {
-        // Check if the error status is 404 (not found)
-        if (error.status === 404) {
-          // Log an error message to the console indicating the place was not found
-          console.error("Place not found (404)");
-          // Set the place variable to null to indicate the place wasn't found
-          this.place = null;
-        }
-        // Return an observable that emits null to keep the stream alive
-        return of(null);
-      })
-    ).subscribe((place) => { // Subscribe to the observable to process the result or handle the error
-      // If the place is found and not null
-      if (place) {
-        // Assign the received place data to the component's place variable
-        this.place = place;
-        // Call getReport with the place ID to fetch associated reports
-        this.getReport(this.place.id);
-        // Call getReportMetrics with the place ID to fetch metric data
-        this.getReportMetrics(this.place.id);
-        // Log the report metrics to the console for debugging
-        console.log(this.reportMetric);
-        // Initialize the map with the place data
-        this.initMap();
-      } else {
-        // If the place is null, log a message indicating the place was not loaded
-        console.log("Place not loaded due to error.");
-        // Additional actions can go here, like showing an error message to the user
+      
+      //GET SAFETY TIPS
+      if(this.user != null){
+        this.safetyTips = this.getSafetyTips(); 
       }
-    });
 
-        // this.placeService.getPlaceById(String(id)).subscribe((place) => {
-        //   this.place = place
-        //   this.getReport(this.place.id);
-        //   this.getReportMetrics(this.place.id);
-        //   console.log(this.reportMetric);
-        //   this.initMap();
-        // });        
+    }else{
+      //FIND BY ID
+      // Call the getPlaceById method from placeService and pass the place ID as a string
+      this.placeService.getPlaceById(String(id)).pipe(
+        // Use catchError to handle any errors that may occur in the request
+        catchError((error) => {
+          // Check if the error status is 404 (not found)
+          if (error.status === 404) {
+            // Log an error message to the console indicating the place was not found
+            console.error("Place not found (404)");
+            // Set the place variable to null to indicate the place wasn't found
+            this.place = null;
+          }
+          // Return an observable that emits null to keep the stream alive
+          return of(null);
+        })
+      ).subscribe((place) => { // Subscribe to the observable to process the result or handle the error
+        // If the place is found and not null
+        if (place) {
+          // Assign the received place data to the component's place variable
+          this.place = place;
+          // Call getReport with the place ID to fetch associated reports
+          this.getReport(this.place.id);
+          // Call getReportMetrics with the place ID to fetch metric data
+          this.getReportMetrics(this.place.id);
+          // Log the report metrics to the console for debugging
+          console.log(this.reportMetric);
+          // Initialize the map with the place data
+          this.initMap();
+
+          // GET SAFETY TIPS
+          if(this.user != null){
+            this.safetyTips = this.getSafetyTips(); 
+          }
+
+        } else {
+          // If the place is null, log a message indicating the place was not loaded
+          console.log("Place not loaded due to error.");
+          // Additional actions can go here, like showing an error message to the user
+        }
+      });
+
+          // this.placeService.getPlaceById(String(id)).subscribe((place) => {
+          //   this.place = place
+          //   this.getReport(this.place.id);
+          //   this.getReportMetrics(this.place.id);
+          //   console.log(this.reportMetric);
+          //   this.initMap();
+          // });        
     }
-
     console.log("id: " + id);
   }
 

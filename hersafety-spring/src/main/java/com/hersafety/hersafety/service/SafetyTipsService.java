@@ -65,7 +65,6 @@ public class SafetyTipsService {
       "- **Have you ever experienced a risky situation in bars or clubs?** Answer: "+user.getSecurityInfo().getQuestion4()+"\n\n"+
       "Using these answers, generate a safety advice for this user, addressing potential concerns about nightlife safety, transportation after a night out, and ways to stay safe while in a group.";
         // Substitua pela sua chave de API
-        // String apiKey = "MYKEY";
         String apiKey = "";
         // Configura o endpoint da API
         String apiEndpoint = "https://api.openai.com/v1/chat/completions";
@@ -89,7 +88,7 @@ public class SafetyTipsService {
             .POST(HttpRequest.BodyPublishers.ofString(requestBody.toString()))
             .build();
 
-            System.out.println("REQUEST " + request);
+            // System.out.println("REQUEST " + request);
         // Envia a requisição
         HttpClient client = HttpClient.newHttpClient();
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
@@ -99,15 +98,15 @@ public class SafetyTipsService {
         if (response.statusCode() == 200) {
             JSONObject jsonResponse = new JSONObject(response.body());
             reply = jsonResponse.getJSONArray("choices").getJSONObject(0).getJSONObject("message").getString("content");
-            System.out.println("Resposta da API: " + response.body());
+            // System.out.println("Resposta da API: " + response.body());
         } else {
             System.out.println("Erro: " + response.statusCode() + " - " + response.body());
         }
         // System.out.println("REPLY: \n\n " + reply);
         endTime = System.currentTimeMillis();
         executionTime = endTime - startTime;
-        System.out.println("Execution time: " + executionTime + "ms - " + (executionTime/1000) +"s");
-        System.out.println();
+        System.out.println("\n Safety tips loaded!\nExecution time: " + executionTime + "ms - " + (executionTime/1000) +"s");
+        // System.out.println();
 
         //using jackson to convert Json in an Java object
         JSONObject jsonObject = new JSONObject(response.body());
@@ -117,7 +116,7 @@ public class SafetyTipsService {
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         ChatCompletionRequest chat = mapper.readValue(jsonString, ChatCompletionRequest.class);
         // reply = reply.replaceAll("```html|```", "");
-        System.out.println("FINAL " + chat.getChoices().get(0).getMessage().getContent());
+        // System.out.println("FINAL " + chat.getChoices().get(0).getMessage().getContent());
         return chat.getChoices().get(0).getMessage().getContent();
     }
 }
