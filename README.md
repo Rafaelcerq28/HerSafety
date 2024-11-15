@@ -153,6 +153,7 @@ http://localhost:8080/swagger-ui/index.html
 - fazer a pagina de admin (URGENTE)
 - implementar o autocomplete do maps(IMPORTANTE 2)
 - comentar o codigo propriamente(IMPORTANTE 4)
+- Arrumar a navbar que não funciona no modo responsivo
 
 #E6E6FA
 
