@@ -44,14 +44,22 @@
                       </div>
                     </div>
                   </div>
-                <div class="row col-md-12">
+                <!-- <div class="row col-md-12">
                     <h2 class="mt-5">Users</h2>
-                    <div class="scrollable-text p-2 ms-2 border align-items-center">
-                            <div class="d-flex ">
+                    <div class="scrollable-text p-2 ms-2 border align-items-center col-md-6">
+                        <div *ngFor="let person of users">
+                            <div class="d-flex p-2">
+                                <p class="fs-6 me-auto mt-2"><strong>{{person.name}}</strong></p>
+                                <i *ngIf="person.active == false" class="bi bi-unlock-fill"></i><i *ngIf="person.active == true" class="bi bi-lock-fill"></i>
+                            </div>
+                            <hr class="ms-0">
+                        </div>     -->
+
+                            <!-- <div class="d-flex p-2">
                                 <p class="fs-6 me-auto mt-2"><strong>Fulana</strong></p>
-                                <i class="bi bi-ban"></i>
+                                <i class="bi bi-unlock-fill"></i><i class="bi bi-lock-fill"></i>
                             </div>
-                            <hr>
+                            <hr class="ms-0">
                             <div class="d-flex align-items-center">
                                 <p class="fs-6 me-auto"><strong>Fulana</strong></p>
                                 <i class="bi bi-ban"></i>
@@ -76,20 +84,47 @@
                                 <p class="fs-6 me-auto"><strong>Fulana</strong></p>
                                 <i class="bi bi-ban"></i>
                             </div>
-                            <hr>
-                            <div class="d-flex align-items-center">
-                                <p class="fs-6 me-auto"><strong>Fulana</strong></p>
-                                <i class="bi bi-ban"></i>
-                            </div>
-                            <hr>
+                            <hr> -->
+                    <!-- </div>
+                </div> -->
+                <button class="btn-sm btn-secondary">Test isActive</button>
+                <div class="row col-md-6 ">
+                    <h2 class="mt-5">Users</h2>
+                    <div class="scrollable-text">
+                        <table class="table border">
+                            <!-- <caption>
+                              Council budget (in £) 2018
+                            </caption> -->
+                            <thead>
+                              <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Username</th>
+                                <th scope="col">Status</th>
+                              </tr>
+                            </thead>
+                            <tbody *ngFor="let person of users">
+                              <tr>
+                                <th scope="row">{{person.name}}</th>
+                                <td>{{person.username}}</td>
+                                <td ><i (click)="updateActiveStatus(person.username)" *ngIf="person.active == true" class="bi bi-unlock-fill fw-bold" style="color: green;"></i><i (click)="updateActiveStatus(person.username)" *ngIf="person.active == false" class="bi bi-lock-fill fw-bold" style="color: red;"></i></td>
+                              </tr>
+                            </tbody>
+                            <tfoot>
+                              <!-- <tr>
+                                <th scope="row">Totals</th>
+                                <td>21,000</td>
+                              </tr> -->
+                            </tfoot>
+                        </table>
                     </div>
+
                 </div>
                 <div class="row col-md-12">
                     <h2 class="mt-5">Reported Comments</h2>
                     <div class="scrollable-text p-2 ms-2 border align-items-center">
                             <div class="d-flex ">
                                 <p class="fs-6 me-auto mt-2"><strong>Fulana</strong></p>
-                                <i class="bi bi-ban"></i>
+                                
                             </div>
                             <hr>
                             <div class="d-flex align-items-center">

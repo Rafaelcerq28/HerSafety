@@ -16,6 +16,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.hersafety.hersafety.DTO.UserResponse;
+import com.hersafety.hersafety.exception.CustomizedResponseEntityExceptionHandler;
+import com.hersafety.hersafety.exception.UnauthorizedException;
 import com.hersafety.hersafety.exception.UserNotFoundException;
 import com.hersafety.hersafety.model.Role;
 import com.hersafety.hersafety.model.SecurityInfo;
@@ -161,6 +163,24 @@ public class UserService{// implements UserDetailsService {
             return ResponseEntity.ok().body(securityInfo);
         }
 
+    }
+
+    public boolean updateActiveStatus(String username) {
+        Optional<User> userToUpdate = userRepository.findByUsername(username);
+        
+        if(userToUpdate.isPresent() == false){
+            throw new UserNotFoundException(username);
+        }
+
+        if(userToUpdate.get().getRole() == Role.ADMIN){
+            throw new UnauthorizedException("Denied");
+        }
+
+        userToUpdate.get().setActive(!userToUpdate.get().isActive());
+
+        User userToReturn = userRepository.save(userToUpdate.get());
+
+        return userToReturn.isActive();
     }
 
     // //Override from UserDetailsService

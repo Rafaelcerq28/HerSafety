@@ -81,4 +81,11 @@ PUT /users/{id}: Atualiza um usuário existente.
     public ResponseEntity<SecurityInfo> getSecurityInfo(@PathVariable(value = "username") String username) {  
         return userService.getSecurityInfo(username);
     }
+
+    //Deactivate user
+    @PutMapping("/users/status/{username}")
+    @ResponseStatus(HttpStatus.OK)
+    public boolean updateActiveStatus(@PathVariable(value = "username")String username){
+        return userService.updateActiveStatus(username);
+    }
 }

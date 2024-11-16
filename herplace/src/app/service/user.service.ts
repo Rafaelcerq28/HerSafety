@@ -56,4 +56,13 @@ export class UserService {
   getSecurityInfo(username:string):Observable<any>{
     return this.httpClient.get<any>(`${this.apiUrl}/${username}`);
   }
+
+  getAllUsers():Observable<any>{
+    return this.httpClient.get<any[]>(`http://localhost:8080/users`);
+  }
+
+  updateActiveStatus(username:string):Observable<any>{
+    return this.httpClient.put<any>(`http://localhost:8080/users/status/${username}`,{});
+  }
+
 }
