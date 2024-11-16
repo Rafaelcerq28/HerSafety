@@ -52,7 +52,7 @@ public class PlacesService {
                 name = name.replace(" ", "+");
                 String url = "https://maps.googleapis.com/maps/api/place/findplacefromtext/"+
                             "json?input="+name+"&inputtype=textquery&fields=formatted_address"+
-                            "%2Cname%2Cgeometry%2Cplace_id%2Ctype&locationbias=country:IE&key=AIzaSyCCoF7TuazSQC7PlFsjwAxPE7wdAhrrVFU";
+                            "%2Cname%2Cgeometry%2Cplace_id%2Ctype&locationbias=country:IE&key=";
 
                 //Make request to the google API
                 URI address = URI.create(url);
