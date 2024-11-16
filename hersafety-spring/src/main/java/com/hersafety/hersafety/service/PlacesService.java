@@ -52,7 +52,7 @@ public class PlacesService {
                 name = name.replace(" ", "+");
                 String url = "https://maps.googleapis.com/maps/api/place/findplacefromtext/"+
                             "json?input="+name+"&inputtype=textquery&fields=formatted_address"+
-                            "%2Cname%2Cgeometry%2Cplace_id%2Ctype&locationbias=country:IE&key=MYKEY";
+                            "%2Cname%2Cgeometry%2Cplace_id%2Ctype&locationbias=country:IE&key=AIzaSyCCoF7TuazSQC7PlFsjwAxPE7wdAhrrVFU";
 
                 //Make request to the google API
                 URI address = URI.create(url);
@@ -88,7 +88,7 @@ public class PlacesService {
                     throw new UserNotFoundException(nameToSearch);
                 }
 
-                //Filter for types
+                //FILTER FOR TYPES
                 System.out.println(places.getCandidates().get(0).getTypes().toString());
                 
                 //Check if the item returned exist in the database

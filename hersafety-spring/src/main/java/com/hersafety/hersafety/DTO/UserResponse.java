@@ -16,10 +16,11 @@ public class UserResponse {
     private boolean notifications;
     private Instant createdAt;
     private Role role;
+    private boolean isActive;
     
     
     public UserResponse(String username, String name, LocalDate dateOfBirth, String email, boolean notifications,
-            Instant createdAt, Role role) {
+            Instant createdAt, Role role,boolean isActive) {
         this.username = username;
         this.name = name;
         this.dateOfBirth = dateOfBirth;
@@ -27,6 +28,7 @@ public class UserResponse {
         this.notifications = notifications;
         this.createdAt = createdAt;
         this.role = role;
+        this.isActive = isActive;
     }
     
     public UserResponse() {
@@ -73,4 +75,14 @@ public class UserResponse {
     public void setRole(Role role) {
         this.role = role;
     }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean isActive) {
+        this.isActive = isActive;
+    }
+
+    
 }

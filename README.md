@@ -145,15 +145,14 @@ http://localhost:8080/swagger-ui/index.html
 - Arrumar esse readme
 
 ### Spring
-- filtrar a localização dos lugares e deixar o metodo funcionando 100% testar muito mas muito mesmo (IMPORTANTE 1 )
-- checar/refatorar o metodo para pegar o place no google(IMPORTANTE 3 )
+- checar/refatorar o metodo para pegar o type no google(IMPORTANTE 2 )
 - comentar o codigo propriamente(IMPORTANTE 4)
 
 ### Angular
 - fazer a pagina de admin (URGENTE)
-- implementar o autocomplete do maps(IMPORTANTE 2)
+- implementar o autocomplete do maps(IMPORTANTE 1)
 - comentar o codigo propriamente(IMPORTANTE 4)
-- Arrumar a navbar que não funciona no modo responsivo
+- Arrumar a navbar que não funciona no modo responsivo(IMPORTANTE 1)
 
 #E6E6FA
 

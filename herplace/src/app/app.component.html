@@ -14,9 +14,8 @@
         
           <li *ngIf="user == null"><a routerLink="/login" routerLinkActive="active" ><!-- <span class="material-symbols-outlined">face_3</span>-->Login</a></li>
           <li *ngIf="user == null"><a routerLink="/register" routerLinkActive="active" ><!-- <span class="material-symbols-outlined">face_3</span>-->Register</a></li>
-
-        <li *ngIf="user != null"><a routerLink="/user" routerLinkActive="active" ><span class="me-2">{{user?.name}}</span><span class="material-symbols-outlined">face_3</span></a></li>
-
+          <li *ngIf="user != null && user.role == 'ADMIN'"><a routerLink="/moderator" routerLinkActive="active" ><!-- <span class="material-symbols-outlined">face_3</span>-->Moderator</a></li>
+          <li *ngIf="user != null"><a routerLink="/user" routerLinkActive="active" ><span class="me-2">{{user?.name}}</span><span class="material-symbols-outlined">face_3</span></a></li>
           <li *ngIf="user != null"><a href="/" class="" (click)="logout()">logout</a></li>
 
       </ul>

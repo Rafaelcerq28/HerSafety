@@ -64,6 +64,9 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role role;
     
+    @Column(nullable = false)
+    private boolean isActive;
+
     @CreationTimestamp
     private Instant createdAt;
     
@@ -128,11 +131,20 @@ public class User {
     public void setSecurityInfo(SecurityInfo securityInfo) {
         this.securityInfo = securityInfo;
     }
+    
+    public boolean isActive() {
+        return isActive;
+    }
+    public void setActive(boolean isActive) {
+        this.isActive = isActive;
+    }
+    
     @Override
     public String toString() {
         return "User [id=" + id + ", username=" + username + ", password=" + password + ", name=" + name
                 + ", dateOfBirth=" + dateOfBirth + ", email=" + email + ", notifications=" + notifications
-                + ", securityInfo=" + securityInfo + ", role=" + role + ", createdAt=" + createdAt + "]";
+                + ", securityInfo=" + securityInfo + ", role=" + role + ", isActive=" + isActive + ", createdAt="
+                + createdAt + "]";
     }
 
     

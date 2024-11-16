@@ -7,6 +7,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { UserpageComponent } from './components/userpage/userpage.component';
 import { MakereportComponent } from './components/makereport/makereport.component';
 import { RedirectComponent } from './components/redirect/redirect.component';
+import { ModeratorComponent } from './components/moderator/moderator.component';
 
 export const routes: Routes = [
     {path: '',component: HomeComponent},
@@ -19,6 +20,7 @@ export const routes: Routes = [
     {path: 'register', component: RegisterComponent},
     {path: 'user', component: UserpageComponent},
     {path: 'user/:username', component: UserpageComponent},
-    {path: 'report', component: MakereportComponent}
-    
+    {path: 'report', component: MakereportComponent},
+    {path: 'moderator', component: ModeratorComponent},
+    { path: '**', redirectTo: '' },
 ];

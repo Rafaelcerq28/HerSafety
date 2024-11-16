@@ -36,7 +36,7 @@ public class UserService{// implements UserDetailsService {
     //method to create User
     public ResponseEntity<UserResponse> createUser(User user){
         user.setRole(Role.USER);
-
+        user.setActive(true);
         // SecurityInfo secInfo = new SecurityInfo();
         // secInfo.newSecInfo();
         // user.setSecurityInfo(secInfo);
@@ -52,7 +52,8 @@ public class UserService{// implements UserDetailsService {
             savedUser.getDateOfBirth(), 
             savedUser.getEmail(), savedUser.getNotifications(), 
             savedUser.getCreatedAt(), 
-            savedUser.getRole());
+            savedUser.getRole(),
+            savedUser.isActive());
 
         //generating user uri
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().
