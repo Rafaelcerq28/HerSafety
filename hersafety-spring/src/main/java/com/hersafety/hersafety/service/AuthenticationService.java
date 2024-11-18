@@ -30,6 +30,10 @@ public class AuthenticationService {
             throw new UserNotFoundException("User: " + user.getUsername());
         }
 
+        if(userToLogin.get().isActive() == false){
+            throw new UserNotFoundException("User: " + user.getUsername() + "Banned");
+        }
+        
         UserResponse userResponse = new UserResponse();
 
         userResponse.setName(userToLogin.get().getName());

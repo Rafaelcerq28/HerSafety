@@ -26,7 +26,7 @@
             
             <div class="col-md-12 container">
                 <!-- TOP CARD -->
-                <div class="row">
+                <div class="ps-0 row">
                     <div class="col-sm-6">
                       <div class="card">
                         <div class="card-body">
@@ -87,26 +87,33 @@
                             <hr> -->
                     <!-- </div>
                 </div> -->
-                <button class="btn-sm btn-secondary">Test isActive</button>
+                
                 <div class="row col-md-6 ">
-                    <h2 class="mt-5">Users</h2>
-                    <div class="scrollable-text">
+                    <h2 class="mt-5 ps-0">Users</h2>
+                    <table class="table border">
+                        <thead>
+                            <tr>
+                              <th scope="col">Name</th>
+                              <th scope="col">Username</th>
+                              <th scope="col">Status</th>
+                            </tr>
+                          </thead>
+                    </table>
+                    <div class="scrollable-text p-0">
                         <table class="table border">
                             <!-- <caption>
                               Council budget (in £) 2018
                             </caption> -->
-                            <thead>
-                              <tr>
-                                <th scope="col">Name</th>
-                                <th scope="col">Username</th>
-                                <th scope="col">Status</th>
-                              </tr>
-                            </thead>
+
+                            
                             <tbody *ngFor="let person of users">
                               <tr>
                                 <th scope="row">{{person.name}}</th>
-                                <td>{{person.username}}</td>
-                                <td ><i (click)="updateActiveStatus(person.username)" *ngIf="person.active == true" class="bi bi-unlock-fill fw-bold" style="color: green;"></i><i (click)="updateActiveStatus(person.username)" *ngIf="person.active == false" class="bi bi-lock-fill fw-bold" style="color: red;"></i></td>
+                                <td>{{person.username}} <span *ngIf="person.role == 'ADMIN'"><i alt="Moderator" class="bi bi-shield"></i></span></td>
+                                <td >
+                                    <button (click)="updateActiveStatus(person.username)" *ngIf="person.active == true" class="btn btn btn-success btn-sm"><i class="bi bi-unlock-fill fw-bold"></i></button>
+                                    <button (click)="updateActiveStatus(person.username)" *ngIf="person.active == false" class="btn btn-danger btn-sm"><i class="bi bi-lock-fill fw-bold"></i></button>
+                                </td>
                               </tr>
                             </tbody>
                             <tfoot>

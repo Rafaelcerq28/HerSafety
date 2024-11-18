@@ -31,4 +31,10 @@ public class ReportReportsService {
         return reportReports;
     }
 
+    public List<ReportReport> getAll() {
+        List<ReportReport> reportsList = reportReportsRepository.findAll();
+        System.out.println(reportsList.toString());
+        return reportsList;
+    }
+
 }

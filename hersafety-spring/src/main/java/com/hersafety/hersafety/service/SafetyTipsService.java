@@ -66,6 +66,7 @@ public class SafetyTipsService {
       "Using these answers, generate a safety advice for this user, addressing potential concerns about nightlife safety, transportation after a night out, and ways to stay safe while in a group.";
         // Substitua pela sua chave de API
         String apiKey = "";
+        // String apiKey = "";
         // Configura o endpoint da API
         String apiEndpoint = "https://api.openai.com/v1/chat/completions";
         
@@ -116,7 +117,7 @@ public class SafetyTipsService {
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         ChatCompletionRequest chat = mapper.readValue(jsonString, ChatCompletionRequest.class);
         // reply = reply.replaceAll("```html|```", "");
-        // System.out.println("FINAL " + chat.getChoices().get(0).getMessage().getContent());
+        System.out.println("FINAL " + chat.getChoices().get(0).getMessage().getContent());
         return chat.getChoices().get(0).getMessage().getContent();
     }
 }

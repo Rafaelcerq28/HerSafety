@@ -23,6 +23,7 @@ public class ReportReportsController {
         this.reportReportsService = reportReportsService;
     }
 
+    //TUDO ERRADO NESSE METODO, MAPEAR PARA PEGAR O COMENTARIO TAMBEM
     @PostMapping("/report/denounce/{report}/{placeId}/{reportedBy}")
     @ResponseStatus(HttpStatus.OK)
     public ReportReport createReportsReport(@PathVariable String report, @PathVariable Long placeId, @PathVariable String reportedBy){
@@ -33,5 +34,13 @@ public class ReportReportsController {
     @ResponseStatus(HttpStatus.OK)
     public List<ReportReport> getAllReportsReport(){
         return reportReportsService.getAllReportsReport();
+    }
+
+    @GetMapping("report/reported-reports")
+    public List<ReportReport> getAll(){
+        return reportReportsService.getAll();
+        
+        
+
     }
 }
