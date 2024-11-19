@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.hersafety.hersafety.DTO.MessageDTO;
 import com.hersafety.hersafety.model.ReportReport;
 import com.hersafety.hersafety.repository.ReportReportsRepository;
 
@@ -16,8 +17,10 @@ public class ReportReportsService {
         this.reportReportsRepository = reportReportsRepository;
     }
 
-    public ReportReport createReportsReport(String report, Long placeId, String reportedBy) {
-        ReportReport reportReport = new ReportReport(report,reportedBy,placeId);
+    public ReportReport createReportsReport(String report, Long reportId,Long placeId, String reportedBy, MessageDTO message) {
+        // String report, Long reportId,Long place, String reportedBy,String message
+        System.out.println(message);
+        ReportReport reportReport = new ReportReport(report,reportId,placeId,reportedBy,message.getMessage());
 
         reportReport = reportReportsRepository.save(reportReport);
 

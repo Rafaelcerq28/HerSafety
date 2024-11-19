@@ -32,7 +32,12 @@ export class ReportService {
     // return this.httpClient.get<Report>;
   }
 
-  reportReport(report:string,placeId:number,username:string): Observable<Report[]>{
-    return this.httpClient.post<Report[]>(`http://localhost:8080/report/denounce/${report}/${placeId}/${username}`,{});  
+  //REPORT A REPORT
+  reportReport(report:string,reportId:number,placeId:number,username:string,message:string): Observable<Report[]>{
+    return this.httpClient.post<Report[]>(`http://localhost:8080/report/denounce/${report}/${reportId}/${placeId}/${username}`,{message:message});  
+  }
+
+  getReportedReports(): Observable<any>{
+    return this.httpClient.get(`http://localhost:8080/report/reported-reports`); 
   }
 }

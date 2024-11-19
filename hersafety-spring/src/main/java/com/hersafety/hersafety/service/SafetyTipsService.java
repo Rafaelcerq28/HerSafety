@@ -66,7 +66,6 @@ public class SafetyTipsService {
       "Using these answers, generate a safety advice for this user, addressing potential concerns about nightlife safety, transportation after a night out, and ways to stay safe while in a group.";
         // Substitua pela sua chave de API
         String apiKey = "";
-        // String apiKey = "";
         // Configura o endpoint da API
         String apiEndpoint = "https://api.openai.com/v1/chat/completions";
         

@@ -4,14 +4,18 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
+
+import com.hersafety.hersafety.DTO.MessageDTO;
 import com.hersafety.hersafety.model.ReportReport;
 import com.hersafety.hersafety.service.ReportReportsService;
+
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -24,10 +28,11 @@ public class ReportReportsController {
     }
 
     //TUDO ERRADO NESSE METODO, MAPEAR PARA PEGAR O COMENTARIO TAMBEM
-    @PostMapping("/report/denounce/{report}/{placeId}/{reportedBy}")
+    @PostMapping("/report/denounce/{report}/{reportId}/{placeId}/{reportedBy}")
     @ResponseStatus(HttpStatus.OK)
-    public ReportReport createReportsReport(@PathVariable String report, @PathVariable Long placeId, @PathVariable String reportedBy){
-        return reportReportsService.createReportsReport(report,placeId,reportedBy);
+    public ReportReport createReportsReport(@PathVariable String report, @PathVariable Long placeId, @PathVariable String reportedBy,@PathVariable Long reportId, @RequestBody MessageDTO message){
+        System.out.println(message);
+        return reportReportsService.createReportsReport(report,reportId,placeId,reportedBy,message);
     }
 
     @GetMapping("/report/denounce/{report}/{placeId}/{reportedBy}")

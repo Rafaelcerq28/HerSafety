@@ -179,9 +179,14 @@ getSafetyTips(){
   }
 
   //method to denounce a user report
-  reportReport(report:string,placeId:number){
+  reportReport(report:string,reportId:number,placeId:number,message:string){
+    console.log(" report " + report);
+    console.log(" reportId " + reportId);
+    console.log(" placeId " + placeId);
+    console.log(" message " + message);
+    
     const reportedReport:any = null;
-    this.reportService.reportReport(report,placeId,this.user.username).subscribe((reportedReport) => {
+    this.reportService.reportReport(report,reportId,placeId,this.user.username,message).subscribe((reportedReport) => {
       reportedReport = reportedReport;
     });
   }

@@ -18,23 +18,31 @@ public class ReportReport {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
     private String report;
     private String reportedBy;
+    private Long reportId;
     private Long place;
+    private String message;
+
 
     @CreationTimestamp
     private Instant createdAt;
-
-
     
     public ReportReport() {
     }
 
-    public ReportReport(String report, String reportedBy, Long place) {
+    
+
+    public ReportReport(String report, Long reportId,Long place, String reportedBy,String message) {
         this.report = report;
         this.reportedBy = reportedBy;
+        this.reportId = reportId;
         this.place = place;
+        this.message = message;
     }
+
+
 
     public Long getId() {
         return id;
@@ -76,11 +84,28 @@ public class ReportReport {
         this.reportedBy = reportedBy;
     }
 
-    @Override
-    public String toString() {
-        return "ReportReports [id=" + id + ", report=" + report + ", reportedBy=" + reportedBy + ", place=" + place
-                + ", createdAt=" + createdAt + "]";
+
+    public String getMessage() {
+        return message;
     }
 
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
+    public Long getReportId() {
+        return reportId;
+    }
+
+    public void setReportId(Long reportId) {
+        this.reportId = reportId;
+    }
+
+    @Override
+    public String toString() {
+        return "ReportReport [id=" + id + ", report=" + report + ", reportedBy=" + reportedBy + ", reportId=" + reportId
+                + ", place=" + place + ", message=" + message + ", createdAt=" + createdAt + "]";
+    }
+
+    
 }

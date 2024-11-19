@@ -91,24 +91,19 @@
                 <div class="row col-md-6 ">
                     <h2 class="mt-5 ps-0">Users</h2>
                     <table class="table border">
-                        <thead>
+                        <thead class="col-md-12">
                             <tr>
-                              <th scope="col">Name</th>
-                              <th scope="col">Username</th>
-                              <th scope="col">Status</th>
+                              <th class="col-md-6 col-sm-10" scope="col">Name</th>
+                              <th class="col-md-4 col-sm-1" scope="col">Username</th>
+                              <th class="col-md-2 col-sm-1" scope="col">Status</th>
                             </tr>
                           </thead>
                     </table>
                     <div class="scrollable-text p-0">
-                        <table class="table border">
-                            <!-- <caption>
-                              Council budget (in £) 2018
-                            </caption> -->
-
-                            
-                            <tbody *ngFor="let person of users">
-                              <tr>
-                                <th scope="row">{{person.name}}</th>
+                        <table class="table border">                            
+                            <tbody >
+                              <tr *ngFor="let person of users">
+                                <td scope="row">{{person.name}}</td>
                                 <td>{{person.username}} <span *ngIf="person.role == 'ADMIN'"><i alt="Moderator" class="bi bi-shield"></i></span></td>
                                 <td >
                                     <button (click)="updateActiveStatus(person.username)" *ngIf="person.active == true" class="btn btn btn-success btn-sm"><i class="bi bi-unlock-fill fw-bold"></i></button>
@@ -116,58 +111,48 @@
                                 </td>
                               </tr>
                             </tbody>
-                            <tfoot>
-                              <!-- <tr>
-                                <th scope="row">Totals</th>
-                                <td>21,000</td>
-                              </tr> -->
-                            </tfoot>
                         </table>
                     </div>
-
                 </div>
+
                 <div class="row col-md-12">
                     <h2 class="mt-5">Reported Comments</h2>
                     <div class="scrollable-text p-2 ms-2 border align-items-center">
+                        <div *ngFor="let report of ReportedReports">
                             <div class="d-flex ">
-                                <p class="fs-6 me-auto mt-2"><strong>Fulana</strong></p>
-                                
+                                <p class="fs-6 me-auto mt-2"><strong>{{report.message}}</strong></p>
                             </div>
                             <hr>
-                            <div class="d-flex align-items-center">
-                                <p class="fs-6 me-auto"><strong>Fulana</strong></p>
-                                <i class="bi bi-ban"></i>
-                            </div>
-                            <hr>
-                            <div class="d-flex align-items-center">
-                                <p class="fs-6 me-auto"><strong>Fulana</strong></p>
-                                <i class="bi bi-ban"></i>
-                            </div>
-                            <hr>
-                            <div class="d-flex align-items-center">
-                                <p class="fs-6 me-auto"><strong>Fulana</strong></p>
-                                <i class="bi bi-ban"></i>
-                            </div>
-                            <hr>
-                            <div class="d-flex align-items-center">
-                                <p class="fs-6 me-auto"><strong>Fulana</strong></p>
-                                <i class="bi bi-ban"></i>
-                            </div>
-                            <hr>
-                            <div class="d-flex align-items-center">
-                                <p class="fs-6 me-auto"><strong>Fulana</strong></p>
-                                <i class="bi bi-ban"></i>
-                            </div>
-                            <hr>
-                            <div class="d-flex align-items-center">
-                                <p class="fs-6 me-auto"><strong>Fulana</strong></p>
-                                <i class="bi bi-ban"></i>
-                            </div>
-                            <hr>
+                        </div>
                     </div>
                 </div>
-            </div>
- 
 
+                
+                    <div class="row col-md-6 ">
+                        <h2 class="mt-5 ps-0">Users</h2>
+                        <table class="table border">
+                            <thead class="col-md-12">
+                                <tr>
+                                <th class="col-md-3 col-sm-6" scope="col">report</th>
+                                <th class="col-md-2 col-sm-3" scope="col">reportedBy</th>
+                                <th class="col-md-5 col-sm-6" scope="col">message</th>
+                                </tr>
+                            </thead>
+                        </table>
+                        <div class="scrollable-text p-0">
+                            <table class="table border">                            
+                                <tbody >
+                                <tr *ngFor="let report of ReportedReports">
+                                    <td scope="row">{{report.report}}</td>
+                                    <td>{{report.reportedBy}} </td>
+                                    <td >
+                                        {{report.message}}
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
         </section>
 </main>
