@@ -8,6 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -18,10 +20,13 @@ public class ReportReport {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name = "Report_id", nullable = false)
+    private Report report;
 
-    private String report;
+    private String reportType;
     private String reportedBy;
-    private Long reportId;
+    // private Long reportId;
     private Long place;
     private String message;
 
@@ -32,12 +37,10 @@ public class ReportReport {
     public ReportReport() {
     }
 
-    
-
-    public ReportReport(String report, Long reportId,Long place, String reportedBy,String message) {
-        this.report = report;
+    public ReportReport(String reportType, Report report,Long place, String reportedBy,String message) {
+        this.reportType = reportType;
         this.reportedBy = reportedBy;
-        this.reportId = reportId;
+        this.report = report;
         this.place = place;
         this.message = message;
     }
@@ -52,13 +55,6 @@ public class ReportReport {
         this.id = id;
     }
 
-    public String getReport() {
-        return report;
-    }
-
-    public void setReport(String report) {
-        this.report = report;
-    }
 
     public Long getPlace() {
         return place;
@@ -93,18 +89,27 @@ public class ReportReport {
         this.message = message;
     }
 
-    public Long getReportId() {
-        return reportId;
+
+    public Report getReport() {
+        return report;
     }
 
-    public void setReportId(Long reportId) {
-        this.reportId = reportId;
+
+
+    public void setReport(Report report) {
+        this.report = report;
     }
 
-    @Override
-    public String toString() {
-        return "ReportReport [id=" + id + ", report=" + report + ", reportedBy=" + reportedBy + ", reportId=" + reportId
-                + ", place=" + place + ", message=" + message + ", createdAt=" + createdAt + "]";
+
+
+    public String getReportType() {
+        return reportType;
+    }
+
+
+
+    public void setReportType(String reportType) {
+        this.reportType = reportType;
     }
 
     

@@ -46,5 +46,5 @@ export class ModeratorComponent {
     });
     console.log(this.ReportedReports);
   }
-
+  
 }

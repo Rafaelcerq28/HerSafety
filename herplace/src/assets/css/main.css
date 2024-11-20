@@ -2521,12 +2521,25 @@ google-map {
   width: 10rem;
 }
 
+/* -----------------------------SCROOLABLE ITEMS --------------------------*/
 /* scrollable-text */
 .scrollable-text {
   height: 19rem;         /* Defina a altura conforme necessário */
   overflow: auto;        /* Exibe a barra de rolagem quando necessário */
   padding: 10px;         /* Adiciona algum espaço interno para o texto */
+}
 
+.scrollable-table {
+  max-height: 19rem; /* Define a altura máxima do conteúdo da tabela */
+  overflow-y: auto; /* Ativa a rolagem vertical */
+  border: 1px solid #ddd; /* Opcional: adiciona uma borda ao contêiner */
+}
+
+.sticky-header th {
+  position: sticky;
+  top: 0; /* Mantém o cabeçalho no topo */
+  background-color: #f8f9fa; /* Cor de fundo do cabeçalho */
+  z-index: 10; /* Garante que o cabeçalho fique acima do conteúdo */
 }
 
 /* Login icon */
@@ -2627,3 +2640,84 @@ google-map {
   cursor: pointer;
 }
 /* ------------------------- TEST ZONE ------------------------*/
+.bd-callout {
+  padding: 1.25rem;
+  /* margin-top: 1.25rem; */
+  /* margin-bottom: 1.25rem; */
+  border: 1px solid #eee;
+  border-left-width: .25rem;
+  border-radius: .25rem
+  }
+  
+  .bd-callout h4 {
+  margin-top: 0;
+  margin-bottom: .25rem
+  }
+  
+  .bd-callout p:last-child {
+  margin-bottom: 0
+  }
+  
+  .bd-callout code {
+  border-radius: .25rem
+  }
+  
+  .bd-callout+.bd-callout {
+  margin-top: -.25rem
+  }
+  
+  .bd-callout-info {
+  border-left-color: #5bc0de
+  }
+  
+  .bd-callout-info h4 {
+  color: #5bc0de
+  }
+  
+  .bd-callout-warning {
+  border-left-color: #f0ad4e
+  }
+  
+  .bd-callout-warning h4 {
+  color: #f0ad4e
+  }
+  
+  .bd-callout-danger {
+  border-left-color: #d9534f
+  }
+  
+  .bd-callout-danger h4 {
+  color: #d9534f
+  }
+  
+  .bd-callout-primary{
+  border-left-color: #007bff
+  }
+  
+  .bd-callout-primaryh4 {
+  color: #007bff
+  }
+  
+  .bd-callout-success{
+  border-left-color: #28a745
+  }
+  
+  .bd-callout-successh4 {
+  color: #28a745
+  }
+  
+  .bd-callout-default{
+  border-left-color: #6c757d
+  }
+  
+  .bd-callout-defaulth4 {
+  color: #6c757d
+  }
+
+  .bd-callout-herplace{
+    border-left-color: #6a4d7c
+  }
+
+  .bd-callout-herplaceh4 {
+    color: #6a4d7c
+    }

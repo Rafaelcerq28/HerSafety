@@ -1,15 +1,18 @@
 package com.hersafety.hersafety.model;
 
 import java.time.Instant;
+import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Report {
@@ -26,6 +29,9 @@ public class Report {
     private int privacy;
     private int safetyInfo;
     private String comment;
+
+    @OneToMany(mappedBy = "report", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ReportReport> reportedReport;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)

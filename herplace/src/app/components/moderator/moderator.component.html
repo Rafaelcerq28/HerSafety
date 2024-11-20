@@ -19,76 +19,17 @@
         <section id="starter-section" class="starter-section section">
 
             <!-- Section Title -->
-            <div class="container section-title" >
-            <!-- <h2>Starter Section</h2> -->
-            <p><span class="description-title"><br></span></p>
-            </div><!-- End Section Title -->
+            <!-- <div class="container section-title" > -->
+                <!-- <h2>Starter Section</h2> -->
+                <!-- <p><span class="description-title"><br></span></p> -->
+            <!-- </div> -->
+            <!-- End Section Title -->
             
             <div class="col-md-12 container">
-                <!-- TOP CARD -->
-                <div class="ps-0 row">
-                    <div class="col-sm-6">
-                      <div class="card">
-                        <div class="card-body">
-                          <h5 class="card-title">Total users</h5>
-                          <p class="card-text">10</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-sm-6">
-                      <div class="card">
-                        <div class="card-body">
-                          <h5 class="card-title">Total Comments</h5>
-                          <p class="card-text">150</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                <!-- <div class="row col-md-12">
-                    <h2 class="mt-5">Users</h2>
-                    <div class="scrollable-text p-2 ms-2 border align-items-center col-md-6">
-                        <div *ngFor="let person of users">
-                            <div class="d-flex p-2">
-                                <p class="fs-6 me-auto mt-2"><strong>{{person.name}}</strong></p>
-                                <i *ngIf="person.active == false" class="bi bi-unlock-fill"></i><i *ngIf="person.active == true" class="bi bi-lock-fill"></i>
-                            </div>
-                            <hr class="ms-0">
-                        </div>     -->
 
-                            <!-- <div class="d-flex p-2">
-                                <p class="fs-6 me-auto mt-2"><strong>Fulana</strong></p>
-                                <i class="bi bi-unlock-fill"></i><i class="bi bi-lock-fill"></i>
-                            </div>
-                            <hr class="ms-0">
-                            <div class="d-flex align-items-center">
-                                <p class="fs-6 me-auto"><strong>Fulana</strong></p>
-                                <i class="bi bi-ban"></i>
-                            </div>
-                            <hr>
-                            <div class="d-flex align-items-center">
-                                <p class="fs-6 me-auto"><strong>Fulana</strong></p>
-                                <i class="bi bi-ban"></i>
-                            </div>
-                            <hr>
-                            <div class="d-flex align-items-center">
-                                <p class="fs-6 me-auto"><strong>Fulana</strong></p>
-                                <i class="bi bi-ban"></i>
-                            </div>
-                            <hr>
-                            <div class="d-flex align-items-center">
-                                <p class="fs-6 me-auto"><strong>Fulana</strong></p>
-                                <i class="bi bi-ban"></i>
-                            </div>
-                            <hr>
-                            <div class="d-flex align-items-center">
-                                <p class="fs-6 me-auto"><strong>Fulana</strong></p>
-                                <i class="bi bi-ban"></i>
-                            </div>
-                            <hr> -->
-                    <!-- </div>
-                </div> -->
-                
-                <div class="row col-md-6 ">
+
+<!-- ------------------------------------  USER PREVIOUS VERSION ----------------------------------------------------- -->
+                <!-- <div class="row col-md-6 ">
                     <h2 class="mt-5 ps-0">Users</h2>
                     <table class="table border">
                         <thead class="col-md-12">
@@ -102,57 +43,134 @@
                     <div class="scrollable-text p-0">
                         <table class="table border">                            
                             <tbody >
-                              <tr *ngFor="let person of users">
-                                <td scope="row">{{person.name}}</td>
-                                <td>{{person.username}} <span *ngIf="person.role == 'ADMIN'"><i alt="Moderator" class="bi bi-shield"></i></span></td>
-                                <td >
-                                    <button (click)="updateActiveStatus(person.username)" *ngIf="person.active == true" class="btn btn btn-success btn-sm"><i class="bi bi-unlock-fill fw-bold"></i></button>
-                                    <button (click)="updateActiveStatus(person.username)" *ngIf="person.active == false" class="btn btn-danger btn-sm"><i class="bi bi-lock-fill fw-bold"></i></button>
-                                </td>
-                              </tr>
+                                <tr>                            
+                                    <th class="col-md-6 col-sm-10" scope="col">Name</th>
+                                    <th class="col-md-4 col-sm-1" scope="col">Username</th>
+                                    <th class="col-md-2 col-sm-1" scope="col">Status</th>
+                                </tr>
+                                <tr *ngFor="let person of users">
+                                    <td scope="row">{{person.name}}</td>
+                                    <td>{{person.username}} <span *ngIf="person.role == 'ADMIN'"><i alt="Moderator" class="bi bi-shield"></i></span></td>
+                                    <td >
+                                        <button (click)="updateActiveStatus(person.username)" *ngIf="person.active == true" class="btn btn btn-success btn-sm"><i class="bi bi-unlock-fill fw-bold"></i></button>
+                                        <button (click)="updateActiveStatus(person.username)" *ngIf="person.active == false" class="btn btn-danger btn-sm"><i class="bi bi-lock-fill fw-bold"></i></button>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
-                </div>
+                </div> -->
 
-                <div class="row col-md-12">
-                    <h2 class="mt-5">Reported Comments</h2>
-                    <div class="scrollable-text p-2 ms-2 border align-items-center">
-                        <div *ngFor="let report of ReportedReports">
-                            <div class="d-flex ">
-                                <p class="fs-6 me-auto mt-2"><strong>{{report.message}}</strong></p>
-                            </div>
-                            <hr>
-                        </div>
-                    </div>
-                </div>
-
-                
-                    <div class="row col-md-6 ">
+<!-- --------------------------------------- USERS ----------------------------------------------------- -->
+                <div class="row col-md-12 ">
+                    <div class="col-md-6">
+                        <h2 class="mt-5 ps-0">Data</h2>
+                    </div>    
+                    <div class="col-md-6">
                         <h2 class="mt-5 ps-0">Users</h2>
-                        <table class="table border">
-                            <thead class="col-md-12">
+                    </div>    
+                </div>
+
+                <div class="row">     
+                    
+                    <div class="col-md-6 row">
+                        <div class="col-sm-6 ">
+                          <div class="card bd-callout bd-callout-herplace">
+                            <div class="card-body">
+                              <h5 class="card-title">Total users</h5>
+                              <p class="card-text">10</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                          <div class="card bd-callout bd-callout-herplace">
+                            <div class="card-body">
+                              <h5 class="card-title">Total Places</h5>
+                              <p class="card-text">150</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-6 mt-5">
+                            <div class="card bd-callout bd-callout-herplace">
+                              <div class="card-body">
+                                <h5 class="card-title">Total Reports</h5>
+                                <p class="card-text">150</p>
+                              </div>
+                            </div>
+                        </div> 
+                        
+                        <div class="col-sm-6 mt-5">
+                            <div class="card bd-callout bd-callout-herplace">
+                              <div class="card-body">
+                                <h5 class="card-title">Reported places</h5>
+                                <p class="card-text">150</p>
+                              </div>
+                            </div>
+                        </div>
+                    </div>  
+
+                    <div class="scrollable-table p-0 col-md-6 ">
+                        <table class="table table-bordered">
+                            <thead class="thead-light sticky-header">
                                 <tr>
-                                <th class="col-md-3 col-sm-6" scope="col">report</th>
-                                <th class="col-md-2 col-sm-3" scope="col">reportedBy</th>
-                                <th class="col-md-5 col-sm-6" scope="col">message</th>
+                                    <th class="col-md-6 col-sm-10" scope="col">Name</th>
+                                    <th class="col-md-4 col-sm-1" scope="col">Username</th>
+                                    <th class="col-md-2 col-sm-1" scope="col">Status</th>
                                 </tr>
                             </thead>
-                        </table>
-                        <div class="scrollable-text p-0">
-                            <table class="table border">                            
-                                <tbody >
-                                <tr *ngFor="let report of ReportedReports">
-                                    <td scope="row">{{report.report}}</td>
-                                    <td>{{report.reportedBy}} </td>
-                                    <td >
-                                        {{report.message}}
+                            <tbody>
+                                <tr *ngFor="let person of users">
+                                    <td scope="row">{{person.name}}</td>
+                                    <td>{{person.username}} <span *ngIf="person.role == 'ADMIN'"><i alt="Moderator" class="bi bi-shield"></i></span></td>
+                                    <td class="text-center">
+                                        <button (click)="updateActiveStatus(person.username)" *ngIf="person.active == true" class="btn btn btn-success btn-sm"><i class="bi bi-unlock-fill fw-bold"></i></button>
+                                        <button (click)="updateActiveStatus(person.username)" *ngIf="person.active == false" class="btn btn-danger btn-sm"><i class="bi bi-lock-fill fw-bold"></i></button>
                                     </td>
                                 </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                            </tbody>
+                        </table>
+                    </div> 
+
+
+
                 </div>
+            <!--------------------------------------Reported Comments ------------------------------>
+                <div class="row col-md-12 ">
+                    <h2 class="mt-5 ps-0">Reported Comments</h2>
+                </div>
+
+                <div class="scrollable-table row col-md-12 ">
+                    <table class="table table-bordered">
+                        <thead class="thead-light sticky-header">
+                            <tr>
+                                <th class="col-md-3 col-sm-6" scope="col">Report</th>
+                                <th class="col-md-3 col-sm-6" scope="col">Place</th>
+                                <th class="col-md-2 col-sm-3" scope="col">Reported By</th>
+                                <th class="col-md-5 col-sm-6" scope="col">Message</th>
+                                <th class="col-md-5 col-sm-6" scope="col">Delete</th>
+                                <th class="col-md-5 col-sm-6" scope="col">Keep</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let report of ReportedReports">
+                                <td scope="row">{{report.reportType}}</td>
+                                <td>Place name<a routerLink="/place/{{report.place}}" routerLinkActive="active" class="ms-2"><i class="bi bi-geo-alt-fill"></i></a></td>
+                                <td>{{report.reportedBy}}</td>
+                                <td>{{report.message}}</td>
+                                <td class="d-flex justify-content-center align-items-center">
+                                    <button class="btn btn btn-danger"><i class="bi bi-trash-fill"></i></button>
+                                </td>
+                                <td class="text-center">
+                                    <button class="btn btn-success"><i class="bi bi-check-lg"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- End -->
         </section>
 </main>
