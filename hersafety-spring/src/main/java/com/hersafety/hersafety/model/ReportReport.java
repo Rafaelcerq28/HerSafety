@@ -4,6 +4,8 @@ import java.time.Instant;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,6 +22,7 @@ public class ReportReport {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "Report_id", nullable = false)
     private Report report;
@@ -28,6 +31,7 @@ public class ReportReport {
     private String reportedBy;
     // private Long reportId;
     private Long place;
+    private String placeName;
     private String message;
 
 
@@ -37,11 +41,12 @@ public class ReportReport {
     public ReportReport() {
     }
 
-    public ReportReport(String reportType, Report report,Long place, String reportedBy,String message) {
+    public ReportReport(String reportType, Report report,Long place, String placeName,String reportedBy,String message) {
         this.reportType = reportType;
         this.reportedBy = reportedBy;
         this.report = report;
         this.place = place;
+        this.placeName = placeName;
         this.message = message;
     }
 
@@ -106,11 +111,18 @@ public class ReportReport {
         return reportType;
     }
 
-
-
     public void setReportType(String reportType) {
         this.reportType = reportType;
     }
 
+    public String getPlaceName() {
+        return placeName;
+    }
+
+    public void setPlaceName(String placeName) {
+        this.placeName = placeName;
+    }
+
+    
     
 }

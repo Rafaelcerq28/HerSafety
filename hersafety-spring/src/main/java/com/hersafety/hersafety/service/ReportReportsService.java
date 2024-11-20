@@ -3,6 +3,7 @@ package com.hersafety.hersafety.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.hersafety.hersafety.DTO.MessageDTO;
@@ -30,7 +31,7 @@ public class ReportReportsService {
         if(reportComment.isPresent() == false){
             throw new UserNotFoundException("Place id");
         }
-        ReportReport reportReport = new ReportReport(report,reportComment.get(),placeId,reportedBy,message.getMessage());
+        ReportReport reportReport = new ReportReport(report,reportComment.get(),placeId,message.getPlaceName(),reportedBy,message.getMessage());
 
         reportReport = reportReportsRepository.save(reportReport);
 
@@ -48,6 +49,24 @@ public class ReportReportsService {
         List<ReportReport> reportsList = reportReportsRepository.findAll();
         System.out.println(reportsList.toString());
         return reportsList;
+    }
+
+    //method to delete a report
+    public ResponseEntity<Object> deleteReportedComment(Long reportId) {
+        System.out.println("service acessado");
+        try{
+            Optional<ReportReport> report = reportReportsRepository.findById(reportId);
+            // Optional<Report> report = reportRepository.findById(reportId);
+
+            if(report.isPresent() == false){
+                throw new UserNotFoundException("Report ID " + reportId + "Not found");
+            }
+            reportReportsRepository.deleteByReportId(report.get().getReport().getId());
+
+        }catch(Exception e){
+            throw new UserNotFoundException("Report ID " + reportId + "Not found");
+        }
+        return ResponseEntity.noContent().build();
     }
 
 }

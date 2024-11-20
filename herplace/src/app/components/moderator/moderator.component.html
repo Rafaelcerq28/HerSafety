@@ -132,20 +132,23 @@
                             </tbody>
                         </table>
                     </div> 
-
-
-
                 </div>
             <!--------------------------------------Reported Comments ------------------------------>
-                <div class="row col-md-12 ">
-                    <h2 class="mt-5 ps-0">Reported Comments</h2>
+                <div class="col-md-12 row">
+                    <div class="col-md-6">
+                        <h2 class="mt-5 ps-0">Reported Comments
+                            <button class="btn btn-sm form-login-btn ms-3 text-center" (click)="getReportedReports()">
+                                <i class="bi bi-arrow-clockwise text-center d-flex"></i>
+                            </button>
+                        </h2>
+                    </div>
                 </div>
 
                 <div class="scrollable-table row col-md-12 ">
                     <table class="table table-bordered">
                         <thead class="thead-light sticky-header">
                             <tr>
-                                <th class="col-md-3 col-sm-6" scope="col">Report</th>
+                                <th class="col-md-3 col-sm-6" scope="col">Report Type</th>
                                 <th class="col-md-3 col-sm-6" scope="col">Place</th>
                                 <th class="col-md-2 col-sm-3" scope="col">Reported By</th>
                                 <th class="col-md-5 col-sm-6" scope="col">Message</th>
@@ -156,14 +159,14 @@
                         <tbody>
                             <tr *ngFor="let report of ReportedReports">
                                 <td scope="row">{{report.reportType}}</td>
-                                <td>Place name<a routerLink="/place/{{report.place}}" routerLinkActive="active" class="ms-2"><i class="bi bi-geo-alt-fill"></i></a></td>
+                                <td><a routerLink="/place/{{report.place}}" routerLinkActive="active" class="a-def ms-2">{{report.placeName}}<i class="bi bi-geo-alt-fill"></i></a></td>
                                 <td>{{report.reportedBy}}</td>
                                 <td>{{report.message}}</td>
                                 <td class="d-flex justify-content-center align-items-center">
-                                    <button class="btn btn btn-danger"><i class="bi bi-trash-fill"></i></button>
+                                    <button (click)="deleteComment(report.id)" class="btn btn btn-danger"><i class="bi bi-trash-fill"></i></button>
                                 </td>
                                 <td class="text-center">
-                                    <button class="btn btn-success"><i class="bi bi-check-lg"></i></button>
+                                    <button (click)="keepComment(report.id)" class="btn btn-success"><i class="bi bi-check-lg"></i></button>
                                 </td>
                             </tr>
                         </tbody>

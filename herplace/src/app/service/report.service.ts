@@ -19,6 +19,7 @@ export class ReportService {
 
   makeReport(report:Report,username:string): Observable<any>{
     console.log(username);
+    console.log(report)
     return this.httpClient.post(`http://localhost:8080/report/${username}`,report);  
     // return this.httpClient.get<Report>;
   }
@@ -33,11 +34,25 @@ export class ReportService {
   }
 
   //REPORT A REPORT
-  reportReport(report:string,reportId:number,placeId:number,username:string,message:string): Observable<Report[]>{
-    return this.httpClient.post<Report[]>(`http://localhost:8080/report/denounce/${report}/${reportId}/${placeId}/${username}`,{message:message});  
+  reportReport(report:string,reportId:number,placeId:number,username:string,placeName:string,message:string): Observable<Report[]>{
+    return this.httpClient.post<Report[]>(`http://localhost:8080/report/denounce/${report}/${reportId}/${placeId}/${username}`,
+      {
+      message:message,
+      placeName:placeName
+    });  
   }
 
   getReportedReports(): Observable<any>{
     return this.httpClient.get(`http://localhost:8080/report/reported-reports`); 
+  }
+
+  keepComment(reportId:number): Observable<any>{
+    console.log("keep comment (service)")
+    return this.httpClient.delete(`http://localhost:8080/report/delete-reported/${reportId}`,{});
+
+  }
+
+  deleteComment(reportId:number){
+    return this.httpClient.delete(`http://localhost:8080/report/${reportId}`);
   }
 }

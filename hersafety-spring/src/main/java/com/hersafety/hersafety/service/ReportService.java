@@ -38,6 +38,7 @@ public class ReportService {
     //validate the inputs
     //Create report
     public ResponseEntity<ReportRequest> addReport(String username, ReportRequest report) {
+        System.out.println(report.toString());
         // Optional<User> user = userRepository.findById(report.getUserId());
         Optional<User> user = userRepository.findByUsername(username);
         Optional<Place> place = placeRepository.findById(report.getPlaceId());

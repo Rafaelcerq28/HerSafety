@@ -42,9 +42,22 @@ export class ModeratorComponent {
   getReportedReports(){
     this.reportService.getReportedReports().subscribe((ReportedReports) => {
       this.ReportedReports = ReportedReports;
-
     });
     console.log(this.ReportedReports);
   }
   
+  keepComment(reportId:number){
+    this.reportService.keepComment(reportId).subscribe((retorno) => {
+      retorno = retorno;
+
+      console.log("retorno: " + retorno)
+    
+    });
+    this.getReportedReports();
+  }
+  
+  deleteComment(reportId:number){
+    this.reportService.deleteComment(reportId);
+    this.getReportedReports;
+  }
 }

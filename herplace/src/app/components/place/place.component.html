@@ -171,23 +171,25 @@
                             <br>
                             <div class="scrollable-text" >
                                 <div *ngFor="let report of reports.slice().reverse()">
-                                    
-                                    <div class="d-flex align-items-center">
-                                        <p class="fs-6 me-auto"><strong>Annonymous</strong></p>
-                                        <div class="dropdown ms-auto" *ngIf="user != null">
-                                            <button style="width: 2em; height: 2em;" class="btn btn-secondary dropdown-toggle btn-sm form-login-btn p-0" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <i class="bi bi-three-dots"></i>
-                                            </button>
-                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                              <li><a class="dropdown-item" (click)="reportReport('ofensive',report.id,report.placeId,report.comment)">Report as Ofensive </a></li>
-                                              <li><a class="dropdown-item" (click)="reportReport('Fake',report.id,report.placeId,report.comment)">Report as Fake</a></li>
-                                              <li><a class="dropdown-item" (click)="reportReport('Difamation',report.id,report.placeId,report.comment)">Report as Defamatory</a></li>
-                                            </ul>
+                                    <!-- Check if the comment is empty -->
+                                    <div *ngIf="report.comment != ''">
+                                        <div class="d-flex align-items-center">
+                                            <p class="fs-6 me-auto"><strong>Annonymous</strong></p>
+                                            <div class="dropdown ms-auto" *ngIf="user != null">
+                                                <button style="width: 2em; height: 2em;" class="btn btn-secondary dropdown-toggle btn-sm form-login-btn p-0" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <i class="bi bi-three-dots"></i>
+                                                </button>
+                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                <li><a class="dropdown-item" (click)="reportReport('Ofensive',report.id,report.placeId,place.name,report.comment)">Report as Ofensive </a></li>
+                                                <li><a class="dropdown-item" (click)="reportReport('Fake',report.id,report.placeId,place.name,report.comment)">Report as Fake</a></li>
+                                                <li><a class="dropdown-item" (click)="reportReport('Difamation',report.id,report.placeId,place.name,report.comment)">Report as Defamatory</a></li>
+                                                </ul>
+                                            </div>
                                         </div>
+                                        <p class="mt-2">{{report.comment}}</p>    
+                                        <p>Date: {{ report.createdAt | date:'dd/MM/yyyy' }}</p>
+                                        <hr>
                                     </div>
-                                    <p class="mt-2">{{report.comment}}</p>    
-                                    <p>Date: {{ report.createdAt | date:'dd/MM/yyyy' }}</p>
-                                    <hr>
                                 </div>
                             </div>
                             <div class="d-flex  bd-highlight mt-5" *ngIf="user != null">

@@ -2521,7 +2521,7 @@ google-map {
   width: 10rem;
 }
 
-/* -----------------------------SCROOLABLE ITEMS --------------------------*/
+/* ----------------------------- SCROOLABLE ITEMS --------------------------*/
 /* scrollable-text */
 .scrollable-text {
   height: 19rem;         /* Defina a altura conforme necessário */
@@ -2542,7 +2542,7 @@ google-map {
   z-index: 10; /* Garante que o cabeçalho fique acima do conteúdo */
 }
 
-/* Login icon */
+/* -----------------------------------------------Login Form ------------------------------*/
 .material-symbols-outlined {
   font-variation-settings:
   'FILL' 0,
@@ -2639,7 +2639,7 @@ google-map {
   background: #6a4d7c;
   cursor: pointer;
 }
-/* ------------------------- TEST ZONE ------------------------*/
+/* ------------------------- Callout ------------------------*/
 .bd-callout {
   padding: 1.25rem;
   /* margin-top: 1.25rem; */
@@ -2721,3 +2721,22 @@ google-map {
   .bd-callout-herplaceh4 {
     color: #6a4d7c
     }
+
+    /* --------------- Moderator page -------------------------- */
+  .a-def {
+    /* color: var(--accent-color); */
+    color: #000000;
+    text-decoration: none;
+    transition: 0.3s;
+  }
+
+  .a-def:hover {
+    /* color: color-mix(in srgb, var(--accent-color), transparent 25%); */
+    color: color-mix(in srgb, #6a4d7c, transparent 25%);
+    text-decoration: none;
+  }
+
+  .a-def:visited {
+    color: color-mix(in srgb, #007bff, transparent 25%);
+    text-decoration: underline;
+  }

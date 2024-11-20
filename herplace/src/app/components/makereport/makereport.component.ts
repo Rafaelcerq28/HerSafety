@@ -52,14 +52,15 @@ makeReport(){
   this.report.illumination = this.illuminationScore;
   this.report.crowdQuality = this.crowdQualityScore;
   this.report.privacy = this.privacyScore;
-  this.report.safetyInfoScore = this.safetyInfoScore;
+  this.report.safetyInfo = this.safetyInfoScore;
   this.report.comment = this.textArea;
 
   this.reportService.makeReport(this.report,this.user.username).subscribe((reportPost) => {
     this.report = reportPost;
+    console.log(this.report);
   });
   this.router.navigate([`/place/${this.placeId}`]);
-  console.log(this.report.createdAt);
+  console.log(this.report);
 }
 
 }
