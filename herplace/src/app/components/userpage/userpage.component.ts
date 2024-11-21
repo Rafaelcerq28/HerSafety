@@ -28,7 +28,7 @@ export class UserpageComponent {
   constructor(private userService: UserService, private reportService: ReportService){
     // Verifica se a página já foi recarregada nesta sessão
     const hasReloaded = sessionStorage.getItem('hasReloaded');
-
+    
     if (!hasReloaded) {
       // Armazena o estado de recarregamento no sessionStorage para evitar loops
       sessionStorage.setItem('hasReloaded', 'true');

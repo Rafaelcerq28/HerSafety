@@ -14,8 +14,13 @@ import { AuthenticationService } from '../../service/authentication.service';
 })
 export class LoginComponent {
 
-  constructor(private router:Router,private userService: UserService, private authenticationService: AuthenticationService){}
+  constructor(private router:Router,private userService: UserService, private authenticationService: AuthenticationService){
+    //Clear the session storage to force a reload in the user page
+    sessionStorage.clear();
+  }
+  
 
+  
   user:any = null;
 
   username: string = '';
@@ -59,6 +64,7 @@ export class LoginComponent {
           this.alerMsg = true;
         } else {
           this.alerMsg = false;
+
           this.router.navigate(['/user/'], { queryParams: { username: this.username } });
         }
       },

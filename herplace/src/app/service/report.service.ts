@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class ReportService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
 
   apiUrl = 'http://localhost:8080/report/place'
 
@@ -52,7 +52,11 @@ export class ReportService {
 
   }
 
-  deleteComment(reportId:number){
-    return this.httpClient.delete(`http://localhost:8080/report/${reportId}`);
+  deleteComment(reportId:number): Observable<any>{
+    return this.httpClient.delete(`http://localhost:8080/report/reported-comment/${reportId}`);
+  }
+
+  getMetrics(): Observable<any>{
+    return this.httpClient.get(`http://localhost:8080/metrics`);
   }
 }

@@ -80,6 +80,14 @@ public class ReportController {
         return reportService.deleteReport(id);
     }
 
+    //Delete
+    @DeleteMapping("/report/reported-comment/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public ResponseEntity<Object> deleteByReportedComment(@PathVariable (value = "id")long id){
+        System.out.println("chamou o metodo certo");
+        return reportService.deleteByReportedComment(id);
+    }
+
     //update
     @PutMapping("/report/{id}")
     @ResponseStatus(HttpStatus.OK)

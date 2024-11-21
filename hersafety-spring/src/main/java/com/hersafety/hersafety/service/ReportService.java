@@ -16,8 +16,10 @@ import com.hersafety.hersafety.controller.ReportController;
 import com.hersafety.hersafety.exception.UserNotFoundException;
 import com.hersafety.hersafety.model.Place;
 import com.hersafety.hersafety.model.Report;
+import com.hersafety.hersafety.model.ReportReport;
 import com.hersafety.hersafety.model.User;
 import com.hersafety.hersafety.repository.PlaceRepository;
+import com.hersafety.hersafety.repository.ReportReportsRepository;
 import com.hersafety.hersafety.repository.ReportRepository;
 import com.hersafety.hersafety.repository.UserRepository;
 
@@ -27,11 +29,13 @@ public class ReportService {
     UserRepository userRepository;
     PlaceRepository placeRepository;
     ReportRepository reportRepository;
+    ReportReportsRepository reportsReportRepository;
 
-    public ReportService(UserRepository userRepository, PlaceRepository placeRepository, ReportRepository reportRepository) {
+    public ReportService(UserRepository userRepository, PlaceRepository placeRepository, ReportRepository reportRepository, ReportReportsRepository reportsReportRepository) {
         this.userRepository = userRepository;
         this.placeRepository = placeRepository;
         this.reportRepository = reportRepository;
+        this.reportsReportRepository = reportsReportRepository;
     }
 
 
@@ -123,15 +127,29 @@ public class ReportService {
         return new ReportRequest().convertToDTO(report.get());
     }
 
-    //Delete by id
+    // delete By id
     public ResponseEntity<Object> deleteReport(long id) {
         Optional<Report> reportToDelete = reportRepository.findById(id);
-    
+
         if(reportToDelete.isPresent() == false){
-            return null;
+            throw new UserNotFoundException("ID " + id + "Not found");
         }
 
         reportRepository.deleteById(id);
+
+        return ResponseEntity.noContent().build();
+    }
+
+    //delete B yReported Comment
+    public ResponseEntity<Object> deleteByReportedComment(long id) {
+        System.out.println("service certa");
+        Optional<ReportReport> reportedReport = reportsReportRepository.findById(id);
+
+        if(reportedReport.isPresent() == false){
+            throw new UserNotFoundException("ID " + id + "Not found");
+        }
+
+        reportRepository.deleteById(reportedReport.get().getReport().getId());
 
         return ResponseEntity.noContent().build();
     }

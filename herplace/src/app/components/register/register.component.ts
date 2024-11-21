@@ -21,6 +21,8 @@ export class RegisterComponent {
   username: string = '';
   password: string = '';
   email:string = '';
+  date: any | undefined;
+  notifications: boolean = false;
   user:any = null;
 
   register(){
@@ -29,12 +31,13 @@ export class RegisterComponent {
       username: this.username,
       password:this.password,
       email: this.email,
-      dateOfBirth: '',
-      notifications: false,
+      dateOfBirth: this.date,
+      notifications: this.notifications,
       createdAt:''
     }
     console.log(newUser);
     
+
     //finish this
     this.authenticationService.register(newUser).subscribe({
       next: () => {

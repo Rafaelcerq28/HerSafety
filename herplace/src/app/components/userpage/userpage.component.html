@@ -19,15 +19,15 @@
 
             <div class="container col-md-12">
                 <div class="row">
-                    <div class="col-md-5 m-1">
+                    <div class="col-md-5 m-1 border p-3">
                         <p class="fs-5 mb-3"><strong>User details</strong></p>
                         <p><strong>Name: </strong><span>{{user.name}}</span></p>
                         <p><strong>Email: </strong><span>{{user.email}}</span></p>
                         <p><strong>Date of Birth: </strong>{{user.dateOfBirth}}</p>
                         <p><strong>notifications: </strong>{{user.notifications}}</p>
-                        <button (click)="reload()">Refresh</button>
+                        <button class="btn btn-secondary form-login-btn" (click)="reload()">Refresh</button>
                     </div>
-                    <div class="col-md-5">
+                    <div class="col-md-5 m-1 p-3">
                         <p class="fs-5 mb-3"><strong>User information</strong></p> 
                         <ul class="list-group list-group-numbered">
                             <li class="list-group-item">How often do you go to bars or clubs?<br>

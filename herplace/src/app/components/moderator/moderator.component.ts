@@ -17,10 +17,12 @@ export class ModeratorComponent {
     this.user = this.userService.getUser();
     this.getAllUsers();
     this.getReportedReports();
+    this.getMetrics();
   }
 
   user?:any | null;
   users?:any;
+  metrics?: any | undefined;
   ReportedReports?:any | null;
 
   getAllUsers(){
@@ -47,17 +49,26 @@ export class ModeratorComponent {
   }
   
   keepComment(reportId:number){
-    this.reportService.keepComment(reportId).subscribe((retorno) => {
-      retorno = retorno;
-
-      console.log("retorno: " + retorno)
-    
+    this.reportService.keepComment(reportId).subscribe((httpReturn) => {
+      httpReturn = httpReturn;
+      this.getReportedReports();
     });
-    this.getReportedReports();
+    
   }
   
   deleteComment(reportId:number){
-    this.reportService.deleteComment(reportId);
-    this.getReportedReports;
+    this.reportService.deleteComment(reportId).subscribe((httpReturn) => {
+      httpReturn = httpReturn;
+      this.getReportedReports();
+    });
   }
+
+  getMetrics(){
+    this.reportService.getMetrics().subscribe((metrics) =>{
+      this.metrics = metrics;
+      console.log(metrics);
+    });
+  }
+
+
 }

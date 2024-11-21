@@ -53,7 +53,6 @@ public class ReportReportsService {
 
     //method to delete a report
     public ResponseEntity<Object> deleteReportedComment(Long reportId) {
-        System.out.println("service acessado");
         try{
             Optional<ReportReport> report = reportReportsRepository.findById(reportId);
             // Optional<Report> report = reportRepository.findById(reportId);

@@ -53,7 +53,6 @@ public class ReportReportsController {
     @DeleteMapping("report/delete-reported/{reportId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity<Object> deleteReportedComment(@PathVariable Long reportId){
-        System.out.println("chamado");
         return reportReportsService.deleteReportedComment(reportId);
     }
 }
