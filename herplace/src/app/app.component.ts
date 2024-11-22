@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,ElementRef, ViewChild } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { HomeComponent } from "./components/home/home.component";
 import { FooterComponent } from "./components/footer/footer.component";
@@ -28,4 +28,27 @@ export class AppComponent {
   }
 
   title = 'herplace';
+
+  // Nav menu
+  @ViewChild('mobileNavToggleBtn') mobileNavToggleBtn!: ElementRef;
+
+  toggleMobileNav() {
+    this.isNavOpen = !this.isNavOpen;
+
+    const body = document.querySelector('body');
+    body?.classList.toggle('mobile-nav-active');
+
+    const toggleBtn = this.mobileNavToggleBtn.nativeElement;
+    toggleBtn.classList.toggle('bi-list');
+    toggleBtn.classList.toggle('bi-x');
+  }
+
+  isNavOpen = false;
+
+  closeMobileMenu() {
+    if (this.isNavOpen) {
+      this.toggleMobileNav();
+    }
+  }
+  // end nav menu
 }

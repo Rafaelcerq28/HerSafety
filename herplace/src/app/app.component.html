@@ -12,14 +12,15 @@
         <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a></li>
         <li><a routerLink="/search" routerLinkActive="active" >Search</a></li>
         
-          <li *ngIf="user == null"><a routerLink="/login" routerLinkActive="active" ><!-- <span class="material-symbols-outlined">face_3</span>-->Login</a></li>
-          <li *ngIf="user == null"><a routerLink="/register" routerLinkActive="active" ><!-- <span class="material-symbols-outlined">face_3</span>-->Register</a></li>
-          <li *ngIf="user != null && user.role == 'ADMIN'"><a routerLink="/moderator" routerLinkActive="active" ><!-- <span class="material-symbols-outlined">face_3</span>-->Moderator <i class="bi bi-gear fs-4"></i></a></li>
-          <li *ngIf="user != null"><a routerLink="/user" routerLinkActive="active" ><span class="me-2">{{user?.name}}</span><span class="material-symbols-outlined">face_3</span></a></li>
-          <li *ngIf="user != null"><a href="/" class="" (click)="logout()">logout</a></li>
+          <li *ngIf="user == null"><a routerLink="/login" routerLinkActive="active" (click)="closeMobileMenu()"><!-- <span class="material-symbols-outlined">face_3</span>-->Login</a></li>
+          <li *ngIf="user == null"><a routerLink="/register" routerLinkActive="active"(click)="closeMobileMenu()" ><!-- <span class="material-symbols-outlined">face_3</span>-->Register</a></li>
+          <li *ngIf="user != null && user.role == 'ADMIN'"><a routerLink="/moderator" routerLinkActive="active" (click)="closeMobileMenu()"><!-- <span class="material-symbols-outlined">face_3</span>-->Moderator <i class="bi bi-gear fs-4"></i></a></li>
+          <li *ngIf="user != null"><a routerLink="/user" routerLinkActive="active" (click)="closeMobileMenu()"><span class="me-2">{{user?.name}}</span><span class="material-symbols-outlined">face_3</span></a></li>
+          <li *ngIf="user != null"><a href="/" class="" (click)="logout()" (click)="closeMobileMenu()">logout</a></li>
 
       </ul>
-      <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      <i #mobileNavToggleBtn class="mobile-nav-toggle d-xl-none bi bi-list" (click)="toggleMobileNav()"></i>
+      <!-- <i class="mobile-nav-toggle d-xl-none bi bi-list"></i> -->
     </nav>
 
   </div>
