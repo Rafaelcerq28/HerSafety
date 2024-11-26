@@ -56,7 +56,7 @@ public class SafetyTipsService {
 
         startTime = System.currentTimeMillis();
 
-        System.out.println(user.getSecurityInfo().getQuestion1());
+        // System.out.println(user.getSecurityInfo().getQuestion1());
         String system = "You are a safety expert providing personalized safety tips for women based on their social habits and preferences related to nightlife. (your answer has to be a short text, not in topics)";
         String content = "Based on the following answers about a user's nightlife habits, provide personalized safety tips:\n -"+ 
         "**How often do you go to bars or clubs?** Answer: Rarely\n - **What type of place do you usually visit?**"+
@@ -116,7 +116,7 @@ public class SafetyTipsService {
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         ChatCompletionRequest chat = mapper.readValue(jsonString, ChatCompletionRequest.class);
         // reply = reply.replaceAll("```html|```", "");
-        System.out.println("FINAL " + chat.getChoices().get(0).getMessage().getContent());
+        // System.out.println("FINAL " + chat.getChoices().get(0).getMessage().getContent());
         return chat.getChoices().get(0).getMessage().getContent();
     }
 }

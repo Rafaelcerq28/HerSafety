@@ -36,7 +36,7 @@ public class PlacesService {
 
     //GET PLACE (Check this method later, implement filters to thre region)
     public Place getPlace(String name){
-
+        
         //name = "the+bernard+shaw";//delete after
         String nameToSearch = name.replace("+", " ");
         //search for the place in the database
@@ -47,6 +47,7 @@ public class PlacesService {
             Place p = findPlace.get();
             return p;        
         }else{//if the place was'nt found search for it in the maps
+            
             try {      
                 //Get location from maps passing the place's name
                 name = name.replace(" ", "+");
@@ -61,17 +62,15 @@ public class PlacesService {
                 HttpResponse<String> response;
                 response = client.send(request, BodyHandlers.ofString());
                 String body = response.body();
-
+                
                 // System.out.println("maps return" + body);
                 //using jackson to convert Json in an Java object
                 String jsonString = body;
                 ObjectMapper mapper = new ObjectMapper();
                 PlaceResponse places = mapper.readValue(jsonString, PlaceResponse.class);
-
+                
                 //CHECK IF THE PLACE IS LOCATED IN IRELAND
                 String [] addressToValidate = places.getCandidates().get(0).getFormatted_address().split(",");
-
-                System.out.println(addressToValidate[4] );
 
                 //Remove the spaces and check if the name is equal Ireland
                 boolean countryFound = false;
@@ -84,13 +83,26 @@ public class PlacesService {
                 }
                 //If the country wasn't found throw an exception
                 if(countryFound == false){
-                    System.out.println(addressToValidate[4].equalsIgnoreCase("Ireland"));
+                    // System.out.println(addressToValidate[4].equalsIgnoreCase("Ireland"));
                     throw new UserNotFoundException(nameToSearch);
                 }
 
                 //FILTER FOR TYPES
                 System.out.println(places.getCandidates().get(0).getTypes().toString());
+                List<String> types = places.getCandidates().get(0).getTypes();
+                boolean typeFound = false;
+                for (String type : types) {
+                    if(type.equalsIgnoreCase("restaurant") || 
+                    type.equalsIgnoreCase("night_club") || 
+                    type.equalsIgnoreCase("bar")){
+                        typeFound = true;
+                    }
+                }
                 
+                if(typeFound == false){
+                    throw new UserNotFoundException("Type of "+ name +" doesn't match");
+                }
+
                 //Check if the item returned exist in the database
                 System.out.println("Place ID gotten from API: " + places.getCandidates().get(0).getPlace_id());
                 findPlace = placeRepository.findByPlaceId(places.getCandidates().get(0).getPlace_id());

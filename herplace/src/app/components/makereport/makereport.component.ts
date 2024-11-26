@@ -57,10 +57,8 @@ makeReport(){
 
   this.reportService.makeReport(this.report,this.user.username).subscribe((reportPost) => {
     this.report = reportPost;
-    console.log(this.report);
   });
   this.router.navigate([`/place/${this.placeId}`]);
-  console.log(this.report);
 }
 
 }

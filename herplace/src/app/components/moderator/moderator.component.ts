@@ -66,7 +66,6 @@ export class ModeratorComponent {
   getMetrics(){
     this.reportService.getMetrics().subscribe((metrics) =>{
       this.metrics = metrics;
-      console.log(metrics);
     });
   }
 
