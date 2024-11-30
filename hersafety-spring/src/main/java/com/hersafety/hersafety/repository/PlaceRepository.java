@@ -11,5 +11,6 @@ import com.hersafety.hersafety.model.Place;
 public interface PlaceRepository extends JpaRepository<Place,Long>{
     //method to get place by name
     Optional<Place> findByName(String name);
+    //method to get place by id
     Optional<Place> findByPlaceId(String placeId);
 }

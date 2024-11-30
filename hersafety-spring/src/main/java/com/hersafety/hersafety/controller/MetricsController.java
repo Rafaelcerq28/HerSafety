@@ -21,6 +21,7 @@ public class MetricsController {
         this.metricsService = metricsService;
     }
 
+    //Controller to get system information, such as the amount of users, places stored and reports
     @GetMapping("/metrics")
     @ResponseStatus(HttpStatus.OK)
     public APIMetrics platformMetrics(){

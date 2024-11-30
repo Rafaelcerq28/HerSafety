@@ -9,5 +9,6 @@ import com.hersafety.hersafety.model.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User,Long> {
+    //Find user by username
     Optional<User> findByUsername(String name);
 }

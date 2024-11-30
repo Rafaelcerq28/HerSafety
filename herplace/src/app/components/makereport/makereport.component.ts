@@ -27,6 +27,7 @@ constructor(private route:ActivatedRoute,private userService:UserService, privat
     
 }
 
+//Variables
 user?:any;
 report:any = {};
 
@@ -42,8 +43,8 @@ privacyScore: number = 5;
 safetyInfoScore: number = 5;
 textArea: string = '';
 
+//method to store the values in the report object and call the service to make the http request
 makeReport(){
-  console.log(this.user.name);
   this.report.placeId = this.placeId;
   this.report.safety = this.safetyScore;
   this.report.welcoming = this.cozyScore;
@@ -54,6 +55,7 @@ makeReport(){
   this.report.privacy = this.privacyScore;
   this.report.safetyInfo = this.safetyInfoScore;
   this.report.comment = this.textArea;
+
 
   this.reportService.makeReport(this.report,this.user.username).subscribe((reportPost) => {
     this.report = reportPost;

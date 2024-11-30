@@ -30,7 +30,7 @@ public class ReportReportsController {
         this.reportReportsService = reportReportsService;
     }
 
-    //TUDO ERRADO NESSE METODO, MAPEAR PARA PEGAR O COMENTARIO TAMBEM
+    //Controller to report a ofensive comment
     @PostMapping("/report/denounce/{report}/{reportId}/{placeId}/{reportedBy}")
     @ResponseStatus(HttpStatus.OK)
     public ReportReport createReportsReport(@PathVariable String report, @PathVariable Long placeId, @PathVariable String reportedBy,@PathVariable Long reportId, @RequestBody MessageDTO message){
@@ -38,18 +38,21 @@ public class ReportReportsController {
         return reportReportsService.createReportsReport(report,reportId,placeId,reportedBy,message);
     }
 
+    //controller to get all reported reports
     @GetMapping("/report/denounce/{report}/{placeId}/{reportedBy}")
     @ResponseStatus(HttpStatus.OK)
     public List<ReportReport> getAllReportsReport(){
         return reportReportsService.getAllReportsReport();
     }
 
+    //controller to get all reported reports
     @GetMapping("report/reported-reports")
     @ResponseStatus(HttpStatus.OK)
     public List<ReportReport> getAll(){
         return reportReportsService.getAll();
     }
 
+    //Controller to delete a report
     @DeleteMapping("report/delete-reported/{reportId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity<Object> deleteReportedComment(@PathVariable Long reportId){

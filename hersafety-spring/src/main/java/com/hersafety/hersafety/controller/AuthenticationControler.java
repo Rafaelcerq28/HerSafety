@@ -19,16 +19,19 @@ public class AuthenticationControler {
 
     private AuthenticationService authenticationService;
 
+
     public AuthenticationControler(AuthenticationService authenticationService) {
         this.authenticationService = authenticationService;
     }
 
+    //Controller to login the user
     @PostMapping("/login")
     public UserResponse Login(@RequestBody UserAuthentication user){
         System.out.println("user no controller " + user.getUsername());
         return authenticationService.login(user);
     }
 
+    //Controller to logout the user
     @PostMapping("/logout")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<?> logout(@RequestBody UserAuthentication user){

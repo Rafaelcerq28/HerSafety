@@ -30,6 +30,7 @@ public class MetricsService {
         this.reportReportsRepository = reportReportsRepository;
     }
 
+    //Service to colect values from the system
     public APIMetrics platformMetrics() {
 
         List<User> users = userRepository.findAll();

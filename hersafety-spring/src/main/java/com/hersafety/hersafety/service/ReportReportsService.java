@@ -23,14 +23,15 @@ public class ReportReportsService {
         this.reportRepository = reportRepository;
     }
 
+    //method to report a comment
     public ReportReport createReportsReport(String report, Long reportId,Long placeId, String reportedBy, MessageDTO message) {
-        // String report, Long reportId,Long place, String reportedBy,String message
-        System.out.println(message);
 
+        //search for the comment using the ID
         Optional<Report> reportComment = reportRepository.findById(reportId);
         if(reportComment.isPresent() == false){
             throw new UserNotFoundException("Place id");
         }
+
         ReportReport reportReport = new ReportReport(report,reportComment.get(),placeId,message.getPlaceName(),reportedBy,message.getMessage());
 
         reportReport = reportReportsRepository.save(reportReport);
@@ -38,6 +39,7 @@ public class ReportReportsService {
         return reportReport;
     }
 
+    //Get all reported comments
     public List<ReportReport> getAllReportsReport() {
         
         List<ReportReport> reportReports = reportReportsRepository.findAll();
@@ -45,9 +47,9 @@ public class ReportReportsService {
         return reportReports;
     }
 
+    //Get all reported comments
     public List<ReportReport> getAll() {
         List<ReportReport> reportsList = reportReportsRepository.findAll();
-        System.out.println(reportsList.toString());
         return reportsList;
     }
 
@@ -55,7 +57,6 @@ public class ReportReportsService {
     public ResponseEntity<Object> deleteReportedComment(Long reportId) {
         try{
             Optional<ReportReport> report = reportReportsRepository.findById(reportId);
-            // Optional<Report> report = reportRepository.findById(reportId);
 
             if(report.isPresent() == false){
                 throw new UserNotFoundException("Report ID " + reportId + "Not found");

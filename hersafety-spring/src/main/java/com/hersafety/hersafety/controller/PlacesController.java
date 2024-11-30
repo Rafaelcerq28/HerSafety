@@ -28,37 +28,43 @@ public class PlacesController {
         this.placesService = placesService;
     }
 
-    //Method to get a place (this method can create a place by getting from the google maps API)
+    //Controller to get a place (this method can create a place by getting from the google maps API)
     @GetMapping("/place/{name}")
     @ResponseStatus(HttpStatus.OK)
     public Place getPlace(@PathVariable(value = "name")String name){
         return placesService.getPlace(name);
     }
 
+    //Controller to get place by place_id
     @GetMapping("/place/id/{id}")
     @ResponseStatus(HttpStatus.OK)
     public EntityModel<Place> getPlaceById(@PathVariable(value = "id")Long id){
         return placesService.getPlaceById(id);
     }
 
-    @GetMapping("/place")//?name=temple+bar
+    //Controller to get a place passing the name as a variable
+    //?name=temple+bar
+    @GetMapping("/place")
     @ResponseStatus(HttpStatus.OK)
     public Place placeByParam (@RequestParam(value = "name")String name){
         return placesService.getPlace(name);
     }
 
+    //Controller to get all places
     @GetMapping("/places")
     @ResponseStatus(HttpStatus.OK)
     public List<Place> getAllPlaces(){
         return placesService.getAllPlaces();
     }
 
+    //Controller to delete a place passing the place_id
     @DeleteMapping("/place/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity<Object> deletePlace(@PathVariable(value = "id")Long id){
         return placesService.deletePlace(id);
     }
 
+    //Controller to update a place passing the place_id + place name 
     @PutMapping("/place/{id}")//?name=temple+bar
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity<Place> updatePlace(@PathVariable(value = "id")Long id, @RequestParam (value = "name")String name){

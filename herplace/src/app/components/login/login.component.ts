@@ -19,8 +19,6 @@ export class LoginComponent {
     sessionStorage.clear();
   }
   
-
-  
   user:any = null;
 
   username: string = '';
@@ -31,35 +29,17 @@ export class LoginComponent {
     console.log(this.user)
   }
 
-  // login() {
-  //   // this.user = this.userService.clearUser 
-  //   this.authenticationService.login(this.username,this.password);
-  //   this.userService.setUser(JSON.parse(localStorage.getItem('user') || '{}'));
-  //   this.user = this.userService.getUser();
-
-  //   if((this.user === null) == true ){
-  //     this.alerMsg = "User not found"
-  //   }else{
-  //     this.alerMsg = "Good"
-  //     this.router.navigate(['/user/'],{ queryParams: {username: this.username, password:this.password}});
-  //   }
-
-  //   console.log('Usuario recuperado:', this.user);
-  //   console.log(this.user === null)
-  //   // 
-  // }
-
   login() {
-    //initialize the msg to false before the search for the user begin
+    //initialize the message to false before the search for the user begin
     this.alerMsg = false;
 
     this.authenticationService.login(this.username, this.password).subscribe({
       next: () => {
-        // Agora que o login foi concluído, você pode buscar o usuário do Local Storage
+        //Store the user in the local storage
         this.userService.setUser(JSON.parse(localStorage.getItem('user') || '{}'));
         this.user = this.userService.getUser();
   
-        // Verifica se o usuário foi encontrado e navega ou exibe uma mensagem de erro
+        //Check is the user was found and return a message if not
         if (!this.user) {
           this.alerMsg = true;
         } else {
@@ -69,7 +49,7 @@ export class LoginComponent {
         }
       },
       error: err => {
-        console.error("Erro ao fazer login:", err);
+        console.error("error during the login: ", err);
         this.alerMsg = true;
       }
     });

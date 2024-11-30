@@ -21,6 +21,7 @@ public class SafetyTipsController {
         this.safetyTipsService = safetyTipsService;
     }
 
+    //controller to get the safety tip
     @GetMapping("/safety/{username}")
     @ResponseStatus(HttpStatus.OK)
     public String getSafetyTips(@PathVariable String username){

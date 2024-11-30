@@ -39,11 +39,11 @@ public class ReportService {
     }
 
 
-    //validate the inputs
+
     //Create report
     public ResponseEntity<ReportRequest> addReport(String username, ReportRequest report) {
-        System.out.println(report.toString());
-        // Optional<User> user = userRepository.findById(report.getUserId());
+
+        //Get user and place from the database and check if they exist
         Optional<User> user = userRepository.findByUsername(username);
         Optional<Place> place = placeRepository.findById(report.getPlaceId());
 
@@ -51,6 +51,7 @@ public class ReportService {
             return ResponseEntity.badRequest().build();
         }
 
+        //add the variables in the Report
         Report reportToAdd = new Report();
 
         reportToAdd.setUser(user.get());
@@ -68,7 +69,7 @@ public class ReportService {
         reportToAdd = reportRepository.save(reportToAdd);
         report.setId(reportToAdd.getId());
 
-        System.out.println(report.toString());
+        //Create a URL with the report path
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().
                         path("/{id}").buildAndExpand(report.getId()).toUri();
 
@@ -140,9 +141,8 @@ public class ReportService {
         return ResponseEntity.noContent().build();
     }
 
-    //delete B yReported Comment
+    //delete By Reported Comment
     public ResponseEntity<Object> deleteByReportedComment(long id) {
-        System.out.println("service certa");
         Optional<ReportReport> reportedReport = reportsReportRepository.findById(id);
 
         if(reportedReport.isPresent() == false){
@@ -154,9 +154,7 @@ public class ReportService {
         return ResponseEntity.noContent().build();
     }
 
-
-    //validate the inputs
-    //upsate report
+    //update report
     public ResponseEntity<ReportRequest> updateReport(long id, ReportRequest report) {
             Optional<Report> reportToUpdate = reportRepository.findById(id);
             

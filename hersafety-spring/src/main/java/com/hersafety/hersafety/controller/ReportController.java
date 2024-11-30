@@ -30,7 +30,7 @@ public class ReportController {
         this.reportService = reportService;
     }
 
-    //Post Report
+    //Controller to make a Report
     @PostMapping("/report/{username}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<ReportRequest> addReport(@PathVariable(value = "username") String username, @RequestBody ReportRequest report){

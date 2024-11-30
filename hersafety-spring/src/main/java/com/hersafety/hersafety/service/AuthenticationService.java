@@ -20,8 +20,10 @@ public class AuthenticationService {
         this.userRepository = userRepository;
     }
 
+    //Method to authenticate the user returning a UserResponse (DTO)
     public UserResponse login(UserAuthentication user) {
-        System.out.println(user.getUsername());
+
+        //Get the user from the database and check if it was found, if not throw a userNot Found exception
         Optional<User> userToLogin = userRepository.findByUsername(user.getUsername());
 
         if(userToLogin.isPresent() == false){
@@ -30,10 +32,12 @@ public class AuthenticationService {
             throw new UserNotFoundException("User: " + user.getUsername());
         }
 
+        //check if the user is banned or not
         if(userToLogin.get().isActive() == false){
             throw new UserNotFoundException("User: " + user.getUsername() + "Banned");
         }
         
+        //Creating the user response
         UserResponse userResponse = new UserResponse();
 
         userResponse.setName(userToLogin.get().getName());
@@ -45,6 +49,7 @@ public class AuthenticationService {
         return userResponse;
     }
 
+    //logout method
     public ResponseEntity<?> logout(UserAuthentication user){
         return ResponseEntity.noContent().build();
     }

@@ -11,6 +11,7 @@ import com.hersafety.hersafety.model.ReportReport;
 import jakarta.transaction.Transactional;
 
 public interface ReportReportsRepository extends JpaRepository<ReportReport,Long>{
+    //Query to delete report by id
     @Modifying
     @Transactional
     @Query("DELETE FROM ReportReport r WHERE r.report.id = :reportId")

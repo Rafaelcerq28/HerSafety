@@ -20,18 +20,20 @@ export class ModeratorComponent {
     this.getMetrics();
   }
 
+  //variables
   user?:any | null;
   users?:any;
   metrics?: any | undefined;
   ReportedReports?:any | null;
 
+  //method to get all users
   getAllUsers(){
     this.userService.getAllUsers().subscribe((users) => {
       this.users = users;
-      // console.log(this.users);
     });
   }
 
+  //method to update the active status
   updateActiveStatus(username:string){
     let strReturn: any;
     this.userService.updateActiveStatus(username).subscribe((strReturn) => {
@@ -41,6 +43,7 @@ export class ModeratorComponent {
     
   }
 
+  //method to get the reported messages
   getReportedReports(){
     this.reportService.getReportedReports().subscribe((ReportedReports) => {
       this.ReportedReports = ReportedReports;
@@ -48,6 +51,7 @@ export class ModeratorComponent {
     console.log(this.ReportedReports);
   }
   
+  //method to keep a comment (remove from the reported list but keep the comment in the place)
   keepComment(reportId:number){
     this.reportService.keepComment(reportId).subscribe((httpReturn) => {
       httpReturn = httpReturn;
@@ -56,6 +60,7 @@ export class ModeratorComponent {
     
   }
   
+  //method to delete a comment (delete from the list and from the place)
   deleteComment(reportId:number){
     this.reportService.deleteComment(reportId).subscribe((httpReturn) => {
       httpReturn = httpReturn;
@@ -63,6 +68,7 @@ export class ModeratorComponent {
     });
   }
 
+  //method to get metrics
   getMetrics(){
     this.reportService.getMetrics().subscribe((metrics) =>{
       this.metrics = metrics;

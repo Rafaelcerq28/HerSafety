@@ -12,6 +12,7 @@ import { ActivatedRoute, Router, RouterLink, RouterLinkActive, RouterOutlet } fr
 })
 export class RedirectComponent {
 constructor(private route: ActivatedRoute,private router:Router){
+  //Get the name and redirect again to place
   this.route.queryParams.subscribe(params => {
     this.name = params['name'];
   });

@@ -29,32 +29,24 @@ export class PlaceComponent {
   constructor(private route: ActivatedRoute,private placeService: PlaceService,private reportService: ReportService, private userService:UserService,private router:Router) {
     this.initMap(); 
     this.user = this.userService.getUser();
-
-    //GET SAFETY TIPS
-    // if(this.user != null){
-    //   this.safetyTips = this.getSafetyTips(); 
-    // }
-      
-    //metodo para pegar a localização  
+     
+    //call the method to get a place in the constructor 
     this.getPlace();
   }
 
-//http param
+  //http param
   name:string = '';
 
-  //lat / long inicial e para update
-  latitude = "";
-  longitude ="";
-
+  //initial position to update the map
   lat:number = 53.3489292;
   lng:number = -6.2429928;
 
-  //define o centro do mapa
+  //defines the center of the map
   center: google.maps.LatLngLiteral = { lat: this.lat, lng: this.lng };
   zoom: number = 20;
   markerPosition: google.maps.LatLngLiteral = { lat: this.lat, lng: this.lng };
 
-// TESTING API GET
+// Vatiables
   place?: any;
   reports: Report[] = [];
   reportMetric?: any;
@@ -62,6 +54,7 @@ export class PlaceComponent {
   safetyTips?:any;
   searchPlace:string = "";
 
+  //method to get a place
   getPlace(){
     //Variable to Store the name from the search component
     let name:string = '';
@@ -70,24 +63,21 @@ export class PlaceComponent {
     //Get name from the search
     this.route.queryParams.subscribe(params => {
       name = params['name']});   
-    // Store the name in a variable (maybe delete the line below later)
-    // const name = String(this.route.snapshot.paramMap.get("name"));
 
+    //check is the name exists
     if(name == undefined){
-      console.log("name undefined")
         id = Number(this.route.snapshot.paramMap.get("name"));
         if(Number.isNaN(id)){
           name = String(this.route.snapshot.paramMap.get("name"));
         }
     }    
 
+    //check if the name is empty or undefined, if not, call the service to get a place
     if(name != "null" && name != undefined){
-      console.log("aqui")
       this.placeService.getPlace(name).subscribe((place) => {
         this.place = place
         this.getReport(this.place.id);
         this.getReportMetrics(this.place.id);
-        console.log(this.reportMetric);
         this.initMap();
       });
       
@@ -134,34 +124,27 @@ export class PlaceComponent {
         } else {
           // If the place is null, log a message indicating the place was not loaded
           console.log("Place not loaded due to error.");
-          // Additional actions can go here, like showing an error message to the user
         }
       });
-
-          // this.placeService.getPlaceById(String(id)).subscribe((place) => {
-          //   this.place = place
-          //   this.getReport(this.place.id);
-          //   this.getReportMetrics(this.place.id);
-          //   console.log(this.reportMetric);
-          //   this.initMap();
-          // });        
+        
     }
-    console.log("id: " + id);
+
   }
 
+  //method to get reports
   getReport(id:number){
     this.reportService.getReport(id).subscribe((reports) => {
       this.reports = reports
-      // console.log(this.reports);
+
     });
   }
 
+  //method to get metrics
   getReportMetrics(id:number){
     this.reportService.getReportMetrics(id).subscribe((data:any) => {
       this.reportMetric = data;
     });
   }
-// END TESTING API GET
 
 //Method to get safety tips from the user based on the users preference
 getSafetyTips(){
@@ -172,7 +155,6 @@ getSafetyTips(){
 
 //initialize the google map
   initMap():void{
-    console.log("vrum");
     this.center = { lat: Number(this.place?.lat), lng: Number(this.place?.lng) };
     this.markerPosition = { lat: Number(this.place?.lat), lng: Number(this.place?.lng) };
     this.zoom = 20;
@@ -186,9 +168,10 @@ getSafetyTips(){
     });
   }
 
+  //method to make a report (redirect to the report page)
   makeReport(placeId:number){
     this.router.navigate(['/report/'],{ queryParams: {placeId:placeId}})
-    // const id = Number(this.route.snapshot.paramMap.get("id"));
+
   }
 
   //SEARCH BAR METHOD
@@ -198,10 +181,8 @@ getSafetyTips(){
     search = search.split(' ').join('+');
     this.router.navigate([`/redirect/`],{ queryParams: {name: search}});
   }
+
   ngOnInit() {
-    // this.route.queryParams.subscribe(params => {
-    //   this.name = params['name'];
-    //   // Aqui você pode fazer a lógica de pesquisa com base no 'query'
-    // });
+
   }
 }

@@ -9,9 +9,7 @@ import javax.management.RuntimeErrorException;
 
 import org.springframework.hateoas.EntityModel;
 import org.springframework.http.ResponseEntity;
-// import org.springframework.security.core.userdetails.UserDetails;
-// import org.springframework.security.core.userdetails.UserDetailsService;
-// import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -25,8 +23,8 @@ import com.hersafety.hersafety.model.User;
 import com.hersafety.hersafety.repository.SecurityInfoRepository;
 import com.hersafety.hersafety.repository.UserRepository;
 
-@Service                //Implemented to make JWT works
-public class UserService{// implements UserDetailsService {
+@Service                
+public class UserService{
 
     private UserRepository userRepository;
     private SecurityInfoRepository securityInfoRepository;
@@ -39,13 +37,7 @@ public class UserService{// implements UserDetailsService {
     public ResponseEntity<UserResponse> createUser(User user){
         user.setRole(Role.USER);
         user.setActive(true);
-        // SecurityInfo secInfo = new SecurityInfo();
-        // secInfo.newSecInfo();
-        // user.setSecurityInfo(secInfo);
 
-        // System.out.println(user.toString());
-
-        //search user in the database
         User savedUser = userRepository.save(user);
 
         UserResponse userResponse = new UserResponse(
@@ -57,7 +49,7 @@ public class UserService{// implements UserDetailsService {
             savedUser.getRole(),
             savedUser.isActive());
 
-        //generating user uri
+        //generating user url
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().
                         path("/{id}").buildAndExpand(savedUser.getId()).toUri();
 
@@ -85,7 +77,6 @@ public class UserService{// implements UserDetailsService {
     public ResponseEntity<Object> deleteUser(Long id) {
         Optional<User> user = userRepository.findById(id);
         
-        //insert an exception here
         if(user.isPresent() == false){
             return ResponseEntity.badRequest().build();
         }
@@ -113,8 +104,9 @@ public class UserService{// implements UserDetailsService {
         return ResponseEntity.ok().body(updatedUser);
     }
 
+    //Method to update the security info
     public ResponseEntity<SecurityInfo> updateSecurityInfo(String username, SecurityInfo securityInfo) {
-        // System.out.println(user.getUsername());
+
         Optional<User> userToUpdate = userRepository.findByUsername(username);
         SecurityInfo securityInfoToUpdate = new SecurityInfo();
 
@@ -147,6 +139,7 @@ public class UserService{// implements UserDetailsService {
 
     }
 
+    //Mehtod to get the security info
     public ResponseEntity<SecurityInfo> getSecurityInfo(String username) {
         Optional<User> userToGet = userRepository.findByUsername(username);
 
@@ -165,6 +158,7 @@ public class UserService{// implements UserDetailsService {
 
     }
 
+    //Method to update the status
     public boolean updateActiveStatus(String username) {
         Optional<User> userToUpdate = userRepository.findByUsername(username);
         
@@ -182,17 +176,5 @@ public class UserService{// implements UserDetailsService {
 
         return userToReturn.isActive();
     }
-
-    // //Override from UserDetailsService
-    // @Override
-    // public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-    //     Optional<User> user = userRepository.findByUsername(username);
-    //             // .orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + username));
-    //     if(user.isPresent() == false){
-    //         return null;
-    //     }
-
-    //     return new org.springframework.security.core.userdetails.User(user.get().getUsername(), user.get().getPassword(), new ArrayList<>());
-    // }
 
 }
