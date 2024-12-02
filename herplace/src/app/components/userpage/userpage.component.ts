@@ -26,14 +26,14 @@ export class UserpageComponent {
   securityInfo?:any;
 
   constructor(private userService: UserService, private reportService: ReportService){
-    // Verifica se a página já foi recarregada nesta sessão
+    //check if the page was reloaded in this session
     const hasReloaded = sessionStorage.getItem('hasReloaded');
     
     if (!hasReloaded) {
-      // Armazena o estado de recarregamento no sessionStorage para evitar loops
+      // Store the state to avoid loops
       sessionStorage.setItem('hasReloaded', 'true');
       
-      // Recarrega a página apenas uma vez
+      // Reload the page
       this.reload();
     } else {
       this.user = this.userService.getUser();
@@ -66,7 +66,7 @@ export class UserpageComponent {
         this.question4 = securityInfo.question4;
         this.question5 = securityInfo.question5;
       }else{
-        // this.edit = true
+        
       }
       console.log(this.securityInfo)
     })
@@ -76,7 +76,7 @@ export class UserpageComponent {
     this.editSecurityInfo()
   }
 
-//Event to get the selected item 
+//Events to get the selected item 
   onSelectChange1(event:Event){
     const target = event.target as HTMLSelectElement;
     this.question1  = target.value;
@@ -100,22 +100,7 @@ export class UserpageComponent {
     console.log(this.user);
   }
 
-  // showSelectionQ1(){
-  //   this.editQ1 = !this.editQ1;
-  // }
-  // showSelectionQ2(){
-  //   this.editQ2 = !this.editQ2;
-  // }
-  // showSelectionQ3(){
-  //   this.editQ3 = !this.editQ3;
-  // }
-  // showSelectionQ4(){
-  //   this.editQ4 = !this.editQ4;
-  // }
-  // showSelectionQ5(){
-  //   this.editQ5 = !this.editQ5;
-  // }
-
+  //method to get the reports
   getReport(username:string){
     this.reportService.getReportByUser(username).subscribe((reports) => {
       this.reports = reports

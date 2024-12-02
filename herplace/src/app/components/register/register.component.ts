@@ -25,6 +25,7 @@ export class RegisterComponent {
   notifications: boolean = false;
   user:any = null;
 
+  //method to register a new user
   register(){
     var newUser: User = {
       name: this.name,
@@ -37,15 +38,13 @@ export class RegisterComponent {
     }
     console.log(newUser);
     
-
-    //finish this
     this.authenticationService.register(newUser).subscribe({
       next: () => {
-        // Agora que o login foi concluído, você pode buscar o usuário do Local Storage
+        //after the register the user is logged in and can be found in the localstorage
         this.userService.setUser(JSON.parse(localStorage.getItem('user') || '{}'));
         this.user = this.userService.getUser();
   
-        // Verifica se o usuário foi encontrado e navega ou exibe uma mensagem de erro
+        //check if the user was found
         if (!this.user) {
           console.log("fail")
         } else {

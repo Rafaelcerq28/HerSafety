@@ -12,10 +12,12 @@ export class PlaceService {
 
   private apiUrl : string = "http://localhost:8080/place";
 
+  //method to get the place in the backend API
   getPlace(name:string):Observable<Place>{
     return this.httpClient.get<Place>(`${this.apiUrl}?name=${name}`);
   }
 
+  //Method to get the place in the backend API using the place ID
   getPlaceById(id:string):Observable<Place>{
     return this.httpClient.get<Place>(`${this.apiUrl}/id/${id}`);
   }

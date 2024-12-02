@@ -24,7 +24,6 @@ export class SearchComponent {
   
   //Sending query to place page
   search(){
-    
     this.router.navigate(['/place/'],{ queryParams: {name:this.transformToUrlFormat(this.searchPlace)}});
   }
 

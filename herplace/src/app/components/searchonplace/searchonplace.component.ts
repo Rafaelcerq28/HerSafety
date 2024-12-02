@@ -24,8 +24,6 @@ export class SearchonplaceComponent {
   //Sending query to place page
   search(){
     const url = self;
-    // this.router.navigate([`/place/${this.searchPlace}`]);
-    // this.router.navigate([`/place?name=${this.transformToUrlFormat(this.searchPlace)}`]);
 
     this.router.navigate(['/place/'],{ queryParams: {name:this.transformToUrlFormat(this.searchPlace)}});
 

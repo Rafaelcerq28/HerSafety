@@ -12,20 +12,10 @@ export class AuthenticationService {
 
   private apiUrl : string = "http://localhost:8080";
   
-  // login(username: string, password: string) {
-  //   this.httpClient.post<any>(this.apiUrl, { username, password })
-  //     .subscribe(response => {
-  //       const user = response
-  //       // Armazena o token no Local Storage
-  //       localStorage.setItem('user', JSON.stringify(user));        
-  //       // JSON.parse(localStorage.getItem('user') || '{}');
-  //     });
-  // }
-
   login(username: string, password: string): Observable<any> {
     return this.httpClient.post<any>(`${this.apiUrl}/login`, { username, password }).pipe(
       tap(response => {
-        // Armazena o usuário no Local Storage
+        // Store the user in the local storage
         localStorage.setItem('user', JSON.stringify(response));
       })
     );
@@ -34,7 +24,7 @@ export class AuthenticationService {
   register(user:User): Observable<any>{
     return this.httpClient.post<any>(`${this.apiUrl}/users`, user).pipe(
       tap(response => {
-        // Armazena o usuário no Local Storage
+        // Store the user in the local storage
         localStorage.setItem('user', JSON.stringify(response));
       })
     );
