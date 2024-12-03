@@ -9,6 +9,7 @@ import java.util.Optional;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +27,9 @@ import java.util.regex.Pattern;
 public class SafetyTipsService {
 
     UserRepository userRepository;
+
+    @Value("${openai.key}")
+    private String openApiKey;
 
     public SafetyTipsService(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -67,7 +71,7 @@ public class SafetyTipsService {
       "Using these answers, generate a safety advice for this user, addressing potential concerns about nightlife safety, transportation after a night out, and ways to stay safe while in a group.";
 
         //API Key
-        String apiKey = "";
+        String apiKey = openApiKey;
         // API Endpoint
         String apiEndpoint = "https://api.openai.com/v1/chat/completions";
         

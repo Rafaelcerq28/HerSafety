@@ -10,6 +10,7 @@ import java.net.http.HttpResponse.BodyHandlers;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -28,6 +29,9 @@ public class PlacesService {
 
     UserRepository userRepository;
     PlaceRepository placeRepository;
+
+    @Value("${maps.key}")
+    private String mapsKey;
 
     public PlacesService(UserRepository userRepository, PlaceRepository placeRepository) {
         this.userRepository = userRepository;
@@ -53,7 +57,7 @@ public class PlacesService {
                 name = name.replace(" ", "+");
                 String url = "https://maps.googleapis.com/maps/api/place/findplacefromtext/"+
                             "json?input="+name+"&inputtype=textquery&fields=formatted_address"+
-                            "%2Cname%2Cgeometry%2Cplace_id%2Ctype&locationbias=country:IE&key=";
+                            "%2Cname%2Cgeometry%2Cplace_id%2Ctype&locationbias=country:IE&key="+mapsKey;
 
                 //Make request to the google API
                 URI address = URI.create(url);
