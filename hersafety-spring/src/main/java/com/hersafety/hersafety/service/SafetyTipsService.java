@@ -28,6 +28,7 @@ public class SafetyTipsService {
 
     UserRepository userRepository;
 
+    //API key
     @Value("${openai.key}")
     private String openApiKey;
 
