@@ -1,2 +1,2 @@
-INSERT INTO user (created_at, date_of_birth, email, name, notifications, password, username, role, security_info_id, is_active)
-VALUES (CURRENT_TIMESTAMP,'1995-08-15','admin@example.com','admin',true,'admin','admin','ADMIN',null,true);
+-- INSERT INTO user (created_at, date_of_birth, email, name, notifications, password, username, role, security_info_id, is_active)
+-- VALUES (CURRENT_TIMESTAMP,'1995-08-15','admin@example.com','admin',true,'admin','admin','ADMIN',null,true);

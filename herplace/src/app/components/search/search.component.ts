@@ -3,6 +3,7 @@ import { RouterLink, RouterLinkActive, RouterOutlet , Router} from '@angular/rou
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { PlaceComponent } from '../place/place.component';
+import { PlaceService } from '../../service/place.service';
 
 @Component({
   selector: 'app-search',
@@ -13,10 +14,12 @@ import { PlaceComponent } from '../place/place.component';
 })
 export class SearchComponent {
 
-  constructor(private router: Router){}
+  constructor(private router: Router, private placeService:PlaceService){
+    this.getPlaces();
+  }
 
   searchPlace: string = "";
-
+  places?:any | null;
 
   transformToUrlFormat(name: string): string {
     return this.searchPlace.split(' ').join('+');
@@ -25,6 +28,12 @@ export class SearchComponent {
   //Sending query to place page
   search(){
     this.router.navigate(['/place/'],{ queryParams: {name:this.transformToUrlFormat(this.searchPlace)}});
+  }
+
+  getPlaces(){
+    this.placeService.getAllPlaces().subscribe((places) => {
+      this.places = places;
+    });
   }
 
 }

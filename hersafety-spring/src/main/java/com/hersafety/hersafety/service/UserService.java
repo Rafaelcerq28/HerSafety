@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.hersafety.hersafety.DTO.UserResponse;
+import com.hersafety.hersafety.exception.ArgumentNotValidException;
 import com.hersafety.hersafety.exception.CustomizedResponseEntityExceptionHandler;
 import com.hersafety.hersafety.exception.UnauthorizedException;
 import com.hersafety.hersafety.exception.UserNotFoundException;
@@ -37,6 +38,12 @@ public class UserService{
     public ResponseEntity<UserResponse> createUser(User user){
         user.setRole(Role.USER);
         user.setActive(true);
+
+        Optional<User> userToCheck = userRepository.findByUsername(user.getUsername());
+
+        if(userToCheck.isPresent() == true){
+            throw new ArgumentNotValidException("This user already exist");
+        }
 
         User savedUser = userRepository.save(user);
 
@@ -65,7 +72,7 @@ public class UserService{
     public EntityModel<User> getUser(Long id) {
         Optional<User> user = userRepository.findById(id);
         if(user.isPresent() == false){
-            return null;
+            throw new UserNotFoundException("User not found");
         }
 
         EntityModel<User> entityModel = EntityModel.of(user.get());

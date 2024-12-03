@@ -35,5 +35,25 @@
                     </div>
                   </div>
             </div>
+
+            <div class="col-md-12 p-5">
+                <div class="container scrollable-table p-0 col-md-8 ">
+                    <table class="table table-bordered">
+                        <thead class="thead-light sticky-header">
+                            <tr>
+                                <th class="col-md-6 col-sm-10" scope="col">Place Name</th>
+                                <th class="col-md-4 col-sm-1" scope="col">Address</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let place of places">
+                                <td scope="row"><a class="a-def ms-2" routerLink="/place/{{place.id}}"><i class="bi bi-geo-alt-fill"></i>{{place.name}}</a></td>
+                                <td>{{place.address}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
         </section>
 </main>

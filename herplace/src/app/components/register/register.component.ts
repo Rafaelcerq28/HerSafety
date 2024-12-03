@@ -15,7 +15,10 @@ import { UserService } from '../../service/user.service';
 })
 export class RegisterComponent {
 
-  constructor(private router:Router, private authenticationService: AuthenticationService, private userService: UserService){}
+  constructor(private router:Router, private authenticationService: AuthenticationService, private userService: UserService){
+    //Clear the session storage to force a reload in the user page
+    sessionStorage.clear();
+  }
 
   name:string = '';
   username: string = '';
@@ -24,9 +27,15 @@ export class RegisterComponent {
   date: any | undefined;
   notifications: boolean = false;
   user:any = null;
-
+  
+  errorMessage: boolean = false;
+  errorMessageText: string = '';
+  
   //method to register a new user
   register(){
+    
+    this.errorMessage = false;
+
     var newUser: User = {
       name: this.name,
       username: this.username,
@@ -36,26 +45,33 @@ export class RegisterComponent {
       notifications: this.notifications,
       createdAt:''
     }
-    console.log(newUser);
-    
-    this.authenticationService.register(newUser).subscribe({
-      next: () => {
-        //after the register the user is logged in and can be found in the localstorage
-        this.userService.setUser(JSON.parse(localStorage.getItem('user') || '{}'));
-        this.user = this.userService.getUser();
-  
-        //check if the user was found
-        if (!this.user) {
-          console.log("fail")
-        } else {
 
-          this.router.navigate(['/user/'], { queryParams: { username: this.username } });
+    if(this.name == '' || this.email == '' || this.username == '' || this.password == ''){
+      this.errorMessage = true;
+      this.errorMessageText = "You must fill the fields first!";
+    }else{
+      this.authenticationService.register(newUser).subscribe({
+        next: () => {
+          //after the register the user is logged in and can be found in the localstorage
+          this.userService.setUser(JSON.parse(localStorage.getItem('user') || '{}'));
+          this.user = this.userService.getUser();
+    
+          //check if the user was found
+          if (!this.user) {
+            console.log("fail")
+          } else {
+  
+            this.router.navigate(['/user/'], { queryParams: { username: this.username } });
+          }
+        },
+        error: err => {
+          this.errorMessage = true;
+          this.errorMessageText = err.error.message
         }
-      },
-      error: err => {
-        console.error("Erro ao fazer login:", err);
-      }
-    });
+      });
+    }
+    
+
 
     
   }

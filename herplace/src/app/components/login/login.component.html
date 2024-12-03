@@ -12,13 +12,13 @@
                   <h2 class="mb-4 text-center">Login</h2>
                   <div class="mb-3">
                     <label for="username" class="form-label">Username</label>
-                    <input type="text" class="form-control" [(ngModel)]="username" [ngModelOptions]="{standalone: true}" id="username" placeholder="Digite seu usuário">
+                    <input type="text" class="form-control" [(ngModel)]="username" [ngModelOptions]="{standalone: true}" id="username" placeholder="">
                   </div>
                   <div class="mb-3">
                     <label for="password" class="form-label">Senha</label>
-                    <input type="password" class="form-control" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" id="password" placeholder="Digite sua senha">
+                    <input type="password" class="form-control" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" id="password" placeholder="">
                   </div>
-                  <button type="submit" class="btn form-login-btn w-100 mt-3"(click)="login()">Entrar</button>
+                  <button type="submit" class="btn form-login-btn w-100 mt-3"(click)="login()">Enter</button>
                 
                   <div *ngIf="alerMsg == true">
                     <div class="alert alert-danger alert-dismissible d-flex align-items-center mt-5" role="alert">

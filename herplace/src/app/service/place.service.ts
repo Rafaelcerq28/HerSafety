@@ -21,4 +21,9 @@ export class PlaceService {
   getPlaceById(id:string):Observable<Place>{
     return this.httpClient.get<Place>(`${this.apiUrl}/id/${id}`);
   }
+
+  //Method to get all places
+  getAllPlaces():Observable<any>{
+    return this.httpClient.get("http://localhost:8080/places");
+  }
 }

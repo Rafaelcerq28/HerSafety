@@ -11,7 +11,7 @@
           <h2 class=" pt-3 mt-5 text-center">Register</h2>
           <div class="mb-2">
             <label for="username" class="form-label">Name</label>
-            <input type="text" class="form-control" id="name" [(ngModel)]="name" [ngModelOptions]="{standalone: true}" placeholder="Digite seu usuário">
+            <input type="text" class="form-control" id="name" [(ngModel)]="name" [ngModelOptions]="{standalone: true}" placeholder="Type your name" required>
           </div>
           <div class="mb-2">
             <label for="dob">Date of Birth:</label>
@@ -20,15 +20,15 @@
           </div>
           <div class="mb-2">
             <label for="username" class="form-label">Email</label>
-            <input type="text" class="form-control" id="email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}"placeholder="Digite seu usuário">
+            <input type="text" class="form-control" id="email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}"placeholder="Type your email" required>
           </div>              
           <div class="mb-2">
             <label for="username" class="form-label">Username</label>
-            <input type="text" class="form-control" id="username" [(ngModel)]="username" [ngModelOptions]="{standalone: true}" placeholder="Digite seu usuário">
+            <input type="text" class="form-control" id="username" [(ngModel)]="username" [ngModelOptions]="{standalone: true}" placeholder="Type your username" required>
           </div>
           <div class="mb-2">
             <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" placeholder="Digite sua senha">
+            <input type="password" class="form-control" id="password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" placeholder="Type your password" required>
           </div>
           <div class=" col-md-12 ps-5">
             <div class="mt-2 form-check col-md-6">
@@ -36,11 +36,14 @@
               <label class="form-check-label"  for="formNotification">Activate notifications</label>
             </div>
             <div class="mt-2 form-check">
-              <input type="checkbox" class="form-check-input" id="formCondition">
+              <input type="checkbox" class="form-check-input" id="formCondition" required>
               <label class="form-check-label" for="formCondition">Accept terms and conditions</label>
             </div>
           </div>
-          <button type="submit" class="btn form-login-btn w-100 mt-2" (click)="register()">Entrar</button>
+          <button type="submit" class="btn form-login-btn w-100 mt-2" (click)="register()">Enter</button>
+          <div class="alert alert-danger" role="alert" *ngIf="errorMessage == true">
+            {{errorMessageText}}
+          </div>
         </form>
       </div>
     </div>
