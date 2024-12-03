@@ -63,21 +63,6 @@
 			<artifactId>json</artifactId>
 			<version>20210307</version>
 		</dependency>
-		<!-- <dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<scope>runtime</scope>
-		</dependency> -->
-		<!-- JWT -->
-		<!-- <dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>io.jsonwebtoken</groupId>
-			<artifactId>jjwt</artifactId>
-			<version>0.9.1</version>
-		</dependency>		 -->
 		<!-- Swagger -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
