@@ -35,10 +35,10 @@ export class UserService {
   }
   
   //method to get security info
-  private apiUrl : string = "http://localhost:8080/users/securityinfo";
+  private apiUrl : string = "https://herplace-app-9b31336a84d5.herokuapp.com";
 
   editSecurityInfo(username:string, q1:string, q2:string, q3:string, q4:string, q5:string):Observable<any>{
-    return this.httpClient.put<any>(`${this.apiUrl}/${username}`,
+    return this.httpClient.put<any>(`${this.apiUrl}/users/securityinfo/${username}`,
       {
         question1:q1,
         question2:q2,
@@ -50,19 +50,19 @@ export class UserService {
 
   getSafetyTips(username:string):Observable<any>{
     console.log("o metodo foi acionado no service:)");
-    return this.httpClient.get(`http://localhost:8080/safety/${username}`, { responseType: 'text' });
+    return this.httpClient.get(`${this.apiUrl}/safety/${username}`, { responseType: 'text' });
   }
   
   getSecurityInfo(username:string):Observable<any>{
-    return this.httpClient.get<any>(`${this.apiUrl}/${username}`);
+    return this.httpClient.get<any>(`${this.apiUrl}/users/securityinfo/${username}`);
   }
 
   getAllUsers():Observable<any>{
-    return this.httpClient.get<any[]>(`http://localhost:8080/users`);
+    return this.httpClient.get<any[]>(`${this.apiUrl}/users`);
   }
 
   updateActiveStatus(username:string):Observable<any>{
-    return this.httpClient.put<any>(`http://localhost:8080/users/status/${username}`,{});
+    return this.httpClient.put<any>(`${this.apiUrl}/users/status/${username}`,{});
   }
 
 }

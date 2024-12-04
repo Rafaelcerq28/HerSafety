@@ -122,7 +122,7 @@ public class PlacesService {
                     }
                 
                     //store the place in the database
-                    // placeRepository.save(place);
+                    placeRepository.save(place);
 
                     return place;
                 }

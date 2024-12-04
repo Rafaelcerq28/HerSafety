@@ -10,33 +10,33 @@ export class ReportService {
 
   constructor(private httpClient: HttpClient) {}
 
-  apiUrl = 'http://localhost:8080/report/place'
+  apiUrl = 'https://herplace-app-9b31336a84d5.herokuapp.com'
 
   //Method to get the user report passing the place id
   getReport(id:number): Observable<Report[]>{
-    return this.httpClient.get<Report[]>(`${this.apiUrl}/${id}`);  
+    return this.httpClient.get<Report[]>(`${this.apiUrl}/report/place/${id}`);  
   }
 
   //method to make a report
   makeReport(report:Report,username:string): Observable<any>{
     console.log(username);
     console.log(report)
-    return this.httpClient.post(`http://localhost:8080/report/${username}`,report);  
+    return this.httpClient.post(`${this.apiUrl}/report/${username}`,report);  
   }
 
   //Method to get the report metrics
   getReportMetrics(id:number): Observable<any>{
-    return this.httpClient.get(`${this.apiUrl}/metrics/${id}`); 
+    return this.httpClient.get(`${this.apiUrl}/report/place/metrics/${id}`); 
   }
 
   //Method to get the report by user
   getReportByUser(username:string): Observable<Report[]>{
-    return this.httpClient.get<Report[]>(`http://localhost:8080/report/user/${username}`);  
+    return this.httpClient.get<Report[]>(`${this.apiUrl}/report/user/${username}`);  
   }
 
   //Mehtod to report a comment
   reportReport(report:string,reportId:number,placeId:number,username:string,placeName:string,message:string): Observable<Report[]>{
-    return this.httpClient.post<Report[]>(`http://localhost:8080/report/denounce/${report}/${reportId}/${placeId}/${username}`,
+    return this.httpClient.post<Report[]>(`${this.apiUrl}/report/denounce/${report}/${reportId}/${placeId}/${username}`,
       {
       message:message,
       placeName:placeName
@@ -45,23 +45,23 @@ export class ReportService {
 
   //Method to get reported reports
   getReportedReports(): Observable<any>{
-    return this.httpClient.get(`http://localhost:8080/report/reported-reports`); 
+    return this.httpClient.get(`${this.apiUrl}/report/reported-reports`); 
   }
 
   //method to remove the reported comment from the list but keep the comment in the place
   keepComment(reportId:number): Observable<any>{
     console.log("keep comment (service)")
-    return this.httpClient.delete(`http://localhost:8080/report/delete-reported/${reportId}`,{});
+    return this.httpClient.delete(`${this.apiUrl}/report/delete-reported/${reportId}`,{});
 
   }
 
   //Method to delete the comment from the list and from the post
   deleteComment(reportId:number): Observable<any>{
-    return this.httpClient.delete(`http://localhost:8080/report/reported-comment/${reportId}`);
+    return this.httpClient.delete(`${this.apiUrl}/report/reported-comment/${reportId}`);
   }
 
   //method to get the system metrics
   getMetrics(): Observable<any>{
-    return this.httpClient.get(`http://localhost:8080/metrics`);
+    return this.httpClient.get(`${this.apiUrl}/metrics`);
   }
 }
