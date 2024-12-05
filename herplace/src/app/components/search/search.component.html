@@ -27,15 +27,27 @@
                 <div class="container mt-4 mb-5">
                     <div class="input-group">
                       <input type="text" class="form-control" [(ngModel)]="searchPlace" placeholder="Search..." aria-label="Campo de busca">
-                      <button class="btn btn-secondary" type="button" (click)="search()">
+                      <button class="btn btn-secondary form-login-btn" type="button" (click)="search()">
 
                         <i class="bi bi-search"></i>
                       </button>
                     </div>
+                    <p>
+                        <a class="btn btn sm btn-secondary form-login-btn mt-2" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                          Need help?
+                        </a>
+                      </p>
+                      <div class="collapse" id="collapseExample">
+                        <div class="card card-body">
+                          <p>Type the place's <b>name</b> to search: <b>The Celt</b>
+                            <br> Or the <b>name</b> and the <b>address</b>: <b>The Celt, Talbot Street</b> </p> 
+                        </div>
+                      </div>
+                    
                   </div>
             </div>
 
-            <div class="col-md-12 p-5">
+            <div class="col-md-12 p-5 pt-0">
                 <div class="container scrollable-table p-0 col-md-8 ">
                     <table class="table table-bordered">
                         <thead class="thead-light sticky-header">

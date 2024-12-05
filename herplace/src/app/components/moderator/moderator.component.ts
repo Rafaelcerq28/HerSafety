@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { UserService } from '../../service/user.service';
 import { ReportService } from '../../service/report.service';
 
@@ -13,8 +13,13 @@ import { ReportService } from '../../service/report.service';
 })
 export class ModeratorComponent {
 
-  constructor(private userService: UserService, private reportService: ReportService){
+  constructor(private userService: UserService, private reportService: ReportService,private router:Router){
     this.user = this.userService.getUser();
+
+    if(this.user.role != 'ADMIN'){
+      this.router.navigate(['/']);
+    }
+
     this.getAllUsers();
     this.getReportedReports();
     this.getMetrics();

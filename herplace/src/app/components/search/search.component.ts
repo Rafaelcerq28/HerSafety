@@ -27,6 +27,12 @@ export class SearchComponent {
   
   //Sending query to place page
   search(){
+
+    //temple bar rule
+    if(this.searchPlace == "temple bar"){
+      this.searchPlace = "Temple Bar";
+    }
+
     this.router.navigate(['/place/'],{ queryParams: {name:this.transformToUrlFormat(this.searchPlace)}});
   }
 

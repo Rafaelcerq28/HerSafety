@@ -178,6 +178,12 @@ getSafetyTips(){
   //This method redirects to the redirect compoment, and once in the redirect component 
   //it is redirected to place component again 
   search(search:string){
+
+    //temple bar rule
+    if(search == "temple bar"){
+      search = "Temple Bar";
+    }
+
     search = search.split(' ').join('+');
     this.router.navigate([`/redirect/`],{ queryParams: {name: search}});
   }

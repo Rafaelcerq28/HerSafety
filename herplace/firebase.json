@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "dist/herplace/browser",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

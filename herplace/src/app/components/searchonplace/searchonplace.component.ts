@@ -18,6 +18,7 @@ export class SearchonplaceComponent {
 
 
   transformToUrlFormat(name: string): string {
+
     return this.searchPlace.split(' ').join('+');
   }
   

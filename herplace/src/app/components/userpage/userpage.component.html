@@ -87,7 +87,7 @@
                             <p class="fs-6"><strong>{{user.username}}</strong></p>
                             <p>{{report.comment}}</p>    
                             <p>Date: {{ report.createdAt | date:'dd/MM/yyyy' }}</p>
-                            <a href="/place/{{report.placeId}}" class="text-decoration-underline" style="color: #444444;">Go to place</a>
+                            <a routerLink="/place/{{report.placeId}}" routerLinkActive="active" class="text-decoration-underline" style="color: #444444;">Go to place</a>
                             <hr>
                         </div>
                     </div>
