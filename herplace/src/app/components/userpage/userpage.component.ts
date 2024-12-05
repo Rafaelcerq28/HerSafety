@@ -25,6 +25,8 @@ export class UserpageComponent {
   user?:any = null;
   securityInfo?:any;
 
+  successMessage: boolean = false;
+
   constructor(private userService: UserService, private reportService: ReportService){
     //check if the page was reloaded in this session
     const hasReloaded = sessionStorage.getItem('hasReloaded');
@@ -51,6 +53,7 @@ export class UserpageComponent {
   editSecurityInfo(){
     this.userService.editSecurityInfo(this.user.username,this.question1,this.question2,this.question3,this.question4,this.question5).subscribe((securityInfo) => {
       this.securityInfo = securityInfo;
+      this.updateSuccessMessage();
     })
   }
 
@@ -74,6 +77,10 @@ export class UserpageComponent {
 
   saveSecurityOption(){
     this.editSecurityInfo()
+  }
+
+  updateSuccessMessage(){
+    this.successMessage = !this.successMessage;
   }
 
 //Events to get the selected item 

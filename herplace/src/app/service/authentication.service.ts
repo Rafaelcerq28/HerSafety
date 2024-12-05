@@ -10,7 +10,7 @@ export class AuthenticationService {
 
   constructor(private httpClient: HttpClient) { }
 
-  private apiUrl : string = "https://herplace-app-9b31336a84d5.herokuapp.com";
+  private apiUrl : string = "https://herplace-app-989c0538b8f0.herokuapp.com";
   
   login(username: string, password: string): Observable<any> {
     return this.httpClient.post<any>(`${this.apiUrl}/login`, { username, password }).pipe(

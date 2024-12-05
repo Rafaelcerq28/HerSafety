@@ -7,6 +7,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -72,12 +73,15 @@ public class PlacesService {
                 ObjectMapper mapper = new ObjectMapper();
                 PlaceResponse places = mapper.readValue(jsonString, PlaceResponse.class);
                 
+                System.out.println(body);
+
                 //CHECK IF THE PLACE IS LOCATED IN IRELAND
                 String [] addressToValidate = places.getCandidates().get(0).getFormatted_address().split(",");
 
                 //Remove the spaces and check if the name is equal Ireland
                 boolean countryFound = false;
-
+                
+                System.out.println(Arrays.toString(addressToValidate));
                 //check through the addressToValidate array and compare the country name
                 for(int i =0;i<addressToValidate.length;i++){
                     if(addressToValidate[i].replaceAll("\\s", "").equalsIgnoreCase("Ireland") == true){
@@ -87,7 +91,7 @@ public class PlacesService {
                              
                 //If the country wasn't found throw an exception
                 if(countryFound == false){
-                    throw new UserNotFoundException(nameToSearch);
+                    throw new UserNotFoundException("This place is not located in Ireland");
                 }
 
                 //FILTER FOR TYPES
@@ -118,7 +122,7 @@ public class PlacesService {
                     try{
                         place.fillFields(places);   
                     }catch(IndexOutOfBoundsException ex){
-                        throw new UserNotFoundException(nameToSearch);
+                        throw new UserNotFoundException("Index out of bounds to "+ nameToSearch);
                     }
                 
                     //store the place in the database

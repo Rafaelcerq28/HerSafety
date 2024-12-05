@@ -323,6 +323,7 @@ h6 {
 /* Mobile Navigation */
 @media (max-width: 1199px) {
   .mobile-nav-toggle {
+    /* #6a4d7c */
     color: var(--nav-color);
     font-size: 28px;
     line-height: 0;
@@ -383,19 +384,20 @@ h6 {
 
   .navmenu a i:hover,
   .navmenu a:focus i:hover {
-    background-color: var(--accent-color);
+    background-color: #6a4d7c;
     color: var(--contrast-color);
   }
 
   .navmenu a:hover,
   .navmenu .active,
   .navmenu .active:focus {
-    color: var(--nav-dropdown-hover-color);
+    /* color: var(--nav-dropdown-hover-color); */
+    color: #6a4d7c;
   }
 
   .navmenu .active i,
   .navmenu .active:focus i {
-    background-color: var(--accent-color);
+    background-color: #6a4d7c;
     color: var(--contrast-color);
     transform: rotate(180deg);
   }

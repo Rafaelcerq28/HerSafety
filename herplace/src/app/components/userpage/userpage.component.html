@@ -69,6 +69,13 @@
                             </li>
                         </ul>
                         <button type="button" class=" form-login-btn btn btn-primary btn-sm btn-lg mt-3" (click)="saveSecurityOption()">Save</button>
+                        <div *ngIf="successMessage == true" class="alert alert-success d-flex align-items-center alert-dismissible fade show mt-3" role="alert">
+                            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                            <div>
+                              information updated
+                              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="updateSuccessMessage()"></button>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <!-- Place comments -->

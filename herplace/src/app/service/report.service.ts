@@ -10,7 +10,7 @@ export class ReportService {
 
   constructor(private httpClient: HttpClient) {}
 
-  apiUrl = 'https://herplace-app-9b31336a84d5.herokuapp.com'
+  apiUrl = 'https://herplace-app-989c0538b8f0.herokuapp.com'
 
   //Method to get the user report passing the place id
   getReport(id:number): Observable<Report[]>{

@@ -35,7 +35,7 @@ export class UserService {
   }
   
   //method to get security info
-  private apiUrl : string = "https://herplace-app-9b31336a84d5.herokuapp.com";
+  private apiUrl : string = "https://herplace-app-989c0538b8f0.herokuapp.com";
 
   editSecurityInfo(username:string, q1:string, q2:string, q3:string, q4:string, q5:string):Observable<any>{
     return this.httpClient.put<any>(`${this.apiUrl}/users/securityinfo/${username}`,

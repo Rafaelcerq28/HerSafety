@@ -10,7 +10,7 @@ export class PlaceService {
 
   constructor(private httpClient: HttpClient) { }
 
-  private apiUrl : string = "https://herplace-app-9b31336a84d5.herokuapp.com";
+  private apiUrl : string = "https://herplace-app-989c0538b8f0.herokuapp.com";
 
   //method to get the place in the backend API
   getPlace(name:string):Observable<Place>{

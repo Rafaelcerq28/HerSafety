@@ -42,11 +42,11 @@ public class InitializeService {
 
         Place p = new Place();
 
-        Optional<Place> place = placeRepository.findByName("Temple Bar_test");
+        Optional<Place> place = placeRepository.findByName("Temple Bar test");
 
         if(place.isPresent() == false){
 
-            p.setName("Temple Bar_test");
+            p.setName("Temple Bar");
             p.setPlaceId("ChIJc-pZtZwOZ0gREjDIGajHACY");
             p.setAddress("Temple Bar, Dublin, Ireland");
 
