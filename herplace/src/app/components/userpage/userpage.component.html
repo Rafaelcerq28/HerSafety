@@ -87,7 +87,8 @@
                             <p class="fs-6"><strong>{{user.username}}</strong></p>
                             <p>{{report.comment}}</p>    
                             <p>Date: {{ report.createdAt | date:'dd/MM/yyyy' }}</p>
-                            <a routerLink="/place/{{report.placeId}}" routerLinkActive="active" class="text-decoration-underline" style="color: #444444;">Go to place</a>
+                            <a routerLink="/place/{{report.placeId}}" routerLinkActive="active" class="text-decoration-underline" style="color: #444444;">Go to place <i class="bi bi-geo-alt-fill"></i></a>
+                            <button class="btn btn-danger btn-sm ms-2" (click)="deleteReport(report.id)">Delete comment<i class="bi bi-trash-fill ms-1"></i></button>
                             <hr>
                         </div>
                     </div>

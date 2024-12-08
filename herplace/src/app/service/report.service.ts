@@ -60,6 +60,11 @@ export class ReportService {
     return this.httpClient.delete(`${this.apiUrl}/report/reported-comment/${reportId}`);
   }
 
+  //Method to delete a report 
+  deleteReport(reportId:number): Observable<any>{
+    return this.httpClient.delete(`${this.apiUrl}/report/${reportId}`);
+  }
+
   //method to get the system metrics
   getMetrics(): Observable<any>{
     return this.httpClient.get(`${this.apiUrl}/metrics`);

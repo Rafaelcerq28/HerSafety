@@ -49,7 +49,6 @@ export class UserService {
   }
 
   getSafetyTips(username:string):Observable<any>{
-    console.log("o metodo foi acionado no service:)");
     return this.httpClient.get(`${this.apiUrl}/safety/${username}`, { responseType: 'text' });
   }
   

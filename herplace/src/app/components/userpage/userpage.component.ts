@@ -71,7 +71,6 @@ export class UserpageComponent {
       }else{
         
       }
-      console.log(this.securityInfo)
     })
   }
 
@@ -112,6 +111,13 @@ export class UserpageComponent {
     this.reportService.getReportByUser(username).subscribe((reports) => {
       this.reports = reports
       console.log("Reports " + this.reports);
+    });
+  }
+
+  deleteReport(reportId:number){
+    this.reportService.deleteReport(reportId).subscribe((httpReturn) => {
+      httpReturn = httpReturn;
+      this.getReport(this.user.username);
     });
   }
 }

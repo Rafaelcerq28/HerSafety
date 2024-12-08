@@ -67,6 +67,7 @@ export class ModeratorComponent {
   
   //method to delete a comment (delete from the list and from the place)
   deleteComment(reportId:number){
+    console.log(reportId);
     this.reportService.deleteComment(reportId).subscribe((httpReturn) => {
       httpReturn = httpReturn;
       this.getReportedReports();
